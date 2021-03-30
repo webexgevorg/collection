@@ -44,8 +44,11 @@ input[type='file']{
 	background: #6ea4ae;
 	border-radius: 10px
 }
-.add-collection, .add-folder, .add-card{
+.add-collection, .add-folder, .add-card, .all-cards{
 	border-radius: 8px
+}
+.all-cards{
+	cursor: pointer;
 }
 .img-cont{
 	border: 4px solid #133960;

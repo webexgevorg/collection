@@ -41,7 +41,7 @@ include "user_form/pagination.php";
     $pagination= new Pagination();
 
 if(!empty($_SESSION['folders_id_array'])){
-    echo 'ffff';
+    print_r( $_SESSION['folders_id_array']);
     $folders_id_array=$_SESSION['folders_id_array'];
     $active_folder='active-folder';
     // $pagination= new Pagination();
@@ -52,8 +52,6 @@ if(!empty($_SESSION['folders_id_array'])){
     $items=$pagination->checkRow($conditions);
 }
 else if(isset($_SESSION['all_cards'])){
-    echo $_SESSION['all_cards'];
-    echo 'sssss';
     $conditions=$coll_id;
     $all_cards= $pagination->AllCards($conditions);
     $collection_row = $pagination->CollectionCardItems($con, $conditions);
@@ -93,11 +91,11 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                     <span class="mx-2"><i class="fa fa-star star"></i></span>
                     <span class="mx-2"> 64</span>
                 </div>
-                <div class="my-4">
-                    <span class="mx-2"><i class="fa fa-star star"></i></span>
+                <div class="my-4 d-flex">
+                    <span class="mx-2"><img src='icons/card.png'></span>
                     <span><?php echo $count_cards ?></span>
                 </div>
-                <div class="all-cards">all</div>
+                <div class="all-cards px-3 py-1 bg-yellow">All</div>
                 <div  data-coll-id="<?php echo $coll_id ?>" data-tblname="card2" >
                             <!-- folder ----------- -->
                      <?php
@@ -127,8 +125,8 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                          while($row=mysqli_fetch_assoc($collection_row)){
                     ?>
                     <div class="w-22 collection-item" >
-                      <a href="<?php echo $_SERVER['PHP_SELF'].'?coll-id='.$row['id'].'&'.$uri_page ?>" class="collection-item-a" data-id="<?php echo $row['id']; ?>">
-                        <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['coll-id']) && $_GET['coll-id']==$row['id'] ? 'active-collection' : '' ?>" >
+                      <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="collection-item-a" data-id="<?php echo $row['id']; ?>">
+                        <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>" >
                              <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
                         </div>
                         <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div>
