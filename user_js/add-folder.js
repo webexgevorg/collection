@@ -46,7 +46,7 @@ $('.all-cards').click(function(){
 		        url: 'folder.php',
 		        data: {all_cards: all_cards},
 		        success: function(res){
-		        	// location.reload()
+		        	location.reload()
 		        	console.log(res)
 		        }
 	    })
