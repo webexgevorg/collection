@@ -39,9 +39,9 @@ $row3 = mysqli_num_rows($res3);
 
 
 ?>
-<div class="container" style="margin-top: 150px">
+<div class="container container_profile" style="margin-top: 150px">
 
-    <div class="row userRow">
+    <!-- <div class="row userRow">
         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
             <div>
                 <?php if ($ard['image']): ?>
@@ -70,13 +70,69 @@ $row3 = mysqli_num_rows($res3);
 
         </div>
     </div>
-</div>
-<section>
-    <div>
+</div>-->
+<div>
+    <!--<div>
         <a href="user-collections.php"><button>Collections</button></a>
-    </div>
-</section>
+    </div> -->
+    <!-- ----------------------------------- -->
 
+        <div class="row text-justify" >
+
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12" style="overflow:hidden">
+                <img src="profile_image/Слой 14@2x.png" class="img-fluid">
+                <!--  <img src="img/2b39a88644c08d2ee407d72f631ca106.jpg" class="rounded float-left" alt="...">-->
+            </div>
+            <div class="col-md-5 ">
+                About me<br>belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-2" >
+                <h4> My statistics</h4>
+                <table class="text-center">
+                    <tr>
+                        <td  class="text-center pb-2" style="width:7vw;"><img src="profile_image/Заливка цветом 1.png"></td>
+                        <td><h5>15</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pb-2"style="width:7vw;"><img src="profile_image/Заливка цветом 2.png"></td>
+                        <td><h5>2345</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pb-2"style="width:7vw;"><img src="profile_image/Заливка цветом 3.png"></td>
+                        <td><h5>23</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pb-2"style="width:7vw;"><img src="profile_image/Заливка цветом 4.png"></td>
+                        <td><h5>30</h5></td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+
+        <div class="cards" style="margin-top:70px">
+            <div><img src="profile_image/Заливка цветом 7 копия.png"><h5>MY CHECKLISTS</h5></div>
+            <div><img src="profile_image/Заливка цветом 7 копия.png"><h5>followers</h5></div>
+            <div><img src="profile_image/Заливка цветом 7 копия 2.png"><h5>favorites</h5></div>
+            <div><img src="profile_image/Заливка цветом 9.png"><h5>post service</h5></div>
+        </div>
+        <div class="cards">
+            <div><img src="profile_image/Заливка цветом 8.png"><h5>my collections</h5></div>
+            <div><img src="profile_image/Заливка цветом 8 копия.png"><h5>my checklists</h5></div>
+            <div><img src="profile_image/Заливка цветом 8 копия 2.png"><h5>my search</h5></div>
+            <div><img src="profile_image/Заливка цветом 8 копия 3.png"><h5>my templates</h5></div>
+        </div>
+</div>
+    </div>
+
+</section>
+</div>
+<?php
+include "footer.php";
+?>
 <!-- ---------------------------------- -->
 <div class="modal fade" id="exampleModall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -112,5 +168,6 @@ $row3 = mysqli_num_rows($res3);
         </div>
     </div>
 </div>
+
 </body>
 </html>
