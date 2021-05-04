@@ -39,6 +39,22 @@ else{
     header("loction: user-collections.php ");
     exit();
 }
+if(isset($_SESSION['bind_coll_id']) && isset($_SESSION['bind_card_id'])){
+    $bind_card_id=$_SESSION['bind_card_id'];
+    $bind_coll_id=$_SESSION['bind_coll_id'];
+    $sel_bind_coll="SELECT 'description' FROM collections WHERE id=$bind_coll_id";
+    $res_bind_coll=mysqli_query($con, $sel_bind_coll);
+    $row_bind_coll=mysqli_fetch_assoc($res_bind_coll);
+    $bind_coll_desc=$row_bind_coll['description'];
+    $card_name=$_SESSION['card_name'];
+    $_SESSION['bind_card_id']='';
+}
+else{
+    $bind_card_id='';
+    $bind_coll_id='';
+    $bind_coll_desc='';
+    $card_name='';
+}
 $row_user='';
 $sql_coll = "SELECT * FROM new_collection_card WHERE user_id = $user_id and id=$coll_id";
 $res_coll = mysqli_query($con, $sql_coll);
@@ -47,6 +63,9 @@ if(mysqli_num_rows($res_coll)==1){
 }
 
 include "user_form/classes.php";
+isset($_GET['card-id']) ? $releases_info=CardInfo::Card($con, 'card3',  $_GET['card-id']) :'';
+isset($_GET['card-id']) ? $hide='d-none' :'';
+
 $count_cards=CountCards::CardsSecondFolder($con, $second_folder_id, $user_id);
 
 include "user_form/pagination.php";
@@ -65,7 +84,7 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
     <div class="container mt-3 mb-0">
         <div class="site-color text-center"><h3> My Collections / <?php echo $row_coll['name_of_collection'] .' / '.$folder_name['name_of_folder'].' / '.$second_folder_name['name_of_folder'] ?> </h3></div>
         <div class="w-100 text-right mb-0">
-             <button class="px-4 py-2 add-card bg-yellow" data-tbl-name="card1" data-toggle="modal" data-target="#add_card">Add Card</button>
+             <button class="px-4 py-2 add-card bg-yellow" data-tbl-name="card3" data-toggle="modal" data-target="#add_card">Add Card</button>
         </div>
         <div class="d-flex big-container mt-2 mb-5 ">
             <div class="w-22 cont-left text-center">
@@ -76,6 +95,13 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                 <div class="rating">
                     <span class="mx-2"><i class="fa fa-star star"></i></span>
                     <span class="mx-2"> 64</span>
+                </div>
+                <div>
+                    <?php echo isset($_GET['card-id']) && $releases_info ? 
+                        '<div><p><strong>Releases</strong></p>
+                          <a href="base_checklist.php?id='.$releases_info['id'].'">'.$releases_info['name_of_collection'].'</a></div>
+                          <div class="mt-3"><p><strong>Checklist</strong></p>
+                          <a href="base_checklist.php?id='.$releases_info['id'].'">'.$releases_info['name_of_collection'].'</a></div>' : null ?>
                 </div>
                 <div class="my-4">
                     <span class="mx-2"><i class="fa fa-star star"></i></span>
@@ -94,9 +120,11 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                         
                     ?>
                     <div class="w-22 collection-item" >
-                      <a href="<?php echo $_SERVER['PHP_SELF'].'?coll-id='.$row['id'].'&'.$uri_page ?>" class="collection-item-a" data-id="<?php echo $row['id']; ?>">
-                        <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['coll-id']) && $_GET['coll-id']==$row['id'] ? 'active-collection' : '' ?>" >
+                      <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="card-item-a" data-id="<?php echo $row['id']; ?>" data-tblname="card3">
+                        <div class=" img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>" >
+                             <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>"><i class="fa fa-plus-circle card-plus-icon"> </i></div>
                              <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
+                             <img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100">
                         </div>
                         <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div>
                       </a>
@@ -134,16 +162,21 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                 </button>
             </div>
             <div class="modal-body">
+                <a href="base-checklist-bind-card.php?link=user-second-folder"> <button class="px-4 py-2 mb-3 bg-yellow bind-card">Bind cаrd to checklist</button></a>
                 <form method="post" id="" action="user_form/add-card.php">
                     <div class="form-group">
                         <label>Card name</label>
-                        <input type="text" class="form-control namecard" name="name-card">
+                        <input type="text" class="form-control namecard inp" name="name-card" value="<?=$card_name?>">
                         <input type="hidden" value="<?php echo $coll_id ?>" name='coll-id' >
                         <input type="hidden" name="tbl-name-card" class="tbl-name-card">
+                        <input type="hidden" name="bind_card_id" class="bind-card-id inp" value='<?=$bind_card_id?>' >
+                        <input type="hidden" class="bind-c-id inp" value='<?=$bind_card_id?>'>
+                        <input type="hidden" name="bind_coll_id" class="bind-coll-id inp" value='<?=$bind_coll_id?>'>
+                        <input type="hidden" name="folder_id" class="" value='<?=$second_folder_id ?>'>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control desc" name="description" id="desc-card"></textarea>
+                        <textarea class="form-control desc inp" name="description" id="desc-card"><?=$bind_coll_desc?></textarea>
                     </div>
                     <div class="message-result-card"></div>
                 <button type="" name="" class="banner-button float-right save-card">Save</button>

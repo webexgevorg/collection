@@ -32,6 +32,6 @@ include "config/con1.php";
 include "footer.php";
 ?>
 <script src="card-editor/js/script.js"></script>
-
+<!-- <script src="card-editor/js/new-script.js"></script> -->
 </body>
 </html>

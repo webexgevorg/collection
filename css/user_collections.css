@@ -55,9 +55,9 @@ input[type='file']{
 	border-radius: 8px;
 	overflow: hidden;
 }
-.collection-item{
+/* .collection-item{
    height: 280px
-}
+} */
 .pg-link{
    padding: 6px 8px;
    color: #133960;
@@ -85,10 +85,19 @@ input[type='file']{
 .active-collection{
 	box-shadow: 0px 4px 4px 6px #133960;
 }
+.icon-img{
+	width: 62% !important;
+
+}
+.count-cards{
+	font-size: 22px;
+	padding: 12px;
+}
 /*-----------------------max-width: 768px------------------*/
 @media(max-width: 768px){
 	.w-22 {
        width: 45%;
+	   margin-top: 6px;
     }
     .hidden{
 		display: none;
@@ -107,5 +116,17 @@ input[type='file']{
 		width: 100% !important;
 		height: 6px !important;
 		margin: 10px 0 20px !important;
+	}
+}
+
+/*-----------------------max-width: 380px------------------*/
+@media(max-width: 380px){
+	.w-22 {
+       width: 70%;
+	   margin-top: 6px;
+	   margin-right: 0 !important;
+    }
+    .rite-items{
+		justify-content: center !important;
 	}
 }

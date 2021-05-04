@@ -56,7 +56,7 @@ $collections_row = $pagination->allItems($con, 'user_id', $user_id);
             </div>
             <div class="w-6 center-div mx-5"></div>
             <div class="w-72 cont-right">
-                <div class="d-flex flex-wrap justify-content-between">
+                <div class="d-flex flex-wrap justify-content-between rite-items">
                     <?php
                     isset($_GET['page']) ? $uri_page='page='.$_GET['page'] : $uri_page='';
 

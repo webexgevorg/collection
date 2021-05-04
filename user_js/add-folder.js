@@ -52,3 +52,21 @@ $('.all-cards').click(function(){
 	    })
 
 })
+// --------open card page--------------------------
+$(".card-item-a").on('click', function (e) {
+	let tblname=$(this).attr('data-tblname')
+    let hr=$(location).attr('search').split('&')
+    let id='?card-id='+$(this).attr('data-id')
+    if (hr[0]==id){
+		if(tblname=='card1'){
+            $(this).attr('href','user-card.php'+hr[0]+'&tbl=1')
+		}
+		else if(tblname=='card2'){
+            $(this).attr('href','user-card.php'+hr[0]+'&tbl=2')
+		}
+		else{
+            $(this).attr('href','user-card.php'+hr[0]+'&tbl=3')
+		}
+    }
+    // let id=$(this).attr('data-id')
+});

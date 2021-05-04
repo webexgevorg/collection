@@ -8,6 +8,19 @@ class Collections{
         $res_collection = mysqli_query($con, $sql_collection);   
         if(mysqli_num_rows($res_collection)==1){
         	return mysqli_fetch_assoc($res_collection);
+        }  
+        else{
+            return false;
+        }  
+	}
+}
+// ----------------Cards-----------------------------------------
+class CardInfo{
+    static function Card($con, $tblname, $card_id){
+        $sql_cards="SELECT id, name_of_collection FROM collections WHERE id IN (SELECT releases_id FROM $tblname WHERE id=$card_id)";
+        $res_card = mysqli_query($con, $sql_cards);   
+        if(mysqli_num_rows($res_card)==1){
+        	return mysqli_fetch_assoc($res_card);
         }    
 	}
 }

@@ -41,8 +41,8 @@
              } 
             
              public function AllCards($conditions){
-                 
-                 $sql="(SELECT id, name, image FROM card1 where coll_id=$conditions ) UNION ALL ( SELECT id, name, image FROM card2 where coll_id=$conditions ) UNION ALL ( SELECT id, name, image FROM card3 where coll_id=$conditions )";
+                $sql="(SELECT i.table_name AS t_name, c1.id, c1.name, c1.image FROM card1 c1, information_schema.tables i where coll_id=47 AND TABLE_NAME='card1') UNION ALL (SELECT i.table_name AS t_name, c2.id, c2.name, c2.image FROM card2 c2, information_schema.tables i where coll_id=47 AND TABLE_NAME='card2') UNION ALL (SELECT i.table_name AS t_name, c3.id, c3.name, c3.image FROM card3 c3, information_schema.tables i where coll_id=47 AND TABLE_NAME='card3')";
+                //  $sql="(SELECT id, name, image FROM card1 where coll_id=$conditions ) UNION ALL ( SELECT id, name, image FROM card2 where coll_id=$conditions ) UNION ALL ( SELECT id, name, image FROM card3 where coll_id=$conditions )";
                  return $sql;
             }
             
