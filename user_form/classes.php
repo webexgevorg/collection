@@ -14,7 +14,7 @@ class Collections{
         }  
 	}
 }
-// ----------------Cards-----------------------------------------
+// ----------------Cards---------------------------------
 class CardInfo{
     static function Card($con, $tblname, $card_id){
         $sql_cards="SELECT id, name_of_collection FROM collections WHERE id IN (SELECT releases_id FROM $tblname WHERE id=$card_id)";
