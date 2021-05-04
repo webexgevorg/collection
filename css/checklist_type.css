@@ -1,0 +1,83 @@
+.checklist_type{
+    display:flex;
+    margin-top:126px;
+    width:100%;
+    flex-flow: row wrap;
+}
+.checklist_type_column{
+    background:#6EA4AE;
+    min-height: 600px;
+}
+.checklist_type_column:nth-child(1){
+    flex:1;
+    background:#6EA4AE;
+}
+.checklist_type_column:nth-child(2){
+    margin-left:1em;
+    background:#6EA4AE;
+    flex:2;
+}
+.baseboll{
+    width:250px;
+    min-height:500px;
+
+}
+.baseboll_pic{
+    width:170px;
+    height:200px;
+    border:5px solid #fff;
+    margin:auto;
+}
+.baseboll_pic>h3{
+    color: #FAD466 !important;
+}
+.release_year>div{
+    height:40px;
+    border:3px solid #133960;
+    text-align:center;
+    line-height:40px;
+    margin:0.5em 1em;
+    background:white;
+    color:#133960;
+    font-weight: bolder;
+
+
+}
+.checklist_type_column>h3{
+    font-size:2vw;
+    color:#fff !important;
+    text-transform: uppercase;
+
+}
+.checlist_type_content {
+    color:#fff;
+
+}
+@media all and (max-width:1000px){
+    .checklist_type{
+        margin-top:0 !important;
+    }
+    .checklist_type>div{
+        margin-top:1em;
+    }
+
+
+}
+@media (max-width:426px){
+
+    .checklist_type{
+        flex-direction: column;
+
+    }
+    .checklist_type_column{
+        justify-content: center !important;
+    }
+
+    .checklist_type_column:nth-child(2){
+        margin-left:0;
+    }
+    h3{
+        font-size:4vw !important
+    }
+
+}
