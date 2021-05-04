@@ -14,3 +14,33 @@
 .this-folder{
 	background: #133960;
 }
+.bind-card{
+	border-radius: 8px;
+}
+.card-info img{
+	width: 40px;
+}
+.plus-div{
+	text-align: end;
+    margin-right: 26px;
+}
+.card-plus-icon{
+	position: absolute;
+	font-size: 28px !important;
+    color: #133960;
+	margin-top: 4px;
+    background: #ffc107;
+    border-radius: 50%;
+}
+.plus i{
+	font-size: 32px;
+	color: #ffc107;
+}
+.add-img{
+	border: 2px solid #133960;
+	border-radius: 8px;
+	height: 300px;
+}
+.add-img-cont{
+	height: 250px;
+}

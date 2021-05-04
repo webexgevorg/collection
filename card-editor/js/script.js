@@ -1,5 +1,8 @@
 var canvas = new fabric.Canvas('canvas');
-var can =document.getElementById('canvas')
+var canvasForName = new fabric.Canvas('canvasForName');
+
+
+// var can =document.getElementById('canvas')
 // ------------------create new project (canvas)---------------------
 
  $('#create-canvas').click(function(){
@@ -9,6 +12,7 @@ var can =document.getElementById('canvas')
     $('.bord-dotted').css({'width': 'max-content', 'height':'max-content'})
 
    canvas.isDrawingMode = false;
+   canvasForName.isDrawingMode = false;
        
        var width=$('#width').val()
        var height=$('#height').val()
@@ -67,6 +71,7 @@ $('#new-file').on("input", function (e) {
       $('#divHabilitSelectors').remove()
       $('.canvas-cont').removeClass('hide')
       $('.bord-dotted').css({'width': 'max-content', 'height':'max-content'})
+      $('.canvas-for-name').css({'width': 'max-content', 'height':'max-content'})
 
        canvas.isDrawingMode = false;
       var reader = new FileReader();
@@ -93,7 +98,7 @@ $('#new-file').on("input", function (e) {
               }
             }
     fabric.Image.fromURL(data, function (img) {
-        var oImg = img.set({ left: 40, top: 40, angle: 00, id: 'backimage'}).scale(1);
+        var oImg = img.set({ left: 30, top: 30, angle: 00, id: 'backimage'}).scale(1);
             oImg.scaleToHeight(imgHeight);
             oImg.scaleToWidth(imgWidth);
             canvas.add(oImg).renderAll();
@@ -101,7 +106,8 @@ $('#new-file').on("input", function (e) {
         var a = canvas.setActiveObject(oImg);
         var dataURL = canvas.toDataURL({ format: 'png',});
  quality: 0.8});
-           canvas.setDimensions({width:imgWidth+80, height:imgHeight+160})
+           canvas.setDimensions({width:imgWidth+60, height:imgHeight+60})
+           canvasForName.setDimensions({width:imgWidth+60, height:100})
     };
   }
 reader.readAsDataURL(file); 
@@ -117,7 +123,7 @@ reader.readAsDataURL(file);
     var oImg1
  function addFrame(a){
    canvas.isDrawingMode = false;
-  
+   canvasForName.isDrawingMode = false;
      var src=this.src
      frame.src = src
 
@@ -167,11 +173,15 @@ $('.sport-icon').click(function(){
                  shape.paths[i].setFill(colorSet);
             }
       }
-    canvas.add(shape);
-    canvas.renderAll();
+    // canvas.add(shape);
+    // canvas.renderAll();
+    canvasForName.add(shape);
+    canvasForName.renderAll();
     })
-    canvas.add(shape);
-    canvas.renderAll();
+    // canvas.add(shape);
+    // canvas.renderAll();
+    canvasForName.add(shape);
+    canvasForName.renderAll();
   }); 
 });
 
@@ -277,30 +287,46 @@ $('.draw').click(function(){
   var size=$('.active-size').attr('data-size')
   var draw_type=$('#draw-type').val()
   console.log(size)
+  // canvas.selection = false;
 
-  canvas.isDrawingMode = true;
+  canvas.isDrawingMode = false;
+  canvasForName.isDrawingMode = true;
   if(draw_type=='Spray'){
-         canvas.freeDrawingBrush = new fabric.SprayBrush(canvas);
+        //  canvas.freeDrawingBrush = new fabric.SprayBrush(canvas);
+    canvasForName.freeDrawingBrush = new fabric.SprayBrush(canvasForName);
+
   }
   if(draw_type=='Pencil'){
-         canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+        //  canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+    canvasForName.freeDrawingBrush = new fabric.PencilBrush(canvasForName);
+
   }
-  if(draw_type=='Pencil'){
-         canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-  }
+  // if(draw_type=='Pencil'){
+  //   canvasForName.freeDrawingBrush = new fabric.PencilBrush(canvasForName);
+  // }
   if(draw_type=='Circle'){
-         canvas.freeDrawingBrush = new fabric.CircleBrush(canvas);
+        //  canvas.freeDrawingBrush = new fabric.CircleBrush(canvas);
+         canvasForName.freeDrawingBrush = new fabric.CircleBrush(canvasForName);
   }
   if(draw_type=='Pattern'){
-         canvas.freeDrawingBrush = new fabric.PatternBrush(canvas);
+        //  canvas.freeDrawingBrush = new fabric.PatternBrush(canvas);
+         canvasForName.freeDrawingBrush = new fabric.PatternBrush(canvasForName);
   }
-  canvas.freeDrawingBrush.width = size;
-  canvas.freeDrawingBrush.color = color;
+  // canvas.freeDrawingBrush.width = size;
+  // canvas.freeDrawingBrush.color = color;
+  canvasForName.freeDrawingBrush.width = size;
+  canvasForName.freeDrawingBrush.color = color;
 
-canvas.on('path:created', function(e) {
+// canvas.on('path:created', function(e) {
+//   e.path.set();
+//   canvas.sendBackwards(e.path);
+//   canvas.renderAll();
+// })
+
+canvasForName.on('path:created', function(e) {
   e.path.set();
-  canvas.sendBackwards(e.path);
-  canvas.renderAll();
+  canvasForName.sendBackwards(e.path);
+  canvasForName.renderAll();
 })
 
 })
@@ -341,7 +367,7 @@ $('.shapes').click(function(){
   var point=$(this).attr('data-angle')
 
 var points=regularPolygonPoints(point,50);
-var top=canvas.height*2/3
+// var top=canvasForName.height*2/3
 function regularPolygonPoints(sideCount,radius){
   var sweep=Math.PI*2/sideCount;
   var cx=radius;
@@ -384,21 +410,21 @@ else{
         fill: 'blue',
       },false);
 }
-canvas.add(myPoly);
+canvasForName.add(myPoly);
 // rec.sendBackwards()
-canvas.sendToBack(myPoly);
-canvas.renderAll();
+canvasForName.sendToBack(myPoly);
+canvasForName.renderAll();
 })
 $('.shape-color').click(function(){
     var color=$(this).attr('data-color')
 
     myPoly.setFill(color)
-    canvas.renderAll();
+    canvasForName.renderAll();
 })
 $('#shape-color-inp').on('input', function(){
     var color=$(this).val()
     myPoly.setFill(color)
-    canvas.renderAll();
+    canvasForName.renderAll();
 })
 // ---------------------------text boxes------------------------------
 var arr_boxes=document.getElementsByClassName('text-box')
@@ -415,45 +441,45 @@ var arr_boxes=document.getElementsByClassName('text-box')
      textBox.src = src
 
   fabric.Image.fromURL(src, function(img, isError) {
-     oImg2=img.set({ left: 30, top: canvas.height*2/3}).scale(0.3);
+     oImg2=img.set({ left: 30, top: 0}).scale(0.3);
     
     // oImg2.scaleX=canvas.width / img.width
     // oImg2.scaleY=canvas.height / img.height
-    canvas.add(oImg2).renderAll();
-    canvas.sendToBack(oImg2);
+    canvasForName.add(oImg2).renderAll();
+    canvasForName.sendToBack(oImg2);
     
   })
 }
 // -----------------------------add text-------------------------------
 $('#fill').on('input', function(){
-  var obj = canvas.getActiveObject();
+  var obj = canvasForName.getActiveObject();
 
   if(obj){
     obj.set("fill", this.value);
   }
-  canvas.renderAll();
+  canvasForName.renderAll();
 });
 
 $('#font').change(function(){
-  var obj = canvas.getActiveObject();
+  var obj = canvasForName.getActiveObject();
   
   if(obj){
     obj.set("fontFamily", this.value);
   }
   
-  canvas.renderAll();
+  canvasForName.renderAll();
 });
 $('#font-size').change(function(){
-  var obj = canvas.getActiveObject();
+  var obj = canvasForName.getActiveObject();
   
   if(obj){
     obj.set("fontSize", this.value);
   }
   
-  canvas.renderAll();
+  canvasForName.renderAll();
 });
 $('#bold').click(function(){
-    var obj = canvas.getActiveObject();
+    var obj = canvasForName.getActiveObject();
     $(this).toggleClass('bold-active')
     if(obj){
         if($('#bold').hasClass('bold-active')){
@@ -463,10 +489,10 @@ $('#bold').click(function(){
         obj.set("fontWeight", 'normal');
       }
     }
-    canvas.renderAll();
+    canvasForName.renderAll();
 });
 $('#italic').click(function(){
-    var obj = canvas.getActiveObject();
+    var obj = canvasForName.getActiveObject();
     $(this).toggleClass('italic-active')
     if(obj){
         if($('#italic').hasClass('italic-active')){
@@ -476,10 +502,10 @@ $('#italic').click(function(){
           obj.set("fontStyle", 'normal');
         }
     }
-    canvas.renderAll();
+    canvasForName.renderAll();
 });
 $('#underline').click(function(){
-    var obj = canvas.getActiveObject();
+    var obj = canvasForName.getActiveObject();
     $(this).toggleClass('u-active')
     if(obj){
        if($('#underline').hasClass('u-active')){
@@ -489,11 +515,11 @@ $('#underline').click(function(){
         obj.set("textDecoration", 'normal');
       }
     }
-    canvas.renderAll();
+    canvasForName.renderAll();
 });
 
 $('#text').click(function(){
-   canvas.isDrawingMode = false;
+   canvasForName.isDrawingMode = false;
    var bold
    var italic
    var underline
@@ -521,7 +547,7 @@ $('#text').click(function(){
 
 var oText = new fabric.IText('Tap and Type', { 
     left: 50, 
-    top: canvas.height-100,
+    top: canvasForName.height-100,
     id: 'text',
     fill: color,
     fontSize: font_size,
@@ -531,22 +557,51 @@ var oText = new fabric.IText('Tap and Type', {
     textDecoration: underline
   });
 
-  canvas.add(oText);
+  canvasForName.add(oText);
   oText.bringToFront();
-  canvas.setActiveObject(oText);
+  canvasForName.setActiveObject(oText);
 })
 // ---------------------------background color------------------
+$('canvas').click(function(){
+  let canvas_id=$(this).parent().find('.lower-canvas').attr('id')
+  $('.bord-er').removeClass('activeCanvas')
+  $(this).parent().parent().addClass('activeCanvas')
+  console.log($(this).parent().parent())
+  if(canvas_id=='canvas'){
+    canvas.selection = true;
+    // canvasForName.isDrawingMode=false
+  }
+  else{
+    // canvasForName.isDrawingMode=false
+    canvas.selection = false;
+  }
+})
 $('.background-color').click(function(){
-    var color=$(this).attr('data-color')
 
-    canvas.setBackgroundColor(color)
-    canvas.renderAll();
+    var color=$(this).attr('data-color')
+    if(canvas.selection) {
+        canvas.setBackgroundColor(color)
+        canvas.renderAll();
+        console.log('c')
+    }
+    else {
+      canvasForName.setBackgroundColor(color)
+      canvasForName.renderAll();
+      console.log('fn')
+    }
+  //   if (canvasForName.getActiveObject()) {
+  //     canvasForName.setBackgroundColor(color)
+  //   canvasForName.renderAll();
+  //  }
+    
 })
 $('#color-inp').on('input', function(){
     var color=$(this).val()
 console.log(color)
-    canvas.setBackgroundColor(color)
-    canvas.renderAll();
+    // canvas.setBackgroundColor(color)
+    // canvas.renderAll();
+    canvasForName.setBackgroundColor(color)
+    canvasForName.renderAll();
 })
 // ---------------------background image--------------------------
   var back_img
@@ -627,10 +682,13 @@ $('#add-sport-card').click(function(e){
      var th=this
 
      canvas.renderAll();
+     canvasForName.renderAll();
      // var data=canvas.toDataURL({
      //                 width: canvas.lowerCanvasEl.width-canvas.width/2.23,
      //                 height: canvas.lowerCanvasEl.height-canvas.height/2.23})
      var data=canvas.toDataURL()
+     var data_card_name=canvasForName.toDataURL()
+
      // var name=$('#image-name').val()
      // var format=''
      // $('.format').each(function(){
@@ -644,15 +702,15 @@ $('#add-sport-card').click(function(e){
      //                 quality: 0.8
      //          });
      // th.download = name+'.'+format
-     console.log(data)
-     if(canvas.getObjects().length>0){
+    //  console.log(data)
+     if(canvas.getObjects().length>0 ){
             $.ajax({
               type: 'post',
               url: 'card-editor/file.php',
-              data: {data: data},
-              beforeSend:function(){
-                      $('.add-card-result').html('Аdded...');
-              },
+              data: {data: data, data_card_name: data_card_name},
+              // beforeSend:function(){
+              //         $('.add-card-result').html('Аdded...');
+              // },
               success: function(res){
                 console.log(res)
                   $('.add-card-result').html(res)

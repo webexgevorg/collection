@@ -39,6 +39,9 @@
 	height: 100%;
   text-align: center;
 }
+.canvas-for-name{
+  border:3px dotted #6ea4ae;
+}
 /* styles de base si JS est activé */
 .js .input-file-container {
   position: relative;
@@ -112,6 +115,9 @@
 }
 .canvas-cont{
   width: max-content
+}
+#canvas-for-name{
+  display: none;
 }
 .image-editor-tools{
   padding-right: 0
@@ -336,6 +342,9 @@ button:focus{
 }
 .new-hover:hover{
   font-weight: bold
+}
+.activeCanvas{
+  border: 3px solid rgb(19,57,96)
 }
 @media (max-width: 1024px){
   .icon-text{

@@ -86,17 +86,17 @@ $img = $navbarimg['image'];
       </li> -->
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="nav-products" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Products
+         Releases
         </a>
         
         <!-- -------- -->
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                    
                    <li class="dropdown">
-                       <a class="dropdown-item" href="#">Checklists</a>
+                       <a class="dropdown-item main-a" href="#">Checklists</a>
                        <ul class="dropdown-menu">
                            <li class="dropdown">
-                               <a class="dropdown-item" href="#">My checklists</a>
+                               <a class="dropdown-item" href="#">Custom checklists</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="profile-page.php">Personal</a></li>
                                    <li><a class="dropdown-item" href="profile-page.php">Custom</a></li>
@@ -119,20 +119,21 @@ $img = $navbarimg['image'];
                            </li>';
                         }
                         ?>
-                           <li class="dropdown">
+                           <!-- <li class="dropdown">
                                <a class="dropdown-item" href="#">Add collection</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="#">Base</a></li>
                                    <li><a class="dropdown-item" href="#">Custom</a></li>
                                    <li><a class="dropdown-item" href="#">Personal</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                        </ul>
                    </li>
                    <!-- -----------------------SETS----------------------- -->
                    
                    <li class="dropdown">
-                       <a class="dropdown-item" href="#">Sets</a>
+                       <!-- <a class="dropdown-item" href="#">Sets</a> -->
+                       <a class="dropdown-item main-a" href="#">Releases</a>
                        <ul class="dropdown-menu">
                            <?php
                         $sql="SELECT * FROM sports_type";
@@ -151,19 +152,19 @@ $img = $navbarimg['image'];
                            </li>';
                         }
                         ?>
-                           <li class="dropdown">
+                           <!-- <li class="dropdown">
                                <a class="dropdown-item" href="#">Add collection</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="#">Base</a></li>
                                    <li><a class="dropdown-item" href="#">Custom</a></li>
                                    <li><a class="dropdown-item" href="#">Personal</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                        </ul>
                    </li>
                    <!-- ----------------New releases calendar--------------------- -->
                    <li class="">
-                       <a class="dropdown-item" href="#">New releases<p>calendar</p> </a>
+                       <a class="dropdown-item main-a" href="#">New releases<p>calendar</p> </a>
                    </li>
                </ul>
         <!-- -------------------- -->
@@ -175,7 +176,7 @@ $img = $navbarimg['image'];
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Checklists</a>
       </li> -->
-       <li class="nav-item dropdown" >
+       <!-- <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="nav-products" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Template
         </a>
@@ -194,11 +195,11 @@ $img = $navbarimg['image'];
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Store</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Statistics</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">Post services</a>
       </li>
       <li class="nav-item">
@@ -206,9 +207,12 @@ $img = $navbarimg['image'];
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Followers</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link disabled" href="#">News</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Publications</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">About</a>

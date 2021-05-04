@@ -5,12 +5,23 @@ include "../config/con1.php";
 			$coll_id = $_POST['coll-id'];
 			$user_id = $_SESSION['user'];
 			$tbl_name = mysqli_real_escape_string($con, $_POST['tbl-name-card']);
+			$bind_coll_id= mysqli_real_escape_string($con, $_POST['bind_coll_id']);
+            $bind_card_id=mysqli_real_escape_string($con, $_POST['bind_card_id']);
 			$description = mysqli_real_escape_string($con, $_POST['description']);
 			$card_name=mysqli_real_escape_string($con, $_POST['name-card']);
 			
+			if(isset($_POST['folder_id'])){
+				$folder_id=mysqli_real_escape_string($con, $_POST['folder_id']);
+			}
+			else{
+				$folder_id="''";
+			}
 				$array_session=array(
 					"tbl_name" => $tbl_name,
 					"coll_id"=>$coll_id, 
+					"folder_id"=>$folder_id,
+					"bind_coll_id" => $bind_coll_id,
+					"bind_card_id" => $bind_card_id,
 					"user_id"=>$user_id, 
 					"card_name"=>$card_name,
 					"description"=>$description

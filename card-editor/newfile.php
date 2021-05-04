@@ -321,10 +321,10 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
   </div>
 			</div>
 		</div>
-			<div class="col-md-8 bord2 d-flex justify-content-center align-items-center canvas-container">
-				<div class="bord-dotted">
+			<div class="col-md-8 bord2 d-flex flex-column justify-content-center align-items-center canvas-container">
+				<div class="bord-dotted ">
 					<div class="error-message"></div>
-					<div class="canvas-cont hide ml-auto mr-auto" tabindex="3">
+					<div class="canvas-cont bord-er hide ml-auto mr-auto" >
 					    <canvas id="canvas" ></canvas>
 					</div>
 
@@ -339,6 +339,9 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
 						</label>
 					</div>
 				</div>
+        <div class="canvas-cont bord-er hide mt-2 canvas-for-name">
+             <canvas id="canvasForName" ></canvas>
+        </div>
 			</div>
 		</div>
 	</div>
