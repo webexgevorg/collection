@@ -154,28 +154,27 @@ document.getElementById('hue').addEventListener('input', changeFrameColor)
 
 $('.sport-icon').click(function(){
   var icon=$(this).attr('src')
-  console.log(icon)
   fabric.loadSVGFromURL(icon, function(objects, options) {
     var shape = fabric.util.groupSVGElements(objects, options);
     shape.set({
       left: 20,
-      top: 100,
-    }).scale(0.2);
+      top: 10,
+    }).scale(0.1);
 
     $('#color-sport-icon').on('input', function(){
       var colorSet=$(this).val()
-      console.log(colorSet)
-      if (shape.isSameColor && shape.isSameColor() || !shape.paths) {
-          shape.setFill(colorSet);
+      var obj = canvasForName.getActiveObject();
+      if (obj.isSameColor && obj.isSameColor() || !obj.paths) {
+          obj.setFill(colorSet);
       }
-      else if (shape.paths) {
-           for (var i = 0; i < shape.paths.length; i++) {
-                 shape.paths[i].setFill(colorSet);
+      else if (obj.paths) {
+           for (var i = 0; i < obj.paths.length; i++) {
+                 obj.paths[i].setFill(colorSet);
             }
       }
     // canvas.add(shape);
     // canvas.renderAll();
-    canvasForName.add(shape);
+    canvasForName.add(obj);
     canvasForName.renderAll();
     })
     // canvas.add(shape);
@@ -229,6 +228,23 @@ $('.sport-icon').click(function(){
        });
            sendSelectedObjectBack()
          });
+// -----------style selected object for canvasForName--------------------
+         canvasForName.on('object:selected', function(event) {
+          selectedObject = event.target;
+          selectedObject.hasBorders = true;
+          selectedObject.set({
+                             borderColor: '#133960',
+                             cornerColor: '#fad565',
+                             cornerSize: 8,
+                             cornerStyle: 'circle',
+                             borderWidth: 3,
+                             lineWidth:5,
+                             transparentCorners: false,
+         });
+          canvasForName.forEachObject(function (obj) {
+      });
+          sendSelectedObjectBack()
+        });
 
 var sendSelectedObjectBack = function() {
       
@@ -256,25 +272,31 @@ var sendSelectedObjectBack = function() {
 // -----------------------delete selected object--------------------------
 
 $('html').keyup(function(e){
-        if(e.keyCode == 46 || e.keyCode==8) {
-          console.log('dd')
+        if(e.keyCode == 46 ) {
             deleteSelectedObjectsFromCanvas();
         }
 });    
 
 function deleteSelectedObjectsFromCanvas(){
-    var selection = canvas.getActiveObject();
-    if (selection.type === 'activeSelection') {
-        selection.forEachObject(function(element) {
-            console.log(element);
-            canvas.remove(element);
-        });
+    // if (selection.type === 'activeSelection') {
+    //     selection.forEachObject(function(element) {
+    //         console.log('iiiif');
+    //         canvas.remove(element);
+    //     });
+    // }
+    // else{
+      
+    // }
+    if(canvas.selection) {
+       var selection = canvas.getActiveObject();
+           canvas.remove(selection);
     }
     else{
-        canvas.remove(selection);
+       var selectionName = canvasForName.getActiveObject();
+           canvasForName.remove(selectionName);
     }
     canvas.discardActiveObject();
-    // canvas.RenderAll();
+    canvasForName.discardActiveObject();
 }
 
 canvas.on('selection:updated selection:created', function(e){
@@ -283,6 +305,7 @@ canvas.on('selection:updated selection:created', function(e){
 
 // ----------------draw ---------------------------------
 $('.draw').click(function(){
+  canvasForName.isDrawingMode = true;
   var color=$('#draw-color').val()
   var size=$('.active-size').attr('data-size')
   var draw_type=$('#draw-type').val()
@@ -290,7 +313,6 @@ $('.draw').click(function(){
   // canvas.selection = false;
 
   canvas.isDrawingMode = false;
-  canvasForName.isDrawingMode = true;
   if(draw_type=='Spray'){
         //  canvas.freeDrawingBrush = new fabric.SprayBrush(canvas);
     canvasForName.freeDrawingBrush = new fabric.SprayBrush(canvasForName);
@@ -332,7 +354,8 @@ canvasForName.on('path:created', function(e) {
 })
 $('.arrow').click(function(){
   console.log('oooo')
-  $('.draw').off()
+  // $('.draw').off()
+  canvasForName.isDrawingMode = false;
 })
 // $('canvas').on('mousedown', function(e){
 //   console.log('ddd')
@@ -345,6 +368,7 @@ $('.arrow').click(function(){
 $('.canvas-cont').blur(function(){
   console.log('fff')
   canvas.isDrawingMode = false;
+  canvasForName.isDrawingMode=false;
 })
 $('#draw-color').blur(function(){
   console.log('ccc')
@@ -367,7 +391,7 @@ $('.shapes').click(function(){
   var point=$(this).attr('data-angle')
 
 var points=regularPolygonPoints(point,50);
-// var top=canvasForName.height*2/3
+var top=canvasForName.height*1/5
 function regularPolygonPoints(sideCount,radius){
   var sweep=Math.PI*2/sideCount;
   var cx=radius;
@@ -417,13 +441,16 @@ canvasForName.renderAll();
 })
 $('.shape-color').click(function(){
     var color=$(this).attr('data-color')
-
-    myPoly.setFill(color)
+    var obj = canvasForName.getActiveObject();
+        obj.setFill(color)
+        // myPoly.setFill(color)
     canvasForName.renderAll();
 })
 $('#shape-color-inp').on('input', function(){
     var color=$(this).val()
-    myPoly.setFill(color)
+        // myPoly.setFill(color)
+    var obj = canvasForName.getActiveObject();
+        obj.setFill(color)
     canvasForName.renderAll();
 })
 // ---------------------------text boxes------------------------------
@@ -582,12 +609,10 @@ $('.background-color').click(function(){
     if(canvas.selection) {
         canvas.setBackgroundColor(color)
         canvas.renderAll();
-        console.log('c')
     }
     else {
       canvasForName.setBackgroundColor(color)
       canvasForName.renderAll();
-      console.log('fn')
     }
   //   if (canvasForName.getActiveObject()) {
   //     canvasForName.setBackgroundColor(color)
@@ -597,11 +622,20 @@ $('.background-color').click(function(){
 })
 $('#color-inp').on('input', function(){
     var color=$(this).val()
-console.log(color)
+    console.log(color)
     // canvas.setBackgroundColor(color)
     // canvas.renderAll();
+    // canvasForName.setBackgroundColor(color)
+    // canvasForName.renderAll();
+  if(canvas.selection) {
+      canvas.setBackgroundColor(color)
+      canvas.renderAll();
+  }
+  else{
     canvasForName.setBackgroundColor(color)
     canvasForName.renderAll();
+  }
+
 })
 // ---------------------background image--------------------------
   var back_img

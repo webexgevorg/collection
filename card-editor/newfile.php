@@ -50,7 +50,7 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
   <div class="col-3 image-editor-tools">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     	
-    	<a class="nav-link " id="v-pills-arrow-tab" data-toggle="pill" href="#v-pills-arrow" role="tab" aria-controls="v-pills-arrow" aria-selected="true">
+    	<a class="nav-link arrow" id="v-pills-arrow-tab" data-toggle="pill" href="#v-pills-arrow" role="tab" aria-controls="v-pills-arrow" aria-selected="true">
       	               <div class=" bord">
       	               	    <!-- <img src="card-editor/images/cursor.png" class="img-icon"> -->
                             <i class='fas fa-mouse-pointer' style='font-size:24px;color:#133960'></i>
@@ -219,7 +219,7 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
       	    	<div>
       	    		<label><img src="card-editor/images/app-icons.png" for="color-inp" class="color-img"><input type="color" name="" id="shape-color-inp"></lable>
       	    	</div>
-      	    	<div class="shape-color mr-1 ml-1 color1" data-color='#dbc126'></div>
+      	    	<div class="shape-color mr-1 ml-1 color1" data-color='#fff'></div>
       	    	<div class="shape-color mr-1 ml-1 color2" data-color='#df9b28'></div>
       	    	<div class="shape-color mr-1 ml-1 color3" data-color='#ea3a2d'></div>
       	    	<div class="shape-color mr-1 ml-1 color4" data-color='#652ae3'></div>
@@ -298,7 +298,7 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
                   <input type="color" name="" id="color-inp">
                 </lable>
       	    	</div>
-      	    	<div class="background-color mr-1 ml-1 color1" data-color='#dbc126'></div>
+      	    	<div class="background-color mr-1 ml-1 color1" data-color='#fff'></div>
       	    	<div class="background-color mr-1 ml-1 color2" data-color='#df9b28'></div>
       	    	<div class="background-color mr-1 ml-1 color3" data-color='#ea3a2d'></div>
       	    	<div class="background-color mr-1 ml-1 color4" data-color='#652ae3'></div>
