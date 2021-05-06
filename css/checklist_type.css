@@ -17,17 +17,8 @@
     background:#6EA4AE;
     flex:2;
 }
-.baseboll{
-    width:250px;
-    min-height:500px;
 
-}
-.baseboll_pic{
-    width:170px;
-    height:200px;
-    border:5px solid #fff;
-    margin:auto;
-}
+
 .baseboll_pic>h3{
     color: #FAD466 !important;
 }
@@ -53,6 +44,33 @@
     color:#fff;
 
 }
+.baseboll{
+    width:280px;
+    min-height:500px;
+
+
+}
+.baseboll_pic{
+    width:170px;
+    height:200px;
+    border:5px solid #fff;
+    margin:0 auto;
+
+}
+.baseboll> div>h3{
+    color:#FAD466 !important;
+}
+.release_icon{
+    width:110px;
+}
+.release_icon>img{
+    width:40%;
+}
+
+.active1{
+    background:#133960 !important;
+    color:#fff !important;
+}
 @media all and (max-width:1000px){
     .checklist_type{
         margin-top:0 !important;
@@ -76,6 +94,10 @@
     .checklist_type_column:nth-child(2){
         margin-left:0;
     }
+    .release_icon>img{
+        width:50%;
+    }
+
     h3{
         font-size:4vw !important
     }

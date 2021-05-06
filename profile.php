@@ -12,7 +12,8 @@ require_once "user-logedin.php";
 <link rel="stylesheet" type="text/css" href="css/navbar-body.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/profile-page.css">
+<link rel="stylesheet" type="text/css" href="css/profile1.css">
+<!--<link rel="stylesheet" href="css/profile.css">-->
 </head>
 <body>
 <?php include "cookie.php"; ?>
@@ -76,41 +77,40 @@ $row3 = mysqli_num_rows($res3);
         <a href="user-collections.php"><button>Collections</button></a>
     </div> -->
     <!-- ----------------------------------- -->
-
-        <div class="row text-justify" >
-
-            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12" style="overflow:hidden">
-                <img src="profile_image/Слой 14@2x.png" class="img-fluid">
-                <!--  <img src="img/2b39a88644c08d2ee407d72f631ca106.jpg" class="rounded float-left" alt="...">-->
+        <div class="d-flex  flex-wrap justify-content-between  first_prof">
+            <div class="d-flex justify-content-between k1">
+                <img  class="img-fluid" src="profile_image/Слой 14.png" >
             </div>
-            <div class="col-md-5 ">
-                About me<br>belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+            <div class="k2">
+                <p class="p-2 text-justify"> About me<br>belief, Lorem Ipsum is not simply random text. It has roots in
+                    belief, Lorem Ipsum is not simply random text. It has roots in
+                    Lorem Ipsum is not simply random text. It has roots in
+                    word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                    This book is a treatise on the theory of ethics, very popular during the
+                </p>
+            </div>
+            <div class="d-flex flex-column align-items-center k3">
+                <h4 class="text-center"> My statistics</h4>
+                <div class="d-flex flex-column  justify-content-around  icon">
+                    <div class="d-flex p-1 align-items-center justify-content-between div_icon">
+                        <img  src="profile_image/Заливка цветом 1.png">
+                        <h5>15</h5>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between div_icon">
+                        <img  src="profile_image/Заливка цветом 2.png">
+                        <h5>2345</h5>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between div_icon">
+                        <img  src="profile_image/Заливка цветом 3.png">
+                        <h5>23</h5>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between div_icon">
+                        <img  class='m-1'src="profile_image/Заливка цветом 4.png">
+                        <h5>30</h5>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-1"></div>
-            <div class="col-md-2" >
-                <h4> My statistics</h4>
-                <table class="text-center">
-                    <tr>
-                        <td  class="text-center pb-2" style="width:7vw;"><img src="profile_image/Заливка цветом 1.png"></td>
-                        <td><h5>15</h5></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2"style="width:7vw;"><img src="profile_image/Заливка цветом 2.png"></td>
-                        <td><h5>2345</h5></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2"style="width:7vw;"><img src="profile_image/Заливка цветом 3.png"></td>
-                        <td><h5>23</h5></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pb-2"style="width:7vw;"><img src="profile_image/Заливка цветом 4.png"></td>
-                        <td><h5>30</h5></td>
-                    </tr>
-                </table>
-
-
-            </div>
         </div>
 
         <div class="cards" style="margin-top:70px">
