@@ -85,7 +85,7 @@ $(document).on('dblclick','.item1',function(){
         success:function(rezult) {
            // $('#k').html(rezult)
             console.log(rezult)
-            window.location.href='checklist_type.php'
+            window.location.href='checklist_type.php?data_first=2020&&data_second=2021'
         }
     })
 
