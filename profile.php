@@ -120,7 +120,7 @@ $row3 = mysqli_num_rows($res3);
             <div><img src="profile_image/Заливка цветом 9.png"><h5>post service</h5></div>
         </div>
         <div class="cards">
-            <div><img src="profile_image/Заливка цветом 8.png"><h5>my collections</h5></div>
+            <div><a href='user-collections.php'> <img src="profile_image/Заливка цветом 8.png"><h5>my collections</h5></a></div>
             <div><img src="profile_image/Заливка цветом 8 копия.png"><h5>my checklists</h5></div>
             <div><img src="profile_image/Заливка цветом 8 копия 2.png"><h5>my search</h5></div>
             <div><img src="profile_image/Заливка цветом 8 копия 3.png"><h5>my templates</h5></div>

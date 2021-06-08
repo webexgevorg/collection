@@ -26,6 +26,12 @@ else{
     header("loction: user-collections.php ");
     exit();
 }
+if(!empty($_SESSION['first_folder_id'])){
+    $_SESSION['first_folder_id']='';
+}
+if(!empty($_SESSION['second_folder_id'])){
+    $_SESSION['second_folder_id']='';
+}
 if(isset($_SESSION['bind_coll_id']) && isset($_SESSION['bind_card_id'])){
     $bind_card_id=$_SESSION['bind_card_id'];
     $bind_coll_id=$_SESSION['bind_coll_id'];
@@ -161,10 +167,10 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                     ?>
                     <div class="w-22 collection-item" >
                       <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="card-item-a" data-id="<?php echo $row['id']; ?>" data-tblname="<?php echo !empty($active_folder) ? "card2" : (isset($_SESSION['all_cards']) ? $row['t_name'] : "card1")?>">
-                        <div class="img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>" >
+                        <div class="d-flex flex-column justify-content-center" >
                              <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>"><i class="fa fa-plus-circle card-plus-icon"> </i></div>
-                             <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
-                             <img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100">
+                             <div class='img-cont <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100"></div>
+                             <div class='img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100"></div>
 
                         </div>
                         <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div>

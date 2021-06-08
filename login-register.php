@@ -38,7 +38,7 @@ $msg = '';
 			    	    setcookie('user',$fetch['id'],time()+86400*30);
 			        	
 			        }
-			echo "<script>location.href='./profile-page.php'; </script>";
+			echo "<script>location.href='./profile.php'; </script>";
 			//header('http://localhost/collection-cards/profile-page.php');
 			
 				}
