@@ -1,0 +1,199 @@
+
+.custom_checklist_name{
+    margin-top:126px;
+
+
+}
+.custom_checklist_name>container{
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    /*border:1px solid blue !important*/
+}
+
+.dv1{
+    background:#6EA4AE;
+    flex-basis:20%;
+}
+.dv2{
+    flex-basis:79%;
+    margin-left:1%;
+}
+.dv1>div{
+    height:600px;
+    width:220px;
+}
+
+.baseboll_pic{
+    width:170px;
+    height:200px;
+    border:5px solid #fff;
+}
+
+.release_icon{
+
+    width: 100px;
+    height:100px;
+}
+.release_icon>img{
+    width:50%;
+}
+.release_icon>h3 {
+    color: #FAD466 !important;
+}
+.four_icon{
+    width:90px;
+    height:90px;
+}
+.four_icon>h5 {
+    color: #FFF !important;
+}
+
+.four_icon>img{
+    width:40px;
+    height:40px;
+}
+
+.name_two> h1{
+    color: rgb(19,57,96);
+    font-weight: bold;
+}
+.name_three{
+    background-color:#133960;
+    color:#fff;
+    font-weight:bolder
+}
+#inp{
+    border-radius:5px;
+    border: 1px solid #ced4da;
+    outline:none;
+    margin:10px;
+    padding:.30rem;
+}
+
+/* table*/
+
+th{
+    text-align:center;
+    background:#6FA4AE;
+    color: rgb(19,57,96) !important;
+
+}
+#th_id{
+    width:50px !important;
+}
+th>input{
+    width:80% !important;
+}
+.btn-srch>i{
+    padding:0 !important;
+    color: #ced4da;
+}
+.page-item.active .page-link{
+    background:#6FA4AE !important;
+}
+.table> td{
+    color: rgb(19,57,96) !important;
+}
+.active_tr{
+    border:2px solid grey;
+    background:#D1D3D4;
+}
+@media(max-width:1200px){
+
+    .custom_checklist_name>container>div{
+        width:100% !important;
+
+    }
+    .dv1{
+        flex-basis:100%;
+        justify-content:center!important;
+    }
+    .dv2{
+        flex-basis:100%;
+    }
+    .dv2{
+        margin-left:0;
+    }
+    .name_one{
+        width:70% !important;
+        height: 230px !important;
+        flex-direction:row !important;
+        justify-content: space-evenly !important;
+    }
+    h1{
+        font-size:3vw;
+    }
+    .baseboll_pic_after{
+        flex-direction: row !important;
+        justify-content:center !important ;
+        width:250px !important;
+        height:200px !important;
+    }
+
+    .baseboll_pic>img{
+        width:100% !important;
+    }
+
+
+}
+@media(max-width:1000px){
+
+.custom_checklist_name{
+    margin-top:1em !important;
+
+
+}
+
+    table{
+        font-size:1vw;
+        font-weight:bolder;
+
+    }
+}
+@media(max-width:992px){
+
+    .form-control,.btn{
+        padding:0.125rem !important
+
+    }
+    .btn{
+        width:30%
+    }
+
+}
+@media(max-width:769px){
+
+    .name_one{
+        width:100% !important;
+        height: 230px !important;
+        flex-direction:row !important;
+        justify-content: space-evenly !important;
+    }
+
+
+    table{
+        font-size:1.5vw;
+        font-weight:bolder;
+
+    }
+    .form-control,.btn{
+        padding:0.065rem !important;
+
+
+    }
+    .form-control{
+        font-size:12px !important
+    }
+}
+@media(max-width:426px){
+
+    table{
+        font-size:2vw;
+        font-weight:bolder;
+
+    }
+    .form-control,.btn{
+
+        font-size:2vw;
+    }
+}
