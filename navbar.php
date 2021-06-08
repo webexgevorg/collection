@@ -304,7 +304,7 @@ else{
         <a class="nav-link disabled" href="#">Statistics</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">News</a>
+        <a class="nav-link disabled" href="news.php">News</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">About</a>

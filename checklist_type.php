@@ -18,7 +18,6 @@
     $query = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($query);
     $picture = $row['sport_logo'];
-    echo $picture;
     $sportname=$row['sport_type'];
     $data='';
 
@@ -120,7 +119,7 @@ include "footer.php";
         }
         function sort(obj){
             $data1=$(obj).attr('data-id')
-            alert($data1)
+
             $.ajax({
                 type:"POST",
                 url:"check_sporttype.php",

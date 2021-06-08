@@ -29,7 +29,7 @@
         echo $_POST['release_id'];
         $_SESSION['release_id']=$_POST['release_id'];
     }
-if(isset($_POST['collection_id'])){
-    $_SESSION['collection_id']=$_POST['collection_id'];
-}
+    if(isset($_POST['collection_id'])){
+        $_SESSION['collection_id']=$_POST['collection_id'];
+    }
 ?>

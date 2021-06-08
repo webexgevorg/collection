@@ -114,7 +114,7 @@ $row3 = mysqli_num_rows($res3);
         </div>
 
         <div class="cards" style="margin-top:70px">
-            <div><img src="profile_image/Заливка цветом 7 копия.png"><h5>MY CHECKLISTS</h5></div>
+            <div><a href="checklist_type.php?data_first=2020&&data_second=2021"><img src="profile_image/Заливка цветом 8 копия.png"><h5>MY CHECKLISTS</h5></a></div>
             <div><img src="profile_image/Заливка цветом 7 копия.png"><h5>followers</h5></div>
             <div><img src="profile_image/Заливка цветом 7 копия 2.png"><h5>favorites</h5></div>
             <div><img src="profile_image/Заливка цветом 9.png"><h5>post service</h5></div>

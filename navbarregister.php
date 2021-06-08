@@ -54,7 +54,7 @@ $img = $navbarimg['image'];
       </div>
     </div>
     <div class="userdiv">
-           <a href="profile-page.php"><img src="images_users/<?php echo $img ? $img : 'user-icon.svg' ?>" class="img-responsive user"></a>
+           <a href="profile.php"><img src="images_users/<?php echo $img ? $img : 'user-icon.svg' ?>" class="img-responsive user"></a>
         </div>
       <div class = "logout"><a href="navbarregister.php?log_out" class = "register">Log out</a></div>
        <div data-google-lang="<?php if($lng=='ru'){
@@ -209,7 +209,7 @@ $img = $navbarimg['image'];
         <a class="nav-link disabled" href="#">Followers</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">News</a>
+        <a class="nav-link disabled" href="news.php">News</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Publications</a>
