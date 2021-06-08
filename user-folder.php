@@ -28,6 +28,9 @@ else{
     header("loction: user-collections.php ");
     exit();
 }
+if(!empty($_SESSION['second_folder_id'])){
+    $_SESSION['second_folder_id']='';
+}
 if(isset($_SESSION['bind_coll_id']) && isset($_SESSION['bind_card_id'])){
     $bind_card_id=$_SESSION['bind_card_id'];
     $bind_coll_id=$_SESSION['bind_coll_id'];

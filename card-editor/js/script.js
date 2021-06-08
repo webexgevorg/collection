@@ -16,20 +16,25 @@ var canvasForName = new fabric.Canvas('canvasForName');
        
        var width=$('#width').val()
        var height=$('#height').val()
-       if (width<=500 && height<=500){
+       if (width<=460 && height<=400){
         $('.error-message').addClass('hide')
           canvas.setDimensions({width:width, height:height})
+          canvasForName.setDimensions({width: width, height: 100})
           canvas.renderAll();
+          canvasForName.renderAll()
        }
        else{
          $('.bord-dotted').css({'height': '85px', 'width': '200px', 'padding': '12px'})
          $('.error-message').removeClass('hide')
-         $('.error-message').html('max width: 500px<br> max height: 500px')
+         $('.canvas-cont').remove()
+         $('.error-message').html('max width: 460px<br> max height: 400px')
        }
   
 });
 
  $('#new').click(function(){
+   $('.new-file-div').removeClass('active-file')
+   $('#no-save').attr('data-dismiss', '')
   canvas.renderAll();
   var count_objects=canvas.getObjects().length
   if(count_objects>0){
@@ -44,8 +49,16 @@ var canvasForName = new fabric.Canvas('canvasForName');
 
 })
 $('#no-save').click(function(){
-      $('.yes-no').css('display', 'none')
-      $('.create-new').css('display', 'block')
+      
+      if($('.new-file-div').hasClass('active-file')){
+        $('#new-file').attr('type', 'file')
+        $(this).attr('data-dismiss', 'modal')
+        $('#new-file').trigger('click')
+      }
+      else{
+        $('.yes-no').css('display', 'none')
+        $('.create-new').css('display', 'block')
+      }
 })
 
 $('#yes-save').click(function(){
@@ -64,15 +77,33 @@ var image
        var file = e.target.files[0];
        createFormData(file);
 });
-$('#new-file').on("input", function (e) {
-    $('#fileupload').trigger(e)
+$('.new-file-div').click(function(){
+  $(this).addClass('active-file')
+  canvas.renderAll();
+  var count_objects=canvas.getObjects().length
+  if(count_objects>0){
+    $('#new-file').attr('type', '')
+    $(this).attr('data-target', '#newModal')
+    $('.create-new').css('display', 'none')
+    $('.yes-no').css('display', 'block')
+  }
+  else{
+    $(this).attr('data-target', '')
+    $('#new-file').attr('type', 'file')
+  }
 })
+
+$('#new-file').on("input", function (e) {
+    var file = e.target.files[0];
+    createFormData(file);
+})
+
  function createFormData(file) {
       $('#divHabilitSelectors').remove()
       $('.canvas-cont').removeClass('hide')
       $('.bord-dotted').css({'width': 'max-content', 'height':'max-content'})
       $('.canvas-for-name').css({'width': 'max-content', 'height':'max-content'})
-
+       canvas.clear()
        canvas.isDrawingMode = false;
       var reader = new FileReader();
 
@@ -86,21 +117,21 @@ $('#new-file').on("input", function (e) {
            var data = event.target.result;
 
            if (imgWidth > imgHeight) {
-              if (imgWidth > 600) {
+              if (imgWidth > 460) {
                 imgHeight *= 500 / imgWidth;
                 imgWidth = 500;
               }
             } 
             else {
-              if (imgHeight > 450) {
+              if (imgHeight > 400) {
                 imgWidth *= 350 / imgHeight;
                 imgHeight = 350;
               }
             }
     fabric.Image.fromURL(data, function (img) {
-        var oImg = img.set({ left: 30, top: 30, angle: 00, id: 'backimage'}).scale(1);
-            oImg.scaleToHeight(imgHeight);
-            oImg.scaleToWidth(imgWidth);
+        var oImg = img.set({ left: 30, top: 30, angle: 00,width: imgWidth, height: imgHeight, id: 'backimage'}).scale(1);
+            // oImg.scaleToHeight(imgHeight);
+            // oImg.scaleToWidth(imgWidth);
             canvas.add(oImg).renderAll();
 
         var a = canvas.setActiveObject(oImg);
@@ -672,6 +703,7 @@ $('#color-inp').on('input', function(){
   // --------------------clear canvas-------------------------
   $('#clear').click(function(){
      canvas.clear()
+     canvasForName.clear()
   })
 // ---------------download image------------------------------
 // var imageSaver = document.getElementById('lnkDownload');
@@ -690,8 +722,13 @@ $('#lnkDownload').click(function(e){
      var th=this
 
      canvas.renderAll();
-     var data=canvas.toDataURL()
+     canvasForName.renderAll();
+     var data=new fabric.Image(canvas.lowerCanvasEl);
+     var dataForName=new fabric.Image(canvasForName.lowerCanvasEl)
+     dataForName.set({top: canvas.upperCanvasEl.height})
+     console.log(canvas.lowerCanvasEl.width)
      console.log(canvas.width)
+
      var name=$('#image-name').val()
      var format=''
      $('.format').each(function(){
@@ -699,87 +736,122 @@ $('#lnkDownload').click(function(e){
          format=$(this).attr('data-format')
       }
      })
-
-     th.href = canvas.toDataURL({
-                     width: canvas.lowerCanvasEl.width-canvas.width/2.23,
-                     height: canvas.lowerCanvasEl.height-canvas.height/2.23,
-                     format: 'jpeg',
-                     quality: 1
-              });
+     $('.canvas-container').html('<canvas id="new-canvas" class="d-flex flex-column"></canvas>')
      
-     th.download = name+'.'+format
+      var newCanvas = new fabric.Canvas('new-canvas');
+      newCanvas.setDimensions({width:canvas.lowerCanvasEl.width, height:canvas.lowerCanvasEl.height+canvasForName.lowerCanvasEl.height})
+      newCanvas.add(data);
+      newCanvas.add(dataForName);
+
+      let newImg=newCanvas.toDataURL({ format: 'jpeg', quality: 1})
+          th.href = newImg
+          th.download = name+'.'+format
         })
 
 // ---------------------add cards---------------------------------------
      
 $('#add-sport-card').click(function(e){
-     var th=this
+  var th=this
+  canvas.renderAll();
+  canvasForName.renderAll();
+  var data=canvas.toDataURL()
+  var data_card_name=canvasForName.toDataURL()
+  // var p=canvas.toDatalessJSON()
+  
+  // var w=canvas.width
+  // p.objects[0].width = w;
+  // p.objects[0].height= canvas.height;
+  // p.objects[0].scaleX=1
+  // p.objects[0].scaleY=1
+  var filedata = JSON.stringify(canvas.toDatalessJSON())
+//  console.log(filedata+'fffffff')
+  var filedata_name = JSON.stringify(canvasForName.toDatalessJSON()); 
+  var user_id=$('#user_id').val()
+  var width=canvas.width
+  var height=canvas.height
 
-     canvas.renderAll();
-     canvasForName.renderAll();
-     // var data=canvas.toDataURL({
-     //                 width: canvas.lowerCanvasEl.width-canvas.width/2.23,
-     //                 height: canvas.lowerCanvasEl.height-canvas.height/2.23})
-     var data=canvas.toDataURL()
-     var data_card_name=canvasForName.toDataURL()
+  if(canvas.getObjects().length>0 ){
+         $.ajax({
+           type: 'post',
+           url: 'card-editor/file.php',
+           data: {data, data_card_name, filedata, filedata_name, user_id, width, height},
+           success: function(res){
+             console.log(res)
+               $('.add-card-result').html(res)
+               setTimeout(function(){window.location.reload()},1000)
+           }
+         })
+       }
+       else{
+             $('.add-card-result').html('You do not have opject')
+       }
+     })
 
-     // var name=$('#image-name').val()
-     // var format=''
-     // $('.format').each(function(){
-     //  if($(this).prop('checked')==true){
-     //     format=$(this).attr('data-format')
-     //  }
-     // })
+// ----------------save-chenged-card------------------------------
+     $('#save-chenged-card').click(function(e){
+      var th=this
+      canvas.renderAll();
+      canvasForName.renderAll();
+      var data=canvas.toDataURL()
+      var data_card_name=canvasForName.toDataURL()
+      var filedata = JSON.stringify(canvas.toDatalessJSON())
+      var filedata_name = JSON.stringify(canvasForName.toDatalessJSON()); 
+      var user_id=$('#user_id').val()
+      var width=canvas.width
+      var height=canvas.height
+      var card_id=$(this).attr('data-card-id')
+      var tbl_name='card'+$(this).attr('data-tbl')
+    
+      if(canvas.getObjects().length>0 ){
+             $.ajax({
+               type: 'post',
+               url: 'card-editor/save-chenged-card.php',
+               data: {card_id, tbl_name, data, data_card_name, filedata, filedata_name, user_id, width, height},
+               success: function(res){
+                 console.log(res)
+                   $('.add-card-result').html(res)
+                   setTimeout(function(){window.location.reload()},1000)
+               }
+             })
+           }
+           else{
+                 $('.add-card-result').html('You do not have opject')
+           }
+         })
+         
+// -------------------save card_templateste----------------------------------------
 
-     // th.href = canvas.toDataURL({
-     //                 format: 'jpeg',
-     //                 quality: 0.8
-     //          });
-     // th.download = name+'.'+format
-    //  console.log(data)
-     if(canvas.getObjects().length>0 ){
-            $.ajax({
-              type: 'post',
-              url: 'card-editor/file.php',
-              data: {data: data, data_card_name: data_card_name},
-              // beforeSend:function(){
-              //         $('.add-card-result').html('Аdded...');
-              // },
-              success: function(res){
-                console.log(res)
-                  $('.add-card-result').html(res)
-                    // var a = document.createElement('a');
-                    // a.href ='card-editor/'+ res;
-                    // a.download = name;
-                    // document.body.appendChild(a);
-                    // a.click();
-                    // document.body.removeChild(a);
-              }
-            })
-          }
-          else{
-                $('.add-card-result').html('You do not have opject')
-          }
-        })
-// -------------------save project----------------------------------------
-
-$('#saveProject').click(function(){
-     var filedata = JSON.stringify(canvas.toDatalessJSON()); 
+$('#addTemplate').click(function(){
      var th=this
          canvas.renderAll();
-     // var data=canvas.toDataURL({
-     //                 width: canvas.lowerCanvasEl.width-canvas.width/2.23,
-     //                 height: canvas.lowerCanvasEl.height-canvas.height/2.23})
-     var data=canvas.toDataURL()
-     var u_id=$('#user_id').val()
-     var w=canvas.width
-     var h=canvas.height
-   
+     var user_id=$('#user_id').val()
+     var width=canvas.width
+     var height=canvas.height
+     var img_object
+   canvas.forEachObject(function (obj) {
+    console.log(obj)
+    var type
+    var src=obj.src
+        if(typeof(src)!='undefined'){
+          console.log(src)
+          var sp_src=src.split(':')
+              type=sp_src[0]
+        }
+    
+        if(obj.id=='backimage' || type=='data'){
+           img_object=obj
+        }
+        
+   });
+  canvas.remove(img_object)
+  var data=canvas.toDataURL()
+  console.log(data)
+  var filedata = JSON.stringify(canvas.toDatalessJSON());
      if(canvas.getObjects().length>0){
          $.ajax({
               type: 'post',
-              url: 'card-editor/projects_json.php',
-              data: {myjson: filedata, data: data, user_id: u_id, width: w, height: h},
+              url: 'card-editor/card_templates.php',
+              data: {filedata, data, user_id, width, height},
               success: function(res){
                 console.log(res)
                   $('.json-res').html(res)
@@ -791,6 +863,43 @@ $('#saveProject').click(function(){
       }
   })
 
+  
+// -----------------json----------------------
+let data_card_json=$('.inp-json').attr('data-card-json')
+
+if(typeof data_card_json!=='undefined'){
+    let jsonResponseCard = $.getJSON( $('.inp-json').attr('data-card-json') )
+    let jsonResponseCardName = $.getJSON( $('.inp-json').attr('data-card-name-json') )
+    jsonResponseCard.then(function (data) {
+        // var new_o=JSON.stringify(data)
+        // var object = JSON.parse( new_o)
+          canvas.loadFromJSON(data, function(){
+            console.log(data.objects[0])
+            // data.objects[0].scaleX=1
+            // data.objects[0].scaleY=1
+
+          canvas.setDimensions({width:data.objects[0].width+60, height:data.objects[0].height+60})
+          // canvas.setDimensions({width:data.objects[0].width, height:data.objects[0].height})
+
+     })
+    })
+    jsonResponseCardName.then(function (data) {
+        
+        canvasForName.loadFromJSON(data, function(){
+            canvasForName.setDimensions({ height:100})
+        });
+    })
+         $('#divHabilitSelectors').remove()
+         $('.canvas-cont').removeClass('hide')
+         $('.bord-dotted').css({'width': 'max-content', 'height':'max-content'})
+
+          canvas.renderAll()
+          canvasForName.renderAll()
+  }
+  else{
+    console.log(222)
+  }
+  
 // ---------------------------json----Add project----------------
 
 $(".project-div").click(function() {

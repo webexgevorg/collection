@@ -19,8 +19,8 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
             <div class="icon-text dropdown-divs hide text-left">
                 <div class="pt-1 pb-1 new-hover" data-toggle="modal" data-target="#newModal" id="new">New canvs</div>
                 <label class="d-flex">
-                   <div class="pt-1 pb-1 new-hover" for="new-file"> New file</div>
-                   <input type="file" id="new-file">
+                   <div class="pt-1 pb-1 new-hover new-file-div" for="new-file" data-toggle="modal" data-target=""> New file</div>
+                   <input type="" id="new-file">
               </label>
             </div>
 
@@ -29,17 +29,21 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
 						<div class="icon-text" data-toggle="modal" data-target="#downloadModal">Download</div>
 			    </div>
           <div class="top ml-2 mb-2">
-            <div class="icon-text" data-toggle="modal" data-target="#add-card" id="add-sport-card">Аdd card</div>
+              <?php if(!empty($_GET['card-id']) && !empty($_GET['tbl'])){ ?>
+                 <div class="icon-text" data-toggle="modal" data-target="#add-card" data-card-id="<?=$_GET['card-id']?>" data-tbl="<?=$_GET['tbl']?>" id="save-chenged-card">Save</div>
+              <?php }else{  ?>
+                 <div class="icon-text" data-toggle="modal" data-target="#add-card"  id="add-sport-card">Аdd card</div>
+              <?php }?>
           </div>
           <div class="top ml-2 mb-2">
             <div class="icon-text" data-toggle="modal" data-target="#clearCanvas">Clear</div>
           </div>
-          <div class="top ml-2 mb-2">
+          <!-- <div class="top ml-2 mb-2">
             <div class="icon-text" id="saveProject" >Save</div>
             <div id='dwn'></div>
-          </div>
+          </div> -->
           <div class="top ml-2 mb-2">
-			        <div id="addProject" class="icon-text" data-toggle="modal" data-target="#add-project">Add project</div>
+			        <div id="addTemplate" class="icon-text" >Add template</div>
           </div>
           <div class="json-res"></div>
 		</div>
@@ -477,7 +481,27 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
   </div>
 </div>
 
+<?php
+if(!empty($_GET['card-id']) && !empty($_GET['tbl'])){
+  echo $_GET['card-id'];
+  $tbl_name='card'.$_GET['tbl'];
+  $card_id=$_GET['card-id'];
+  $sql_card_project="SELECT * FROM $tbl_name WHERE id=$card_id";
+  $query=mysqli_query($con, $sql_card_project);
+  if(mysqli_num_rows($query)>0){
+     $row_card_project=mysqli_fetch_assoc($query);
+     $card_json='card-editor/cards-images-json/'.$row_card_project['card_json_name'];
+     $card_name_json='card-editor/cards-name-images-json/'.$row_card_project['card_name_json_name'];
+     echo "<input type='hidden' data-card-json='$card_json' data-card-name-json='$card_name_json' class='inp-json' >";
 
+  }
+  
+}
+else{
+  echo 'nooo';
+}
+
+?>
 <script type="text/javascript">
 	// ajout de la classe JS à HTML
 document.querySelector("html").classList.add('js');
