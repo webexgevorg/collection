@@ -16,7 +16,7 @@ if(!empty($_POST['login']) && !empty($_POST['password'])){
             ?>
                <script> 
                setTimeout(function(){
-		        location.href="base_checklist/base_checklist.php"
+		        location.href="base_checklist/add_base_checklist.php"
 	            },1000)
                </script>
 		    <?php
