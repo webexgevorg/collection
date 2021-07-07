@@ -5,14 +5,19 @@ $res_frame=mysqli_query($con, $sql_frame);
 $sql_sport_icon="SELECT * FROM sports_type";
 $res_sport_icon=mysqli_query($con, $sql_sport_icon);
 
-$sql_cards_project="SELECT * FROM cards_project WHERE user_id=$user_id";
-$res_cards_project=mysqli_query($con, $sql_cards_project);
+if(!empty($_SESSION['card-info'])){
+        $array_session=$_SESSION['card-info'];
+        $card_name=$array_session['card_name'];
+}
+// $sql_cards_project="SELECT * FROM cards_project WHERE user_id=$user_id";
+// $res_cards_project=mysqli_query($con, $sql_cards_project);
 
 ?>
 <section class="file">
 	<div class="container">
 		<div class="row d-flex pl-3 pr-4">
           <input type="hidden" id="user_id" value="<?php echo $user_id ?>">
+          <input type="hidden" id="card-name" value="<?php echo !empty($card_name) ? $card_name : ""; ?>">
 			    <div class="top mb-2">
 						<!-- <div class="icon-text" data-toggle="modal" data-target="#newModal" id="new">New</div> -->
             <div class="icon-text pl-2 pr-2" data-toggle="modal" id="drop-down">New</div>
@@ -274,7 +279,7 @@ $res_cards_project=mysqli_query($con, $sql_cards_project);
                 <option>12</option>
                 <option>14</option>
                 <option>18</option>
-                <option>24</option>
+                <option selected>24</option>
                 <option>30</option>
                 <option>36</option>
                 <option>48</option>

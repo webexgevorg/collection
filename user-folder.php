@@ -1,4 +1,13 @@
 <?php
+$refresh_count=0;
+if (isset($_SERVER["HTTP_REFERER"])) {
+    $refresh_count++;
+    if($refresh_count==1){
+    ?>
+        <script> location.reload(); break</script> 
+    <?php
+    }
+}
 include "header.php";
 include "config/con1.php";
 require_once "user-logedin.php";
@@ -88,7 +97,7 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
 <section class="hidden"></section>
 <section>
     <div class="container mt-3 mb-0">
-        <div class="site-color text-center"><h3> My Collections / <?php echo $row_coll['name_of_collection'] .' / '. $folder_name['name_of_folder']; ?> </h3></div>
+        <div class="site-color text-center"><h3> My Collections / <?php echo "<a href='user-collection.php'>".$row_coll['name_of_collection'] ."</a> / ". $folder_name['name_of_folder']; ?> </h3></div>
         <div class="w-100 text-right mb-0">
              <button class="px-4 py-2 add-folder bg-yellow" data-tbl-name="collection_second_folder" data-toggle="modal" data-target="#add_folder">Add Folder</button>
              <button class="px-4 py-2 add-card bg-yellow" data-tbl-name="card2" data-toggle="modal" data-target="#add_card">Add Card</button>
@@ -144,12 +153,16 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                     ?>
                     <div class="w-22 collection-item" >
                       <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="collection-item-a card-item-a" data-id="<?php echo $row['id']; ?>" data-tblname="<?php echo !empty($active_folder) ? "card3" : "card2"?>">
-                        <div class="img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>" >
+                        <div class=" d-flex flex-column justify-content-center " >
                              <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>"><i class="fa fa-plus-circle card-plus-icon"> </i></div>
-                             <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
-                             <img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100">
+                             <div class="img-cont <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>">
+                                 <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
+                             </div>
+                             <div class="img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>">
+                                 <img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100">
+                             </div>
                         </div>
-                        <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div>
+                        <!-- <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div> -->
                       </a>
                     </div>
                     <?php

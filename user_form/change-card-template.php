@@ -30,62 +30,66 @@ if(!empty($_POST['template_id']) && !empty($_POST['tbl_name']) && !empty($_POST[
     if(mysqli_num_rows($res_template)==1){
           $row_template=mysqli_fetch_assoc($res_template);
           $json_template=$row_template['json'];
-          $file_jscon_template=file_get_contents('../card-editor/templates-jsons/'.$json_template);
-          $template_info=json_decode($file_jscon_template,true);
+          $file_json_template=file_get_contents('../card-editor/templates-jsons/'.$json_template);
+          $template_info=json_decode($file_json_template,true);
           $template_background=$template_info['background'];
           $template_frame=explode('frame-', $template_info['objects'][0]['src']);
-        //   print_r($card_frame);
 
           $this_card_json=file_get_contents('../card-editor/cards-images-json/'.$card_json_name);
           $card_info=json_decode( $this_card_json,true);
           $card_info['background']=$template_background;
-        //   $card_frame=explode('frame-', $card_info['objects'][0]['src']);
+
+          $m='';
           foreach($card_info['objects'] as $key => $value){
              $d=explode(':', $value['src']);
              $dd=explode(',', $value['src']);
              if($d[0]!='data'){
-                // $value['src']=$template_info['objects'][0]['src'];
                 $card_info['objects'][$key]['src']=$template_info['objects'][0]['src'];
-                // echo $value['src'];
-
-             }
-             else{
-                  $k=$d[1];
-                  $base64_string = explode( ',', $k);
-                  $mm=$base64_string[1];
-                //  $img=base64_decode( $d[1]);
+                $m++;
              }
           }
-        
-// print_r( json_encode( $card_info,true));
+          if($m==''){
+            array_push($card_info['objects'],  $template_info['objects'][0]);
+          }
+      // ------------card-name change tamplate-------------------------------
 
-
-           
-// Free up memory
-// file_put_contents( '../card-editor/cards-images/bbb.jpg', $im);
-          // imagecopyresampled($card_info,  '../card-editor/cards-images/'.$image);
-          // file_put_contents( '../card-editor/cards-images/'.$image, base64_decode($mm));
-
+      $name_json_template=$row_template['name_json'];
+      $name_file_json_template=file_get_contents('../card-editor/templates-name-jsons/'.$name_json_template);
+      $name_template_info=json_decode($name_file_json_template,true);
+      
+      $this_card_name_json=file_get_contents('../card-editor/cards-name-images-json/'.$card_name_json_name);
+      $card_name_info=json_decode( $this_card_name_json,true);
+      // $i=count($name_template_info['objects']);
+      foreach($card_name_info['objects'] as $key => $value){
+        if($value['type']=='i-text'){
+          array_push($name_template_info['objects'], $value);
+            // $name_template_info['objects'][$i+1]=$value;
+        }
+     }
           file_put_contents('../card-editor/cards-images-json/'.$card_json_name, json_encode( $card_info));
-        //   var_dump( $card_info);
+          file_put_contents('../card-editor/cards-name-images-json/'.$card_name_json_name, json_encode( $name_template_info));
+
       $arr=[];
       $arr['json']='card-editor/cards-images-json/'.$card_json_name;
       $arr['img']='../card-editor/cards-images/'.$image;
-   
-     
-print_r(json_encode($arr));
-// echo 'card-editor/cards-images-json/'.$card_json_name;
-
+      $arr['name-json']='card-editor/cards-name-images-json/'.$card_name_json_name;
+      $arr['name-img']='../card-editor/cards-name-images/'.$card_name_image;   
+    //  print_r($name_template_info);
+    print_r(json_encode($arr));
     }
-
 }
-if(!empty($_POST['change_img']) && !empty($_POST['data']) && !empty($_POST['img']) ){
+if(!empty($_POST['change_img']) && !empty($_POST['data']) && !empty($_POST['img']) && !empty($_POST['name_data']) && !empty($_POST['name_img']) ){
   
   $img=$_POST['img'];
 	$data=$_POST['data'];
+  $name_img=$_POST['name_img'];
+	$name_data=$_POST['name_data'];
   
   $base64_string = explode( ',', $data);
+  $base64_string_name = explode( ',', $name_data);
 echo $img;
 file_put_contents($img, base64_decode( $base64_string[1]));
+file_put_contents($name_img, base64_decode( $base64_string_name[1]));
+
 }
 ?>

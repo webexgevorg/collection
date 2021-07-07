@@ -30,14 +30,14 @@ if(!empty($_POST['data']) && !empty($_POST['data_card_name']) && !empty($_POST['
         }
         else{
             
-            $releases_id="''";
-            $base_checklist_card_id="''";
+            $releases_id=0;
+            $base_checklist_card_id=0;
         }
         if(!empty($array_session['folder_id'])){
             $folder_id=$array_session['folder_id'];
         }
         else{
-            $folder_id="''";
+            $folder_id=0;
         }
     // echo   $tbl_name.' - '.$coll_id." - ".$releases_id." - ".$base_checklist_card_id. " - ".$card_name." - ".$description; 
 

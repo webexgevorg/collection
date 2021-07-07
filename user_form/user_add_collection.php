@@ -21,7 +21,7 @@ include "../config/con1.php";
 				$query = mysqli_query($con, $sql);
 				if($query){
 					$msg = '<div class="alert alert-success">Collection successfully added</div>';
-					header('location:../user-collection.php');
+					header('location:../user-collections.php');
 				}
 					
 			
