@@ -52,7 +52,12 @@
                                         <span class="sidebar-normal">Add Store Rating</span>
                                     </a>
                                 </li>
-                                
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../news/add_news.php">
+                                        <span class="sidebar-mini">AN</span>
+                                        <span class="sidebar-normal">Add News</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
