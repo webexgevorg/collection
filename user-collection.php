@@ -1,4 +1,13 @@
 <?php
+$refresh_count=0;
+if (isset($_SERVER["HTTP_REFERER"])) {
+    $refresh_count++;
+    if($refresh_count==1){
+    ?>
+        <script> location.reload(); break</script> 
+    <?php
+    }
+}
 include "header.php";
 include "config/con1.php";
 require_once "user-logedin.php";
@@ -173,7 +182,7 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                              <div class='img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100"></div>
 
                         </div>
-                        <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div>
+                        <!-- <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div> -->
                       </a>
                     </div>
                     <?php

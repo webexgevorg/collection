@@ -13,14 +13,15 @@ var canvasForName = new fabric.Canvas('canvasForName');
 
    canvas.isDrawingMode = false;
    canvasForName.isDrawingMode = false;
-       
+ 
+  // --------------------------
        var width=$('#width').val()
        var height=$('#height').val()
        if (width<=460 && height<=400){
         $('.error-message').addClass('hide')
           canvas.setDimensions({width:width, height:height})
           canvasForName.setDimensions({width: width, height: 100})
-          canvas.renderAll();
+          canvas.renderAll(); 
           canvasForName.renderAll()
        }
        else{
@@ -28,8 +29,7 @@ var canvasForName = new fabric.Canvas('canvasForName');
          $('.error-message').removeClass('hide')
          $('.canvas-cont').remove()
          $('.error-message').html('max width: 460px<br> max height: 400px')
-       }
-  
+       }  
 });
 
  $('#new').click(function(){
@@ -73,7 +73,7 @@ $('#yes-save').click(function(){
 var image
   // document.getElementById('fileupload').addEventListener("input", function (e) {
   $('#fileupload').on("input", function (e) {
-
+$('#text').trigger('click')
        var file = e.target.files[0];
        createFormData(file);
 });
@@ -214,6 +214,7 @@ $('.sport-icon').click(function(){
     canvasForName.renderAll();
   }); 
 });
+console.log('bbbbbbb')
 
 // ---------------------overlay image--------------------------
   var over_img
@@ -237,7 +238,23 @@ $('.sport-icon').click(function(){
     })
      }
    }
- reader.readAsDataURL(o_file);  
+ reader.readAsDataURL(o_file);
+ var oText = new fabric.IText(card_name, { 
+  left: 50, 
+  top: canvasForName.height-100,
+  id: 'text',
+  fill: '#000',
+  fontSize: '24',
+  fontFamily: 'normal',
+  fontWeight: 'normal',
+  fontStyle: 'normal',
+  textDecoration: 'normal'
+});
+
+canvasForName.add(oText);
+oText.bringToFront();
+canvasForName.setActiveObject(oText);  
+ $('#text').trigger('click')
 })
 // ----------------------layer for selected object-----------------------------------------
       canvas.preserveObjectStacking = true;
@@ -602,8 +619,11 @@ $('#text').click(function(){
    var font_size=$('#font-size').val()
    var color=$('#fill').val()
    var font=$('#font').val()
-
-var oText = new fabric.IText('Tap and Type', { 
+   var card_name=$('#card-name').val()
+   if(card_name==''){
+          card_name='Tap and Type'
+   }
+var oText = new fabric.IText(card_name, { 
     left: 50, 
     top: canvasForName.height-100,
     id: 'text',
@@ -828,36 +848,50 @@ $('#addTemplate').click(function(){
      var width=canvas.width
      var height=canvas.height
      var img_object
+     var text
    canvas.forEachObject(function (obj) {
     console.log(obj)
     var type
     var src=obj.src
         if(typeof(src)!='undefined'){
-          console.log(src)
           var sp_src=src.split(':')
               type=sp_src[0]
         }
-    
+
         if(obj.id=='backimage' || type=='data'){
            img_object=obj
         }
         
    });
+  //  -------------------------------
+  canvasForName.forEachObject(function (obj) {
+    if(obj.text!=''){
+       text=obj
+       console.log(text)
+    }
+   });
+  // ----------------------------------
   canvas.remove(img_object)
+  canvasForName.remove(text)
+
   var data=canvas.toDataURL()
-  console.log(data)
+  var data_name=canvasForName.toDataURL()
   var filedata = JSON.stringify(canvas.toDatalessJSON());
-     if(canvas.getObjects().length>0){
+  var filedata_name = JSON.stringify(canvasForName.toDatalessJSON());
+console.log(filedata+'-----')
+console.log(data_name+'+++++++')
+
+     if(canvas.getObjects().length>0 && canvasForName.getObjects().length>0){
          $.ajax({
               type: 'post',
               url: 'card-editor/card_templates.php',
-              data: {filedata, data, user_id, width, height},
+              data: {filedata, data, user_id, filedata_name, data_name, width, height},
               success: function(res){
                 console.log(res)
                   $('.json-res').html(res)
-                  setTimeout(function(){
-                      $('.json-res').html('')
-                  },1500)
+                      setTimeout(function(){
+                          $('.json-res').html('')
+                      },1500)
               }
           })
       }

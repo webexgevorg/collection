@@ -2,6 +2,7 @@
 include "config/con1.php";
     $limit=5;
     $page=1;
+    $output_footer='';
     if($_POST['page']>1){
         $start = (($_POST['page']-1)*$limit);
         $page = $_POST['page'];

@@ -1,9 +1,9 @@
 // -----------------select template or delete-----------------
 $('.template-item').find('.delete-template').hide()
 $('.template-item').click(function(){
-  $('.template-item').removeClass('active-template')
+  $('.template-item .temp-div').removeClass('active-template')
   $('.template-item').find('.delete-template').hide()
-  $(this).addClass('active-template')
+  $(this).find('.temp-div').addClass('active-template')
   $(this).find('.delete-template').show()
 })
 

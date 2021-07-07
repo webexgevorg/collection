@@ -24,6 +24,8 @@ require_once "user-logedin.php";
         $card_id = $_GET['card-id'];
         $card_tblname = 'card' . $_GET['tbl'];
         $folder_name = '';
+        $second_button_name="";
+        $first_button_name="";
         $buttons_array = array();
         if (!empty($_SESSION['first_folder_id'])) {
             $first_folder_id = $_SESSION['first_folder_id'];
@@ -83,7 +85,7 @@ require_once "user-logedin.php";
                 'id' => $second_folder_id,
                 'name' => $second_button_name,
                 'tbl_name' => 'card3'
-            ],
+            ]
 
         );
     }
@@ -134,9 +136,11 @@ require_once "user-logedin.php";
                         <!-- <a href="<?php echo $_SERVER['PHP_SELF'] . '?coll-id=' . $card_row['id'] . '&' . $uri_page ?>" class="collection-item-a" data-id="<?php echo $card_row['id']; ?>"> -->
                         <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['coll-id']) && $_GET['coll-id'] == $card_row['id'] ? 'active-collection' : '' ?>">
                             <img src="card-editor/cards-images/<?php echo $card_row['image'] ?>" class="w-100">
+                        </div>
+                        <div  class="img-cont mt-2">
                             <img src="card-editor/cards-name-images/<?php echo $card_row['card_name_image'] ?>" class="w-100">
                         </div>
-                        <div class=" text-center mt-2 site-color fw-600"><?php echo $card_row['name'] ?></div>
+                        <!-- <div class=" text-center mt-2 site-color fw-600"><?php echo $card_row['name'] ?></div> -->
                         <!-- </a> -->
                     </div>
                     <div class="mt-5">
@@ -148,7 +152,7 @@ require_once "user-logedin.php";
                 <div class="w-6 mx-1"></div>
                 <div class="w-72 p-4 cont-right">
                     <div class="site-color text-center">
-                        <h3> My Collections / <?php echo $row_coll['name_of_collection'] . $folder_name . $second_folder_name; ?> </h3>
+                        <h3> My Collections / <?php echo "<a href='user-collection.php'>".$row_coll['name_of_collection'] ."</a><a href='user-folder.php'>". $folder_name ."</a><a href='user-second-folder.php'>" . $second_folder_name ."</a>"; ?> </h3>
                     </div>
                     <div class='d-flex flex-wrap <?php echo  mysqli_num_rows($cards_images_res) > 1 ? 'justify-content-between' : '' ?> rite-items mt-3'>
                         <?php
@@ -207,14 +211,35 @@ require_once "user-logedin.php";
                 <div class="modal-header">
                     <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
                     <div class="canvas-cont bord-er d-none ml-auto mr-auto" >
-					    <canvas id="canvas" ></canvas>
-                        <button class='modal-btn'>ffffff</button>
+					       <canvas id="canvas" ></canvas>
+                           <canvas id="canvasForName" ></canvas>
+                           <button class='modal-btn'>click</button>
 					</div>
                     <div>
+                    
                         <?php
                         foreach ($buttons_array as $key => $value) {
                             if ($value['name'] != '') {
-                                echo "<button data-id='$value[id]' data-tbl='$value[tbl_name]' class='px-4 py-2 ml-2 add-folder bg-yellow change-card-template'>$value[name]</button>";
+                                if($value['tbl_name']=='card1'){
+                                    //  echo "<button class=' add-folder bg-yellow' id='drop-down'>New</button>
+                                    //  <div class='icon-text dropdown-divs hide text-left ppx-4 py-2 ml-2 add-folder bg-yellow'>
+                                    //  <div data-id='$value[id]' data-tbl='$value[tbl_name]' class=' change-coll-cards-template'>$value[name]</div>
+                                    //  <div data-id='$value[id]' data-tbl='$value[tbl_name]' class='change-coll-cards-template'>$value[name]</div>
+                                    //  </div>";
+                                        echo "<button class='dropdown add-folder bg-yellow'>
+                                                    <a class='btn add-folder bg-yellow dropdown-toggle' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                                    $value[name]
+                                                    </a>
+                                                    <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+                                                        <div data-id='$coll_id' data-tbl='card1' class=' dropdown-item change-cards-template'>Collection without folders</div>
+                                                        <div data-id='$coll_id' data-tbl='all_cards' class=' dropdown-item change-cards-template'>Collection with folders</div>
+                                                    </div>
+                                                </button>";
+                                    }
+                                else{
+                                    echo "<button data-id='$value[id]' data-tbl='$value[tbl_name]' class='px-4 py-2 ml-2 add-folder bg-yellow change-cards-template'>$value[name]</button>";
+
+                                }
                             }
                         }
                         echo "<button data-id='$card_id' data-tbl='$card_tblname' class='px-4 py-2 ml-2 add-folder bg-yellow change-this-card-template'>Only this card</button>";
@@ -234,7 +259,8 @@ require_once "user-logedin.php";
                         }
                            echo "<div class='template-item w-22 $mr mt-2' id='$template_row[id]'>
                                     <div class='delete-template'><i class='fa fa-close'></i></div>
-                                    <div><img class='w-100' src='card-editor/templates-images/$template_row[image]'></div>
+                                    <div class='temp-div'><img class='w-100 ' src='card-editor/templates-images/$template_row[image]'></div>
+                                    <div class='mt-2 temp-div'><img class='w-100' src='card-editor/templates-name-images/$template_row[name_image]'></div>
                                 </div>";
                        }
                     ?>
@@ -250,7 +276,10 @@ require_once "user-logedin.php";
     <script src="user_js/add-image.js"></script>
     <script src="user_js/delete-template.js"></script>
     <script src="user_js/change-card-template.js"></script>
-    
+    <script>
+    $('#drop-down').click(function(){
+  $('.dropdown-divs').slideToggle()
+})</script>
 </body>
 
 </html>
