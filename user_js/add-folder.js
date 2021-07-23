@@ -54,6 +54,7 @@ $('.all-cards').click(function(){
 })
 // --------open card page--------------------------
 $(".card-item-a").on('click', function (e) {
+	// e.parentDefoult()
 	let tblname=$(this).attr('data-tblname')
     let hr=$(location).attr('search').split('&')
     let id='?card-id='+$(this).attr('data-id')

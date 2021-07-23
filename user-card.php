@@ -137,9 +137,9 @@ require_once "user-logedin.php";
                         <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['coll-id']) && $_GET['coll-id'] == $card_row['id'] ? 'active-collection' : '' ?>">
                             <img src="card-editor/cards-images/<?php echo $card_row['image'] ?>" class="w-100">
                         </div>
-                        <div  class="img-cont mt-2">
+                        <!-- <div  class="img-cont mt-2">
                             <img src="card-editor/cards-name-images/<?php echo $card_row['card_name_image'] ?>" class="w-100">
-                        </div>
+                        </div> -->
                         <!-- <div class=" text-center mt-2 site-color fw-600"><?php echo $card_row['name'] ?></div> -->
                         <!-- </a> -->
                     </div>
@@ -212,7 +212,7 @@ require_once "user-logedin.php";
                     <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
                     <div class="canvas-cont bord-er d-none ml-auto mr-auto" >
 					       <canvas id="canvas" ></canvas>
-                           <canvas id="canvasForName" ></canvas>
+                           <!-- <canvas id="canvasForName" ></canvas> -->
                            <button class='modal-btn'>click</button>
 					</div>
                     <div>
@@ -260,8 +260,13 @@ require_once "user-logedin.php";
                            echo "<div class='template-item w-22 $mr mt-2' id='$template_row[id]'>
                                     <div class='delete-template'><i class='fa fa-close'></i></div>
                                     <div class='temp-div'><img class='w-100 ' src='card-editor/templates-images/$template_row[image]'></div>
-                                    <div class='mt-2 temp-div'><img class='w-100' src='card-editor/templates-name-images/$template_row[name_image]'></div>
                                 </div>";
+                                // ------for card and card name----------------------
+                                // echo "<div class='template-item w-22 $mr mt-2' id='$template_row[id]'>
+                                //     <div class='delete-template'><i class='fa fa-close'></i></div>
+                                //     <div class='temp-div'><img class='w-100 ' src='card-editor/templates-images/$template_row[image]'></div>
+                                //     <div class='mt-2 temp-div'><img class='w-100' src='card-editor/templates-name-images/$template_row[name_image]'></div>
+                                // </div>";
                        }
                     ?>
                 </div>
