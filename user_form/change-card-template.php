@@ -14,15 +14,17 @@ if(!empty($_POST['template_id']) && !empty($_POST['tbl_name']) && !empty($_POST[
     $template_id=$_POST['template_id'];
     $tbl_name=$_POST['tbl_name'];
     $card_id=$_POST['card_id'];
-    $sel="SELECT image, card_name_image, card_json_name, card_name_json_name FROM $tbl_name WHERE user_id=$user_id AND id=$card_id";  
+    $sel="SELECT image, card_json_name FROM $tbl_name WHERE user_id=$user_id AND id=$card_id";  
+    // -------------for card and card name----------------------
+    // $sel="SELECT image, card_name_image, card_json_name, card_name_json_name FROM $tbl_name WHERE user_id=$user_id AND id=$card_id";  
     
     $res_card_info=mysqli_query($con, $sel);
     if(mysqli_num_rows($res_card_info)==1){
         $row_card=mysqli_fetch_assoc($res_card_info);
         $image=$row_card['image'];
-        $card_name_image=$row_card['card_name_image'];
+        // $card_name_image=$row_card['card_name_image'];
         $card_json_name=$row_card['card_json_name'];
-        $card_name_json_name=$row_card['card_name_json_name'];
+        // $card_name_json_name=$row_card['card_name_json_name'];
     }
 
     $sel_template="SELECT * FROM card_templates WHERE id=$template_id AND user_id=$user_id";
@@ -53,43 +55,43 @@ if(!empty($_POST['template_id']) && !empty($_POST['tbl_name']) && !empty($_POST[
           }
       // ------------card-name change tamplate-------------------------------
 
-      $name_json_template=$row_template['name_json'];
-      $name_file_json_template=file_get_contents('../card-editor/templates-name-jsons/'.$name_json_template);
-      $name_template_info=json_decode($name_file_json_template,true);
+      // $name_json_template=$row_template['name_json'];
+      // $name_file_json_template=file_get_contents('../card-editor/templates-name-jsons/'.$name_json_template);
+      // $name_template_info=json_decode($name_file_json_template,true);
       
-      $this_card_name_json=file_get_contents('../card-editor/cards-name-images-json/'.$card_name_json_name);
-      $card_name_info=json_decode( $this_card_name_json,true);
-      // $i=count($name_template_info['objects']);
-      foreach($card_name_info['objects'] as $key => $value){
-        if($value['type']=='i-text'){
-          array_push($name_template_info['objects'], $value);
-            // $name_template_info['objects'][$i+1]=$value;
-        }
-     }
+      // $this_card_name_json=file_get_contents('../card-editor/cards-name-images-json/'.$card_name_json_name);
+      // $card_name_info=json_decode( $this_card_name_json,true);
+    //   foreach($card_name_info['objects'] as $key => $value){
+    //     if($value['type']=='i-text'){
+    //       array_push($name_template_info['objects'], $value);
+    //     }
+    //  }
           file_put_contents('../card-editor/cards-images-json/'.$card_json_name, json_encode( $card_info));
-          file_put_contents('../card-editor/cards-name-images-json/'.$card_name_json_name, json_encode( $name_template_info));
+          // file_put_contents('../card-editor/cards-name-images-json/'.$card_name_json_name, json_encode( $name_template_info));
 
       $arr=[];
       $arr['json']='card-editor/cards-images-json/'.$card_json_name;
       $arr['img']='../card-editor/cards-images/'.$image;
-      $arr['name-json']='card-editor/cards-name-images-json/'.$card_name_json_name;
-      $arr['name-img']='../card-editor/cards-name-images/'.$card_name_image;   
+      // $arr['name-json']='card-editor/cards-name-images-json/'.$card_name_json_name;
+      // $arr['name-img']='../card-editor/cards-name-images/'.$card_name_image;   
     //  print_r($name_template_info);
     print_r(json_encode($arr));
     }
 }
-if(!empty($_POST['change_img']) && !empty($_POST['data']) && !empty($_POST['img']) && !empty($_POST['name_data']) && !empty($_POST['name_img']) ){
+if(!empty($_POST['change_img']) && !empty($_POST['data']) && !empty($_POST['img'])){
+// -------------for card and card name----------------------
+// if(!empty($_POST['change_img']) && !empty($_POST['data']) && !empty($_POST['img']) && !empty($_POST['name_data']) && !empty($_POST['name_img']) ){
   
   $img=$_POST['img'];
 	$data=$_POST['data'];
-  $name_img=$_POST['name_img'];
-	$name_data=$_POST['name_data'];
+  // $name_img=$_POST['name_img'];
+	// $name_data=$_POST['name_data'];
   
   $base64_string = explode( ',', $data);
-  $base64_string_name = explode( ',', $name_data);
+  // $base64_string_name = explode( ',', $name_data);
 echo $img;
 file_put_contents($img, base64_decode( $base64_string[1]));
-file_put_contents($name_img, base64_decode( $base64_string_name[1]));
+// file_put_contents($name_img, base64_decode( $base64_string_name[1]));
 
 }
 ?>

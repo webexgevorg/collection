@@ -5,6 +5,7 @@ $('.addNews').on('click',function(){
     let producer = $('#producer').val()
     let newstype =$('#newstype').val()
     let published=$('#published').val()
+    console.log(discription)
     if( $('#title').val() ==''|| $('#discription').val() ==''){
         $('#rezult').html("<p style='color:red'>Fill all the fields</p>")
         // alert()

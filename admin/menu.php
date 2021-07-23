@@ -95,6 +95,12 @@
                                         <span class="sidebar-normal">Change Store</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../news_tables/news.php">
+                                        <span class="sidebar-mini">N</span>
+                                        <span class="sidebar-normal">News</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>

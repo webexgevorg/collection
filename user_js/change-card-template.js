@@ -1,5 +1,5 @@
 var canvas = new fabric.Canvas('canvas');
-var canvasForName = new fabric.Canvas('canvasForName');
+// var canvasForName = new fabric.Canvas('canvasForName');
 let img;
 let json;
 $('.change-this-card-template').on('click', function(){
@@ -19,10 +19,10 @@ console.log(template_id)
         let arr=JSON.parse(res)
          json=arr['json']
          img=arr['img']
-         name_json=arr['name-json']
-         name_img=arr['name-img']
+        //  name_json=arr['name-json']
+        //  name_img=arr['name-img']
         console.log(img)
-        console.log(name_img)
+        // console.log(name_img)
         // let canvas_width=''
         let jsonResponseCard = $.getJSON( json )
             jsonResponseCard.then(function (data) {
@@ -31,12 +31,12 @@ console.log(template_id)
          })
         })
         // ---------for name-----------------
-        let jsonResponseCardName = $.getJSON( name_json )
-            jsonResponseCardName.then(function (data) {
-              canvasForName.loadFromJSON(data, function(){
-              canvasForName.setDimensions({width:canvas.width, height:100})
-         })
-        })
+        // let jsonResponseCardName = $.getJSON( name_json )
+        //     jsonResponseCardName.then(function (data) {
+        //       canvasForName.loadFromJSON(data, function(){
+        //       canvasForName.setDimensions({width:canvas.width, height:100})
+        //  })
+        // })
         setTimeout(function(){$('.modal-btn').trigger('click')},1000)
         }
     })
@@ -45,10 +45,10 @@ console.log(template_id)
 
 $('.modal-btn').on('click', function(){
     canvas.renderAll()
-    canvasForName.renderAll()
+    // canvasForName.renderAll()
     console.log('cccc')
     var data=canvas.toDataURL()
-    var name_data=canvasForName.toDataURL()
+    // var name_data=canvasForName.toDataURL()
     var change_img='change_img'
     if(canvas.getObjects().length>0 ){
         console.log('pppppppp')
@@ -59,11 +59,13 @@ $('.modal-btn').on('click', function(){
            $.ajax({
              type: 'post',
              url: 'user_form/change-card-template.php',
-             data: {data, name_data, change_img, img, name_img},
+             data: {data, change_img, img},
+            //  ------- for card and card name-----------------------------
+            //  data: {data, name_data, change_img, img, name_img},
              success: function(res){
                 //  $('.add-card-result').html(res)
                 canvas.clear()
-                canvasForName.clear()
+                // canvasForName.clear()
                  setTimeout(function(){window.location.reload()},1000)
              }
            })
@@ -81,13 +83,13 @@ $('.change-cards-template').click(function(){
     console.log('bbb')
     let path=''
     let arr_img=[]
-    let arr_name_img=[]
+    // let arr_name_img=[]
     if(typeof(template_id)!='undefined'){
     $.ajax({
         type: 'post',
         url: 'user_form/change-cards-template.php',
         data: {tbl_name, folder_id, template_id},
-        beforeSend: function(){that.html('Chenging . . .')},
+        beforeSend: function(){that.parent().parent().html('<span class="btn"> Chenging . . .  </span>')},
         success: function(res){
             console.log(res)
             let json_arr=JSON.parse(res)
@@ -97,12 +99,14 @@ $('.change-cards-template').click(function(){
                     if(i>=json_arr.length){
                         clearInterval(setinterval)
                         let arr_data='arr_data'
-                        let arr_name_data='arr_name_data'
+                        // let arr_name_data='arr_name_data'
 
                          $.ajax({
                              type: 'post',
                              url: 'user_form/change-cards-template.php',
-                             data: {arr_data, arr_img, arr_name_data, arr_name_img},
+                             data: {arr_data, arr_img},
+                            // ---------for card and card name------------------------
+                            //  data: {arr_data, arr_img, arr_name_data, arr_name_img},
                              success: function(res){
                            setTimeout(function(){window.location.reload()},1000)
                             }
@@ -110,10 +114,10 @@ $('.change-cards-template').click(function(){
                     }
                     json=json_arr[i]['json']
                     img=json_arr[i]['img']
-                    name_json=json_arr[i]['name-json']
-                    name_img=json_arr[i]['name-img']
+                    // name_json=json_arr[i]['name-json']
+                    // name_img=json_arr[i]['name-img']
                         canvas.clear()
-                        canvasForName.clear()
+                        // canvasForName.clear()
                 
                     let jsonResponseCard = $.getJSON( json )
                         jsonResponseCard.then(function (data) {
@@ -122,19 +126,19 @@ $('.change-cards-template').click(function(){
                      })
                     })
                     // ---------for name-----------------
-                    let jsonResponseCardName = $.getJSON( name_json )
-                        jsonResponseCardName.then(function (data) {
-                        canvasForName.loadFromJSON(data, function(){
-                        canvasForName.setDimensions({width:canvas.width, height:100})
-                    })
-                   })
+                //     let jsonResponseCardName = $.getJSON( name_json )
+                //         jsonResponseCardName.then(function (data) {
+                //         canvasForName.loadFromJSON(data, function(){
+                //         canvasForName.setDimensions({width:canvas.width, height:100})
+                //     })
+                //    })
                     setTimeout(function(){
                          canvas.renderAll()
-                         canvasForName.renderAll()
+                        //  canvasForName.renderAll()
                          var data=canvas.toDataURL()
-                         var name_data=canvasForName.toDataURL()
+                        //  var name_data=canvasForName.toDataURL()
                          arr_img.push({'data': data, 'path': img })
-                         arr_name_img.push({'name_data': name_data, 'name_path': name_img })
+                        //  arr_name_img.push({'name_data': name_data, 'name_path': name_img })
                           i++
                     },300)
                 }

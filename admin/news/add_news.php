@@ -1,6 +1,24 @@
 <?php
 include "../../config/con1.php";
 include "../heder.php";
+$arr_producer=['UpperDeck', 'Panini', 'Topps', 'Leaf', 'SeReal', 'Other', 'All'];
+$arr_news_type=['Portal news', 'Producer news', 'Releases news', 'Sports news', 'All'];
+if(isset($_GET['id'])){
+    $id=$_GET['id'];
+    $sel="SELECT * FROM news WHERE id=$id";
+    $res=mysqli_query($con, $sel);
+    if(mysqli_num_rows($res)==1){
+        $res_row=true;
+        $row_this=mysqli_fetch_assoc($res);
+    }
+    else{
+        $res_row=false;
+    }
+}
+else{
+    $res_row=false;
+}
+
 ?>
     <body>
     <?php
@@ -9,22 +27,20 @@ include "../heder.php";
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6 add-bs" style="margin: 0 auto">
-                    <button class="p-3 card stacked-form">
-                        <button class="btn btn-primary">Add News</button>
-                        <div class="card-header ">
+                <div class="col-sm-7 add-bs" style="margin: 0 auto">
+                    <div class="p-3 card stacked-form">
+                        <!-- <button class="btn btn-primary">Add News</button> -->
+                        <div class="card-header mb-4">
                             <h4 class="card-title">Add News</h4>
-
-
                         </div>
                         <form>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" placeholder="name@example.com">
+                                <input type="text" class="form-control" id="title" placeholder="title" value="<?= $res_row ? $row_this['title'] : '' ?>">
                             </div>
                             <div class="form-group">
                                 <label for="discription">Discription</label>
-                                <textarea class="form-control" id="discription" rows="40" cols="40"></textarea>
+                                <textarea class="form-control" id="discription" placeholder="description"><?= $res_row ? $row_this['discription'] : '' ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="sporttype">Sports type</label>
@@ -34,7 +50,10 @@ include "../heder.php";
                                     $sql_news="SELECT*FROM sports_type";
                                     $query_news=mysqli_query($con,$sql_news);
                                     while($row=mysqli_fetch_assoc($query_news)){
-                                        echo "<option>".$row['sport_type']."</option>";
+                                        echo $row['sport_type']==$row_this['sport'] ?
+                                             "<option selected>".$row['sport_type']."</option>" : 
+                                             "<option>".$row['sport_type']."</option>";
+
                                     }
                                     ?>
 
@@ -43,75 +62,40 @@ include "../heder.php";
                             <div class="form-group">
                                 <label for="producer">Producer</label>
                                 <select  class="form-control" id="producer">
-                                    <option>UpperDeck</option>
-                                    <option>Panini</option>
-                                    <option>Topps</option>
-                                    <option>Leaf</option>
-                                    <option>SeReal</option>
-                                    <option>Other</option>
-                                    <option>All</option>
+                                   <?php
+                                   foreach ($arr_producer as $key => $value) {
+                                    echo $value==$row_this['producer'] ?
+                                        "<option selected>".$row_this['producer']."</option>" : 
+                                        "<option>".$value."</option>";
+                                   }
+                                   ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="newstype">News type</label>
                                 <select  class="form-control" id="newstype">
-                                    <option>Portal news</option>
-                                    <option>Producer news</option>
-                                    <option>Releases news</option>
-                                    <option>Sports news</option>
-                                    <option>All</option>
+                                <?php
+                                   foreach ($arr_news_type as $key => $value) {
+                                    echo $value==$row_this['news_type'] ?
+                                        "<option selected>".$row_this['news_type']."</option>" : 
+                                        "<option>".$value."</option>";
+                                   }
+                                   ?>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="published">Published data</label>
                                 <input type="date" id="published">
-                            </div>
-
+                            </div> -->
+                          <input type='hidden' id="this-id" value="<?= $res_row ? $row_this['id'] : '' ?>">
                         </form>
-                        <button   class="btn btn-primary  addNews p-2" type="submit"  style="width:120px">Add news</button>
+                        
+                        <button   class="btn btn-primary <?= $res_row ? 'updateNews' : 'addNews' ?> p-2" type="submit"  style="width:120px"><?= $res_row ? 'Update news' : 'Add news' ?></button>
                         <p  class="m-5 text-center" id="rezult"></p>
                     </div>
-
-
-
                 </div>
-            </div>
-            <div class="row">
-                <div class="container">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Discription</th>
-                        <th scope="col">Sport</th>
-                        <th scope="col">Producer</th>
-                        <th scope="col">News type</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Created date</th>
-                        <th scope="col">Published date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    </tbody>
-                </table>
+
+
                 </div>
             </div>
         </div>
@@ -119,39 +103,8 @@ include "../heder.php";
     <?php
     include "../footer.php";
     ?>
-<!--    <script src="../js/add_news.js"></script>-->
-<script>
-    $('.addNews').on('click',function(){
-        let title = $('#title').val()
-        let discription = $('#discription').val()
-        let sporttype = $('#sporttype').val()
-        let producer = $('#producer').val()
-        let newstype =$('#newstype').val()
-        let published=$('#published').val()
-        if( $('#title').val() ==''|| $('#discription').val() ==''){
-            $('#rezult').html("<p style='color:red'>Fill all the fields</p>")
-            // alert()
-        }else {
-
-            $.ajax({
-                type: 'POST',
-                url: 'add_news_check.php',
-                data: {
-                    title: title,
-                    discription: discription,
-                    sporttype: sporttype,
-                    producer: producer,
-                    newstype: newstype,
-                    published: published
-                },
-                success: function (rezult) {
-                    $('#rezult').html("<p style='color: rgb(19,57,96);font-size:20px;font-weight:bold'>"+rezult+"</p>")
-                }
-            })
-        }
-    })
-
-</script>
+   <script src="../my_js/add_news.js"></script>
+   <script src="../my_js/update_news.js"></script>
 
     </body>
     </html>
