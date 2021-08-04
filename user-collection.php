@@ -4,7 +4,8 @@ if (isset($_SERVER["HTTP_REFERER"])) {
     $refresh_count++;
     if($refresh_count==1){
     ?>
-        <script> location.reload(); break</script> 
+        <script> window.location.reload();
+         break;</script> 
     <?php
     }
 }
@@ -41,14 +42,26 @@ if(!empty($_SESSION['first_folder_id'])){
 if(!empty($_SESSION['second_folder_id'])){
     $_SESSION['second_folder_id']='';
 }
-if(isset($_SESSION['bind_coll_id']) && isset($_SESSION['bind_card_id'])){
+if(isset($_SESSION['bind_coll_id']) && !empty($_SESSION['bind_card_id'])){
     $bind_card_id=$_SESSION['bind_card_id'];
     $bind_coll_id=$_SESSION['bind_coll_id'];
     $sel_bind_coll="SELECT 'description' FROM collections WHERE id=$bind_coll_id";
     $res_bind_coll=mysqli_query($con, $sel_bind_coll);
     $row_bind_coll=mysqli_fetch_assoc($res_bind_coll);
     $bind_coll_desc=$row_bind_coll['description'];
-    $card_name=$_SESSION['card_name'];
+    
+// ---------info from bind card---------------------
+    $bind_cad_info="SELECT * FROM base_checklist WHERE realese_id=$bind_coll_id and id=$bind_card_id";
+    $res_bind_cad_info=mysqli_query($con, $bind_cad_info);
+    if(mysqli_num_rows($res_bind_cad_info)>0){
+        $row_bind_cad_info=mysqli_fetch_assoc($res_bind_cad_info);
+        $card_name=$row_bind_cad_info['card_name'];
+        $card_name=$row_bind_cad_info['card_name'];
+        $card_number=$row_bind_cad_info['card_number'];
+        $card_team=$row_bind_cad_info['team'];
+        $card_parallel=$row_bind_cad_info['parallel'];
+    }
+    
     $_SESSION['bind_card_id']='';
 }
 else{
@@ -56,6 +69,9 @@ else{
     $bind_coll_id='';
     $bind_coll_desc='';
     $card_name='';
+    $card_number='';
+    $card_team='';
+    $card_parallel='';
 }
 $row_user='';
 $sql_coll = "SELECT * FROM new_collection_card WHERE user_id = $user_id and id=$coll_id";
@@ -93,7 +109,6 @@ else if(isset($_SESSION['all_cards'])){
 }
 else{
     $active_folder='';
-    echo "ppp";
     // $pagination= new Pagination();
     $pagination->tblName='card1';
     $conditions=array('coll_id' => $coll_id,
@@ -177,7 +192,12 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                     <div class="w-22 collection-item" >
                       <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="card-item-a" data-id="<?php echo $row['id']; ?>" data-tblname="<?php echo !empty($active_folder) ? "card2" : (isset($_SESSION['all_cards']) ? $row['t_name'] : "card1")?>">
                         <div class="d-flex flex-column justify-content-center" >
-                             <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>"><i class="fa fa-plus-circle card-plus-icon"> </i></div>
+                             <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>">
+                                <i class="fa fa-plus-circle card-plus-icon card-icon" > </i>
+                                <i class="fa fa-info-circle card-info-icon card-icon" data-toggle="modal" data-target="#card-icons"></i>
+                                <i class="fa fa-remove card-remove-icon card-icon" data-toggle="modal" data-target="#card-icons"> </i>
+
+                            </div>
                              <div class='img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100"></div>
                             <!-- ------card name------------------ -->
                              <!-- <div class='img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100"></div> -->
@@ -248,8 +268,24 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                <a href="base-checklist-bind-card.php?link=user-collection"> <button class="px-4 py-2 mb-3 bg-yellow bind-card">Bind cаrd to checklist</button></a>
                 <form method="post" id="" action="user_form/add-card.php">
                     <div class="form-group">
-                        <label>Card name</label>
-                        <input type="text" class="form-control namecard inp" name="name-card" value="<?=$card_name?>">
+                        <div class="form-group">
+                             <label>Card number</label>
+                             <input type="text" class="form-control numbercard inp" name="number-card" value="<?=$card_number?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Card name</label>
+                             <input type="text" class="form-control namecard inp" name="name-card" value="<?=$card_name?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Team</label>
+                             <input type="text" class="form-control teamcard inp" name="team-card" value="<?=$card_team?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Parallel</label>
+                             <input type="text" class="form-control parallelcard inp" name="parallel-card" value="<?=$card_parallel?>">
+                        </div>
+                        
+                        
                         <input type="hidden" value="<?php echo $coll_id ?>" name='coll-id' >
                         <input type="hidden" name="tbl-name-card" class="tbl-name-card">
                         <input type="hidden" name="bind_card_id" class="bind-card-id inp" value='<?=$bind_card_id?>' >
@@ -267,6 +303,7 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
         </div>
     </div>
 </div>
+<?php include "info-modal.php" ?>
 <?php include "footer.php" ?>
 <script src="user_js/add-folder.js"></script>
 <script src="user_js/open-modal.js"></script>

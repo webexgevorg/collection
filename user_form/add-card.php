@@ -9,6 +9,10 @@ include "../config/con1.php";
             $bind_card_id=mysqli_real_escape_string($con, $_POST['bind_card_id']);
 			$description = mysqli_real_escape_string($con, $_POST['description']);
 			$card_name=mysqli_real_escape_string($con, $_POST['name-card']);
+			$card_number=mysqli_real_escape_string($con, $_POST['number-card']);
+			$card_team=mysqli_real_escape_string($con, $_POST['team-card']);
+			$card_parallel=mysqli_real_escape_string($con, $_POST['parallel-card']);
+			
 			
 			if(isset($_POST['folder_id'])){
 				$folder_id=mysqli_real_escape_string($con, $_POST['folder_id']);
@@ -24,6 +28,9 @@ include "../config/con1.php";
 					"bind_card_id" => $bind_card_id,
 					"user_id"=>$user_id, 
 					"card_name"=>$card_name,
+					"card_number"=>$card_number,
+			        "card_team"=>$card_team,
+			        "card_parallel"=>$card_parallel,
 					"description"=>$description
 				);
 				$_SESSION['card-info']=$array_session;
