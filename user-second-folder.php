@@ -48,7 +48,7 @@ else{
     header("loction: user-collections.php ");
     exit();
 }
-if(isset($_SESSION['bind_coll_id']) && isset($_SESSION['bind_card_id'])){
+if(isset($_SESSION['bind_coll_id']) && !empty($_SESSION['bind_card_id'])){
     $bind_card_id=$_SESSION['bind_card_id'];
     $bind_coll_id=$_SESSION['bind_coll_id'];
     $sel_bind_coll="SELECT 'description' FROM collections WHERE id=$bind_coll_id";
@@ -56,6 +56,17 @@ if(isset($_SESSION['bind_coll_id']) && isset($_SESSION['bind_card_id'])){
     $row_bind_coll=mysqli_fetch_assoc($res_bind_coll);
     $bind_coll_desc=$row_bind_coll['description'];
     $card_name=$_SESSION['card_name'];
+    // ---------info from bind card---------------------
+    $bind_cad_info="SELECT * FROM base_checklist WHERE realese_id=$bind_coll_id and id=$bind_card_id";
+    $res_bind_cad_info=mysqli_query($con, $bind_cad_info);
+    if(mysqli_num_rows($res_bind_cad_info)==1){
+        $card_name=$row_bind_cad_info['card_name'];
+        $row_bind_cad_info=mysqli_fetch_assoc($res_bind_cad_info);
+        $card_name=$row_bind_cad_info['card_name'];
+        $card_number=$row_bind_cad_info['card_number'];
+        $card_team=$row_bind_cad_info['team'];
+        $card_parallel=$row_bind_cad_info['parallel'];
+    }
     $_SESSION['bind_card_id']='';
 }
 else{
@@ -63,6 +74,9 @@ else{
     $bind_coll_id='';
     $bind_coll_desc='';
     $card_name='';
+    $card_number='';
+    $card_team='';
+    $card_parallel='';
 }
 $row_user='';
 $sql_coll = "SELECT * FROM new_collection_card WHERE user_id = $user_id and id=$coll_id";
@@ -131,7 +145,12 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                     <div class="w-22 collection-item" >
                       <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="card-item-a" data-id="<?php echo $row['id']; ?>" data-tblname="card3">
                         <div class="d-flex flex-column justify-content-center " >
-                             <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>"><i class="fa fa-plus-circle card-plus-icon"> </i></div>
+                            <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>">
+                                <i class="fa fa-plus-circle card-plus-icon card-icon" > </i>
+                                <i class="fa fa-info-circle card-info-icon card-icon" data-toggle="modal" data-target="#card-icons"></i>
+                                <i class="fa fa-remove card-remove-icon card-icon" data-toggle="modal" data-target="#card-icons"> </i>
+
+                            </div>
                              <div class=" img-cont <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>">
                                  <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
                              </div>
@@ -178,8 +197,22 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                 <a href="base-checklist-bind-card.php?link=user-second-folder"> <button class="px-4 py-2 mb-3 bg-yellow bind-card">Bind cаrd to checklist</button></a>
                 <form method="post" id="" action="user_form/add-card.php">
                     <div class="form-group">
-                        <label>Card name</label>
-                        <input type="text" class="form-control namecard inp" name="name-card" value="<?=$card_name?>">
+                        <div class="form-group">
+                             <label>Card number</label>
+                             <input type="text" class="form-control numbercard inp" name="number-card" value="<?=$card_number?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Card name</label>
+                             <input type="text" class="form-control namecard inp" name="name-card" value="<?=$card_name?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Team</label>
+                             <input type="text" class="form-control teamcard inp" name="team-card" value="<?=$card_team?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Parallel</label>
+                             <input type="text" class="form-control parallelcard inp" name="parallel-card" value="<?=$card_parallel?>">
+                        </div>
                         <input type="hidden" value="<?php echo $coll_id ?>" name='coll-id' >
                         <input type="hidden" name="tbl-name-card" class="tbl-name-card">
                         <input type="hidden" name="bind_card_id" class="bind-card-id inp" value='<?=$bind_card_id?>' >
@@ -198,6 +231,7 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
         </div>
     </div>
 </div>
+<?php include "info-modal.php" ?>
 <?php include "footer.php" ?>
 <script src="user_js/add-folder.js"></script>
 <script src="user_js/open-modal.js"></script>

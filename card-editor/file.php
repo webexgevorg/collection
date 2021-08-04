@@ -17,6 +17,9 @@ if(!empty($_POST['data']) && !empty($_POST['filedata']) ){
         $tbl_name=$array_session['tbl_name'];
         $coll_id=$array_session['coll_id'];
         $card_name=$array_session['card_name'];
+        $card_number=$array_session['card_number'];
+		$card_team=$array_session['card_team'];
+		$card_parallel=$array_session['card_parallel'];
         $description=$array_session['description'];
         $width=$_POST['width'];
         $height=$_POST['height'];
@@ -53,12 +56,12 @@ if(!empty($_POST['data']) && !empty($_POST['filedata']) ){
 
     // --------------for first folder-----------------------
     if($tbl_name=='card2' || $tbl_name=='card3'){
-        $insert="INSERT INTO $tbl_name (folder_id, coll_id, user_id, releases_id, base_checklist_card_id, name, description, image, card_json_name) 
-                 VALUES ($folder_id, $coll_id, $user_id, $releases_id, $base_checklist_card_id, '$card_name', '$description', '$output_file', '$output_file_json')";
+        $insert="INSERT INTO $tbl_name (folder_id, coll_id, user_id, releases_id, base_checklist_card_id, name, number, team, parallel, description, image, card_json_name) 
+                 VALUES ($folder_id, $coll_id, $user_id, $releases_id, $base_checklist_card_id, '$card_name', '$card_number', '$card_team', '$card_parallel', '$description', '$output_file', '$output_file_json')";
     }
     else{
-        $insert="INSERT INTO $tbl_name (coll_id, user_id, releases_id, base_checklist_card_id, name, description, image, card_json_name) 
-                 VALUES ($coll_id, $user_id, $releases_id, $base_checklist_card_id, '$card_name', '$description', '$output_file', '$output_file_json')";
+        $insert="INSERT INTO $tbl_name (coll_id, user_id, releases_id, base_checklist_card_id, name, number, team, parallel, description, image, card_json_name) 
+                 VALUES ($coll_id, $user_id, $releases_id, $base_checklist_card_id, '$card_name', '$card_number', '$card_team', '$card_parallel', '$description', '$output_file', '$output_file_json')";
         
     }
       if(mysqli_query($con, $insert)){

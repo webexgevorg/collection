@@ -137,11 +137,28 @@ require_once "user-logedin.php";
                         <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['coll-id']) && $_GET['coll-id'] == $card_row['id'] ? 'active-collection' : '' ?>">
                             <img src="card-editor/cards-images/<?php echo $card_row['image'] ?>" class="w-100">
                         </div>
-                        <!-- <div  class="img-cont mt-2">
-                            <img src="card-editor/cards-name-images/<?php echo $card_row['card_name_image'] ?>" class="w-100">
-                        </div> -->
-                        <!-- <div class=" text-center mt-2 site-color fw-600"><?php echo $card_row['name'] ?></div> -->
-                        <!-- </a> -->
+                        <div class='text-left mt-2'>
+                           <div>
+                               <strong>NUMBER:</strong>
+                               <span><?=$card_row['number'] ?></span>
+                           </div>
+                           <div>
+                               <strong>NAME:</strong>
+                               <span><?=$card_row['name'] ?></span>
+                           </div>
+                           <div>
+                               <strong>TEAM:</strong>
+                               <span><?=$card_row['team'] ?></span>
+                           </div>
+                           <div>
+                               <strong>PARALLEL:</strong>
+                               <span><?=$card_row['parallel'] ?></span>
+                           </div>
+                           <div>
+                               <strong>DESCRIPTION:</strong>
+                               <span><?=$card_row['description'] ?></span>
+                           </div>
+                        </div>
                     </div>
                     <div class="mt-5">
                         <a href='<?= "card-editor.php?card-id=$card_id&tbl=$_GET[tbl]" ?>'><button class="px-4 py-2 add-folder bg-yellow">Edit</button></a>
