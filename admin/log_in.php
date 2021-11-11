@@ -9,6 +9,7 @@ if(!empty($_POST['login']) && !empty($_POST['password'])){
 	$result=mysqli_query($con, $sql);
 	$num_row=mysqli_num_rows($result);
 	if($num_row==1){
+		// var_dump($login.$pass);
 		$row=mysqli_fetch_assoc($result);
 		$_SESSION['login']=$login;
 		

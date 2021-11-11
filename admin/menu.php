@@ -58,6 +58,12 @@
                                         <span class="sidebar-normal">Add News</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../publications/add_publications.php">
+                                        <span class="sidebar-mini">AP</span>
+                                        <span class="sidebar-normal">Add Publications</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -101,6 +107,12 @@
                                         <span class="sidebar-normal">News</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../publications_tables/publications.php">
+                                        <span class="sidebar-mini">P</span>
+                                        <span class="sidebar-normal">Publications</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -108,8 +120,16 @@
                         <a class="nav-link" href="?out">
                             <i class="nc-icon nc-button-power"></i>
                             <p>
-                               Log Out
-                                
+                               Log Out 
+                            </p>
+                        </a>
+                       
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../formdata.php">
+                           
+                            <p>
+                               formdata 
                             </p>
                         </a>
                        

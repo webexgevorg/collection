@@ -1,19 +1,23 @@
 .news{
-    margin-top:150px;
+    margin-top:150px; 
 }
+
 .news>.container{
-   min- height:500px;
-    /*border:1px solid red;*/
+   min-height:500px;
     margin-top:20px;
 
 }
 .news>.container>div {
-    /*border:1px solid blue;*/
+
     color: rgb(19,57,96)
 
 }
 .news_first{
-    flex-basis: 15%;
+   
+    width: 150px;
+}
+.news_first> .form-select{
+   width:100% 
 }
 
 .news_second{
@@ -36,4 +40,26 @@
 }
 select{
     border:none
+}
+.like_icon{
+    color: #133960;
+
+}
+@media (max-width: 768px){
+    .news_filter {
+        display:flex !important; 
+        flex-wrap: none !important;
+        flex-direction:column !important;
+    }
+    .news_first{
+        flex-basis: 40% !important;
+    }
+
+    .news{
+        margin-top:0
+    }
+    .news_item{
+        margin-right:0 !important;
+        margin-left:0 !important;
+    }
 }
