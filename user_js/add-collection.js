@@ -10,22 +10,26 @@
         let d=$('.desc').val()
         let f=$('.file').val()
         let ext=f.split('.')
-        let file_extantions=['png', 'jpg', 'jpeg', 'JPEG', 'PNG', 'JPG']
+        let extantion=ext.pop()
+        let k=false
+        let file_extantions=['png', 'jpeg', 'JPEG', 'PNG', 'JPG', 'jpg']
         if(d=='' || n=='' || f==''){
           event.preventDefault()
            $('.message-result').html('Fill all filds')
         }
         else{
             file_extantions.forEach(element => {
-                if(ext.pop()!=element){
-                    event.preventDefault()
-                    $('.message-result').html('Plese chose image in png, jpg, jpeg')
+                if(extantion==element){
+                     k=true
                 }
-                else{
-                    console.log(f)
-                    // $(this).attr('type', 'submit')
-                }
-            });
+            })
+            if(!k){
+                event.preventDefault()
+                $('.message-result').html('Plese chose image in png, jpg, jpeg')
+            }
+            else{
+                    $(this).attr('type', 'submit')
+            }
             // if(ext.pop()!='png' && ext.pop()!='jpg' && ext.pop()!='jpeg' && ext.pop()!='JPEG' && ext.pop()!='JPG' && ext.pop()!='PNG'){
             //     event.preventDefault()
             //     $('.message-result').html('Plese chose image in png, jpg, jpeg')

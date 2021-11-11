@@ -1,10 +1,7 @@
 <?php
-
 include "header.php";
 include "config/con1.php";
 // require_once "user-logedin.php";
-
-
 ?>
 <link rel="stylesheet" type="text/css" href="css/navbar-body.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -13,13 +10,11 @@ include "config/con1.php";
 </head>
 <body>
 <?php include "cookie.php"; ?>
-
 <section class=" p-2 news">
     <div class="container">
         <div class="d-flex flex-wrap justify-content-center news_filter">
             <div class="mx-auto news_first">
                 <h5 class="my-2">Apply filters</h5>
-                
                 <select class="form-select py-3" aria-label="Default select example" style="border:none" id="period">
                     <optgroup label ="Period" >
                         <option class="py-3" value="Last week">Last week</option>
@@ -40,9 +35,8 @@ include "config/con1.php";
                                                 ?>
                 </option>
                 </select>
-                        
                 <select class="form-select  py-3" aria-label="Default select example" style="border:none" id="producer">
-                    <optgroup label="Producer" > 
+                    <optgroup label="Producer" >
                     <option value="Upper Deck">Upper Deck</option>
                     <option value="Panini">Panini</option>
                     <option value="Topps">Topps</option>
@@ -63,13 +57,10 @@ include "config/con1.php";
                 </select>
                 <button class='my-2 py-1 px-4 item_button filter'>Filter</button>  
             </div>
-
-
-
         <div class="d-flex flex-column news_second">
             <h1 class="mx-2">NEWS</h1>
             <div id="news">
-                <?php 
+                <?php
                     $sql_news="SELECT*FROM NEWS where status=1 order by id desc limit 5";
                     $query_news=mysqli_query($con, $sql_news);
                     while($row = mysqli_fetch_assoc($query_news)){
@@ -80,18 +71,15 @@ include "config/con1.php";
                             </div>
                         ";
                     }
-                
                 ?>
             </div>
         </div>
     </div>
-
     </div>
 </section>
 <?php
 include "footer.php";
 ?>
-
 <script>
     $('.filter').on('click',function(){
     $period=''
@@ -100,18 +88,13 @@ include "footer.php";
     $news_type=$('#news_type').val()
     if($('#period').val()=='Last week'){
         $period='7 DAY'
-       
     }else if($('#period').val()=="Last months"){
         $period='31 DAY'
-    
     }else if($('#period').val()=="Last 3 months"){
         $period='93 DAY'
-    
     }else if($('#period').val()=="Last 6 months"){
         $period='186 DAY'
-    
     }
-    
     $.ajax({
         type:'post',
         url:'checknews.php',
@@ -120,11 +103,7 @@ include "footer.php";
             $('#news').html(rezult)
         }
     })  
-    
 })
-
 </script>
-
 </body>
 </html>
-
