@@ -212,7 +212,7 @@ $img = $navbarimg['image'];
         <a class="nav-link disabled" href="news.php">News</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Publications</a>
+        <a class="nav-link disabled" href="publications.php">Publications</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">About</a>

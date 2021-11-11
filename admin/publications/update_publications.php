@@ -11,7 +11,7 @@ include "../../config/con1.php";
         $id=$_POST['this_id'];
 
         
-           $sql1="UPDATE news  SET title='$title', discription='$discription',sport_type='$sporttype', producer='$producer',news_type='$newstype'WHERE id='$id'";
+           $sql1="UPDATE publications  SET title='$title', titledescription='$discription',sport_type='$sporttype', producer='$producer',news_type='$newstype'WHERE id='$id'";
            $query=mysqli_query($con,$sql1);
             if($query){
                 echo "The record has been successfully updated";

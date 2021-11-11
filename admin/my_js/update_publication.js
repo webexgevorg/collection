@@ -1,13 +1,11 @@
-$('.addNews').on('click',function(){
-    
+$('.updatePublication').on('click',function(){
     let title = $('#title').val()
     let discription = $('#discription').val()
     let sporttype = $('#sporttype').val()
     let producer = $('#producer').val()
     let newstype =$('#newstype').val()
-    // let published=$('#published').val()
-    // alert( title+ discription+ sporttype+producer+newstype)
-    // console.log(discription)
+    let this_id=$('#this-id').val()
+    console.log(discription)
     if( $('#title').val() ==''|| $('#discription').val() ==''){
         $('#rezult').html("<p style='color:red'>Fill all the fields</p>")
         // alert()
@@ -15,14 +13,9 @@ $('.addNews').on('click',function(){
 
         $.ajax({
             type: 'POST',
-            url: 'add_news_check.php',
+            url: 'update_publications.php',
             data: {
-                title: title,
-                discription: discription,
-                sporttype: sporttype,
-                producer: producer,
-                newstype: newstype,
-                // published: published
+                title, discription, sporttype, producer, newstype, this_id
             },
             success: function (rezult) {
                 $('#rezult').html("<p style='color: rgb(19,57,96);font-size:20px;font-weight:bold'>"+rezult+"</p>")

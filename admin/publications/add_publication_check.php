@@ -8,9 +8,10 @@ include "../../config/con1.php";
          $sporttype = $_POST['sporttype'];
           $producer = $_POST['producer'];
            $newstype= $_POST['newstype'];
-        //    $published=$_POST['published'];
+      
+  
 
-           $sql1="INSERT INTO news (title,discription,sport_type,producer,news_type,status) VALUES('$title','$discription','$sporttype','$producer','$newstype', '0') ";
+            $sql1="INSERT INTO publications (title,titledescription,sport_type,producer,news_type,status,liked,watched) VALUES('$title','$discription','$sporttype','$producer','$newstype', '0','0','0') ";
             $query=mysqli_query($con,$sql1);
             if($query){
                 echo "The record has been successfully inserted";
