@@ -44,7 +44,7 @@ require_once "user-logedin.php";
                       
             <select class="form-select w-100 py-3" aria-label="Default select example" style="border:none" id="producer">
                 <optgroup label="Producer" > 
-                <option value="Upper Deck">Upper Deck</option>
+                <option value="UpperDeck">Upper Deck</option>
                 <option value="Panini">Panini</option>
                 <option value="Topps">Topps</option>
                 <option value="Leaf">Leaf</option>
@@ -57,7 +57,7 @@ require_once "user-logedin.php";
                 <optgroup  label="News type">
                 <option value="Portal news" > Portal news</option>
                 <option value="Producer news">Producer news</option>
-                <option value="Releaes news">Releaes news</option>
+                <option value="Releases news">Releases news</option>
                 <option value="Sports news">Sports news</option>
                 <option value="All">All</option>
                 </optgroup>
@@ -117,7 +117,11 @@ include "footer.php";
         $period='186 DAY'
     
     }
-    
+    else if($('#period').val()=="All news"){
+        $period='50 YEAR'
+    }
+    else{}
+    console.log($period)
     $.ajax({
         type:'post',
         url:'checknews.php',
