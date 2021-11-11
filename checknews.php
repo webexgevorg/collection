@@ -7,7 +7,7 @@ include "config/con1.php";
     $producer=$_POST['producer'];
     $news_type=$_POST['news_type'];
 
-   $sql="SELECT * from news where published_date>(NOW()-INTERVAL $period)  and sport='$sport_type' and producer='$producer' and news_type='$news_type' and status=1";
+   $sql="SELECT * from news where published_date>(NOW()-INTERVAL $period)  and sport_type='$sport_type' and producer='$producer' and news_type='$news_type' and status=1";
    $query=mysqli_query($con,$sql);
    $num_rows=mysqli_num_rows($query);
    
