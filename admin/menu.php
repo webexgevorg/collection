@@ -53,9 +53,22 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="../news/add_news.php">
+                                    <a class="nav-link" target="_blank" href="../news/add_news.php">
                                         <span class="sidebar-mini">AN</span>
                                         <span class="sidebar-normal">Add News</span>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../subnews/add_subnews.php">
+                                        <span class="sidebar-mini">AS</span>
+                                        <span class="sidebar-normal">Add SubNews</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../subnews/edit_subnews.php">
+                                        <span class="sidebar-mini">AS</span>
+                                        <span class="sidebar-normal">Edit SubNews</span>
                                     </a>
                                 </li>
                                 <li class="nav-item ">
@@ -105,6 +118,12 @@
                                     <a class="nav-link"  href="../news_tables/news.php">
                                         <span class="sidebar-mini">N</span>
                                         <span class="sidebar-normal">News</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../subnews_table/subnews.php">
+                                        <span class="sidebar-mini">SN</span>
+                                        <span class="sidebar-normal">SubNews</span>
                                     </a>
                                 </li>
                                 <li class="nav-item ">

@@ -1,32 +1,17 @@
-$('.addNews').on('click',function(){
-    
-    let title = $('#title').val()
-    let discription = $('#discription').val()
-    let sporttype = $('#sporttype').val()
-    let producer = $('#producer').val()
-    let newstype =$('#newstype').val()
-    // let published=$('#published').val()
-    // alert( title+ discription+ sporttype+producer+newstype)
-    // console.log(discription)
-    if( $('#title').val() ==''|| $('#discription').val() ==''){
-        $('#rezult').html("<p style='color:red'>Fill all the fields</p>")
-        // alert()
-    }else {
+$('#add_news').on('submit',function(event){
+    event.preventDefault()
+   
 
         $.ajax({
             type: 'POST',
             url: 'add_news_check.php',
-            data: {
-                title: title,
-                discription: discription,
-                sporttype: sporttype,
-                producer: producer,
-                newstype: newstype,
-                // published: published
-            },
+            data:new FormData(this),
+            contentType:false,
+            cache:false,
+            processData:false,
             success: function (rezult) {
-                $('#rezult').html("<p style='color: rgb(19,57,96);font-size:20px;font-weight:bold'>"+rezult+"</p>")
+                $('#rezult').html(rezult)
             }
         })
-    }
+    
 })

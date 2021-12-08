@@ -2,19 +2,57 @@
 
 <?php
 include "config/con1.php";
+   
+$sql = "SELECT *FROM publications WHERE status=1 ";
+if(isset($_POST['period'])){
     $period=$_POST['period'];
-    $sport_type=$_POST['sport_type'];
-    $producer=$_POST['producer'];
-    $news_type=$_POST['news_type'];
+    if($_POST['period']!="All news"){
+        $sql .= " and published_date>(NOW()-INTERVAL ".$period." ) ";
+    }else{
 
-   $sql="SELECT * from publications where published_date>(NOW()-INTERVAL $period)  and sport_type='$sport_type' and producer='$producer' and news_type='$news_type' and status=1";
-   $query=mysqli_query($con,$sql);
+    }
+    
+}
+if(isset($_POST['sport_type'])){
+   
+    $sport_type_filter=implode("','" , $_POST["sport_type"]);   
+    $sql .= " AND sport_type IN('".$sport_type_filter."')";
+
+}
+
+if(isset($_POST['producer'])){
+   
+    $producer_filter=implode("','" , $_POST["producer"]);  
+    $sql .= " AND producer IN('".$producer_filter."')";
+
+}
+if(isset($_POST['all_news'])){
+   
+    $all_news_filter=implode("','" , $_POST["all_news"]);  
+    $sql .= " AND news_type IN('".$all_news_filter."')";
+  
+}
+
+// creating filter  via asc and desc
+  
+ if($_POST['filter']=='newest'){
+  
+    $sql.=" ORDER BY id DESC";
+}else if($_POST['filter']=='oldest'){
+    $sql.=" ORDER BY id ASC";
+  
+}
+else{
+    $sql.=" ORDER BY id DESC";
+   
+       
+    }
+    $sql.=" limit 5";
+// echo $sql;
+$query=mysqli_query($con,$sql);
+$num_rows=mysqli_num_rows($query);
    $num_rows=mysqli_num_rows($query);
    
-  
-    
-
-
    if($num_rows>0){
     
         while($row=mysqli_fetch_assoc($query)){
