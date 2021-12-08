@@ -42,52 +42,30 @@ $row3 = mysqli_num_rows($res3);
 ?>
 <div class="container container_profile" style="margin-top: 150px">
 
-    <!-- <div class="row userRow">
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <div>
+        <div class="d-flex  flex-wrap justify-content-between  first_prof">
+            <div class="d-flex justify-content-between k1">
                 <?php if ($ard['image']): ?>
                     <img src='images_users/<?php echo $ard['image'] ?>' class="img-fluid user_img">
                 <?php else: ?>
-                    <p>Add your image</p>
+                    <img src="images_users/user-icon.svg" class="img-responsive user w-100 h-75" >
                 <?php endif ?>
             </div>
-            <button class="add" data-toggle="modal" data-target="#exampleModall">Edit</button>
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12" style="word-break: break-all">
-            <h4 class="parag-log"><?php echo $ard['name'] ?>
-
-            </h4>
-            <p class="parag-log"><?php echo $ard['country'] ?></p>
-            <p class="parag-log">
-                <?php
-                if ($ard['more']) {
-                    echo $ard['more'];
-                } else {
-                    echo "Add more information";
-                }
-                ?>
-
-            </p>
-
-        </div>
-    </div>
-</div>-->
-<div>
-    <!--<div>
-        <a href="user-collections.php"><button>Collections</button></a>
-    </div> -->
-    <!-- ----------------------------------- -->
-        <div class="d-flex  flex-wrap justify-content-between  first_prof">
-            <div class="d-flex justify-content-between k1">
-                <img  class="img-fluid" src="profile_image/Слой 14.png" >
-            </div>
             <div class="k2">
-                <p class="p-2 text-justify"> About me<br>belief, Lorem Ipsum is not simply random text. It has roots in
-                    belief, Lorem Ipsum is not simply random text. It has roots in
-                    Lorem Ipsum is not simply random text. It has roots in
-                    word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-                    This book is a treatise on the theory of ethics, very popular during the
+                <h4 class="parag-log">Name: <?php echo $ard['name'] ?></h4>
+                <p class="parag-log">Country: <?php echo $ard['country'] ?> 
+                    <img id='myImage' width="30px" src="http://www.geonames.org/flags/x/<?= strtolower($ard['country_code']) ?>.gif" />
                 </p>
+                <p class="parag-log">City: <?php echo $ard['city'] ?> </p>
+                <p class="parag-log">Information: 
+                    <?php
+                    if ($ard['more']) {
+                        echo $ard['more'];
+                    } else {
+                        echo "Information is absent";
+                    }
+                    ?>
+                </p>
+                <button class="add" data-toggle="modal" data-target="#exampleModall">Edit</button>
             </div>
             <div class="d-flex flex-column align-items-center k3">
                 <h4 class="text-center"> My statistics</h4>
@@ -114,14 +92,14 @@ $row3 = mysqli_num_rows($res3);
         </div>
 
         <div class="cards" style="margin-top:70px">
-            <div><a href="release_checklist.php"><img src="profile_image/Заливка цветом 8 копия.png"><h5>MY CHECKLISTS</h5></a></div>
+            <div><a href="release_checklist.php"> <img src="images_users/user-icon.svg" class="img-responsive user w-100 h-50" ><h5>Profile</h5></a></div>
             <div><img src="profile_image/Заливка цветом 7 копия.png"><h5>followers</h5></div>
             <div><img src="profile_image/Заливка цветом 7 копия 2.png"><h5>favorites</h5></div>
             <div><img src="profile_image/Заливка цветом 9.png"><h5>post service</h5></div>
         </div>
         <div class="cards">
             <div><a href='user-collections.php'> <img src="profile_image/Заливка цветом 8.png"><h5>my collections</h5></a></div>
-            <div><img src="profile_image/Заливка цветом 8 копия.png"><h5>my checklists</h5></div>
+            <div><a href="my_checklist.php"><img src="profile_image/Заливка цветом 8 копия.png"><h5>MY CHECKLISTS</h5></a></div>
             <div><img src="profile_image/Заливка цветом 8 копия 2.png"><h5>my search</h5></div>
             <div><img src="profile_image/Заливка цветом 8 копия 3.png"><h5>my templates</h5></div>
         </div>
@@ -144,8 +122,9 @@ include "footer.php";
 
                     <input type="hidden" name="id" value="<?php echo $id ?>">
                     <input type="text" class="form-control" name="name" value="<?php echo $ard['name'] ?>">
+                    <input type="text" class="form-control mt-2" name="city" value="<?php echo $ard['city'] ?>">
                     <br>
-                    <textarea name="text" cols="50" class="form-control">
+                    <textarea name="text" cols="50" class="form-control mt-2 ">
                   <?php
                   if ($ard['more']) {
                       echo $ard['more'];

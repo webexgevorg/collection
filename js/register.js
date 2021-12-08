@@ -4,15 +4,17 @@ $(document).ready(function(){
 	var register=$('#register').val()
 	var name=$('#name').val()
 	var city=$('#city').val()
+	var country=$('#country').val()
+	var country_code=$('#country option:selected').text()
 	var email=$('#email').val()
-	var pass=$('#password').val()
-	var cpass=$('#cpass').val()
+	var password=$('#password').val()
+	var confirm_password=$('#cpass').val()
 
-	//console.log(name,city,email,pass,cpass)
+	console.log(country_code)
 	$.ajax({
 		type: "POST",
 		url: "checkregister.php",
-		data: {name:name,country:city,email:email,password:pass,confirm_password:cpass,register:register},
+		data: {name, country, country_code, city, email, password, confirm_password, register},
 		success: function (rezult) {
 			if(rezult==1){
 				$('#ard').html("Please check your inputs!")
