@@ -96,9 +96,7 @@ $('.dropdown-menu a.dropdown-item').on('mouseover', function(e) {
   $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
     // $(this).parent().parent().prev('.dropdown-item').css('background', 'red')
     console.log(e)
-
     $('.dropdown-menu > .dropdown .show').removeClass("show");
-
   });
 
   return false;

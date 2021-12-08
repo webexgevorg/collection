@@ -3,6 +3,7 @@ include "config/con1.php";
 if(isset($_POST['send'])){
     $hidden = $_POST['id'];
     $name = $_POST['name'];
+    $city = $_POST['city'];
     $text = $_POST['text'];
      if (!file_exists($_FILES['image']['tmp_name']) || !is_uploaded_file($_FILES['image']['tmp_name']))
 
@@ -11,7 +12,7 @@ if(isset($_POST['send'])){
                 $res=mysqli_query($con, $ins);
                     
                 if($res){
-                    header('Location:profile-page.php');
+                    header('Location:profile.php');
                 }else{
                     echo "sxal";
                 }
@@ -32,11 +33,11 @@ if(isset($_POST['send'])){
         if(move_uploaded_file($tmp, $folder)){
         // move_uploaded_file($_FILES["image"]["tmp_name"], $folder.$fname);
             
-            $ins="UPDATE `users` SET `name`='$name', `more`= '$text', `image` = '$fname' WHERE id = $hidden";
+            $ins="UPDATE `users` SET `name`='$name', `city`='$city', `more`= '$text', `image` = '$fname' WHERE id = $hidden";
             $res=mysqli_query($con, $ins);
                     
                 if($res){
-                    header('Location:profile-page.php');
+                    header('Location:profile.php');
                 }else{
                     echo "sxal";
                 }

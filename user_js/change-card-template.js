@@ -97,7 +97,8 @@ $('.change-cards-template').click(function(){
             let setinterval=setInterval(forJson,500)
                 function forJson(){
                     if(i>=json_arr.length){
-                        clearInterval(setinterval)
+                        // clearInterval(setinterval)
+                        setTimeout(function(){clearInterval(setinterval)},10)
                         let arr_data='arr_data'
                         // let arr_name_data='arr_name_data'
 
@@ -112,8 +113,8 @@ $('.change-cards-template').click(function(){
                             }
                         })
                     }
-                    json=json_arr[i]['json']
-                    img=json_arr[i]['img']
+                   let json=json_arr[i]['json']
+                    let img=json_arr[i]['img']
                     // name_json=json_arr[i]['name-json']
                     // name_img=json_arr[i]['name-img']
                         canvas.clear()
@@ -140,7 +141,7 @@ $('.change-cards-template').click(function(){
                          arr_img.push({'data': data, 'path': img })
                         //  arr_name_img.push({'name_data': name_data, 'name_path': name_img })
                           i++
-                    },300)
+                    },200)
                 }
         }
     })

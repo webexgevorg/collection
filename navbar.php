@@ -321,10 +321,10 @@ else{
         <a class="nav-link disabled" href="publications.php">Publications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">About</a>
+        <a class="nav-link disabled" href="#">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contact us</a>
+        <a class="nav-link disabled" href="#">Contacts</a>
       </li>
     </ul>
   </div>

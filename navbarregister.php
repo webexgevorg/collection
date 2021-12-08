@@ -23,7 +23,7 @@ $img = $navbarimg['image'];
 <link rel="stylesheet" type="text/css" href="css/profile-page.css">
 <section id="fix">
 <header class="navbar navbar-expand-lg navbar-light bg-light" id="head-er">
-<div class="container ">
+<div class="container "> 
  <a class="navbar-brand" href="/test/collection-cards/">
     <div id="logo"> 
     <img src="logo-png.png" id="logo">
@@ -97,11 +97,11 @@ $img = $navbarimg['image'];
                        <a class="dropdown-item main-a" href="#">Checklists</a>
                        <ul class="dropdown-menu">
                            <li class="dropdown">
-                               <a class="dropdown-item" href="#">Custom checklists</a>
-                               <ul class="dropdown-menu">
+                               <a class="dropdown-item" href="my_checklist.php">My Checklists</a>
+                               <!-- <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="profile-page.php">Personal</a></li>
                                    <li><a class="dropdown-item" href="profile-page.php">Custom</a></li>
-                               </ul>
+                               </ul> -->
                            </li>
                            <?php
                         $sql="SELECT * FROM sports_type";
@@ -228,10 +228,10 @@ $img = $navbarimg['image'];
         <a class="nav-link disabled" href="publications.php">Publications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">About</a>
+        <a class="nav-link disabled" href="#">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contact us</a>
+        <a class="nav-link disabled" href="#">Contacts</a>
       </li>
     </ul>
   </div>
