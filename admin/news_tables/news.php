@@ -39,9 +39,10 @@
                                                      <th >Sport</th>
                                                      <th >Producer</th>
                                                      <th >News type</th>
-                                                     <!-- <th >Status</th> -->
+                                                     <th >Important</th>
                                                      <th >Created date</th>
                                                      <th >Published date</th>
+                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
@@ -52,9 +53,11 @@
                                                      <th >Sport</th>
                                                      <th >Producer</th>
                                                      <th >News type</th>
-                                                     <!-- <th >Status</th> -->
+                                                     <th >Important</th>
                                                      <th >Created date</th>
                                                      <th >Published date</th>
+                                                     <th >Action</th>
+                                                </tr>
                                                 </tr>
                                             </tfoot>
                                             <!--  -->
@@ -88,10 +91,12 @@
                                                                 <td class=''>".$count."</td>
                                                                 <td class=''>".$row['title']."</td>
                                                                 <td class=''>".$row['discription']."</td>
-                                                                <td class=''>".$row['sport']."</td>
+                                                                <td class=''>".$row['sport_type']."</td>
                                                                 <td class=''>".$row['producer']."</td>
                                                                 <td class=''>".$row['news_type']."</td>
+                                                                <td class=''>".$row['important']."</td>
                                                                 <td class=''>".$row['created_date']."</td>
+                                                                <td class=''>".$row['published_date']."</td>
                                                                 <td class='text-right d-flex flex-column' data-id='".$row['id']."'>
                                                                    <a href='../news/add_news.php?id=".$row['id']."' class='btn btn-link btn-warning edit' name=''><i class='fa fa-edit'></i></a>
                                                                    <a href='#' class='btn btn-link change-status ".$btn_status."' name='".$change_news_status."'>".$icon."</a>

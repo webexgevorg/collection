@@ -1,8 +1,8 @@
 <?php
 include "../../config/con1.php";
 include "../heder.php";
-$arr_producer=['UpperDeck', 'Panini', 'Topps', 'Leaf', 'SeReal', 'Other', 'All'];
-$arr_news_type=['Portal news', 'Producer news', 'Releases news', 'Sports news', 'All'];
+$arr_producer=['Upper Deck', 'Panini', 'Topps', 'Leaf', 'SeReal', 'Other', 'All','Custom','Other'];
+$arr_news_type=['Portal News', 'Manufacture News', 'Releases News', 'Sports News', 'Other News','Select All'];
 if(isset($_GET['id'])){
     $id=$_GET['id'];
     $sel="SELECT * FROM publications WHERE id=$id";
@@ -60,7 +60,7 @@ else{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="producer">Producer</label>
+                                <label for="producer">Manufacture</label>
                                 <select  class="form-control" id="producer">
                                    <?php
                                    foreach ($arr_producer as $key => $value) {

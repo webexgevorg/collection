@@ -1,8 +1,8 @@
 <?php
 include "../../config/con1.php";
 include "../heder.php";
-$arr_producer=['UpperDeck', 'Panini', 'Topps', 'Leaf', 'SeReal', 'Other', 'All'];
-$arr_news_type=['Portal news', 'Producer news', 'Releases news', 'Sports news', 'All'];
+$arr_producer=['Upper Deck', 'Panini', 'Topps', 'Leaf', 'SeReal', 'Other', 'All','Custom','Other'];
+$arr_news_type=['Portal News', 'Manufacture News', 'Releases News', 'Sports News', 'Other News','Select All'];
 if(isset($_GET['id'])){
     $id=$_GET['id'];
     $sel="SELECT * FROM news WHERE id=$id";
@@ -19,6 +19,7 @@ else{
     $res_row=false;
 }
 
+
 ?>
     <body>
     <?php
@@ -31,20 +32,20 @@ else{
                     <div class="p-3 card stacked-form">
                         <!-- <button class="btn btn-primary">Add News</button> -->
                         <div class="card-header mb-4">
-                            <h4 class="card-title">Add News</h4>
+                            <h4 class="card-title"><?= $res_row ? " Update News" : "Add News"  ?></h4>
                         </div>
-                        <form>
+                        <form method="post" id="<?= $res_row ? "updateNews": "add_news" ?>" enctype="multipart/form-data"> 
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" placeholder="title" value="<?= $res_row ? $row_this['title'] : '' ?>">
+                                <input type="text" class="form-control" id="title"  name="title" placeholder="title" value="<?= $res_row ? $row_this['title'] : '' ?>">
                             </div>
                             <div class="form-group">
                                 <label for="discription">Discription</label>
-                                <textarea class="form-control" id="discription" placeholder="description"><?= $res_row ? $row_this['discription'] : '' ?></textarea>
+                                <textarea class="form-control" id="discription" name="discription" placeholder="description"><?= $res_row ? $row_this['discription'] : '' ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="sporttype">Sports type</label>
-                                <select  class="form-control" id="sporttype">
+                                <select  class="form-control" id="sporttype" name="sporttype">
                                     <?php
 
                                     $sql_news="SELECT*FROM sports_type";
@@ -60,8 +61,8 @@ else{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="producer">Producer</label>
-                                <select  class="form-control" id="producer">
+                                <label for="producer">Manufacture</label>
+                                <select  class="form-control" id="producer" name="producer">
                                    <?php
                                    foreach ($arr_producer as $key => $value) {
                                     echo $value==$row_this['producer'] ?
@@ -72,8 +73,8 @@ else{
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="newstype">News type</label>
-                                <select  class="form-control" id="newstype">
+                                <label for="newstype">All News</label>
+                                <select  class="form-control" id="newstype" name="newstype">
                                 <?php
                                    foreach ($arr_news_type as $key => $value) {
                                     echo $value==$row_this['news_type'] ?
@@ -83,14 +84,34 @@ else{
                                    ?>
                                 </select>
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="published">Published data</label>
-                                <input type="date" id="published">
-                            </div> -->
-                          <input type='hidden' id="this-id" value="<?= $res_row ? $row_this['id'] : '' ?>">
+                            <div class="form-group">
+                                <label for="img1">Image 1('jpg','jpeg','png','gif')</label>
+                                <input type="file" class="form-control" id="img1" name="<?= $res_row ? "img1":"img[]" ?>" value=''>
+                                <input type="hidden" name="$row_this['img1']">
+                                <div style="<?= $res_row? 'height:70px;width:70px':'display:none'?>"><img class="img-fluid" src="<?= $res_row ? 'uploads/'.$row_this['img1']:'' ?>"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="img2">Image 2('jpg','jpeg','png','gif')</label>
+                                <input type="file" class="form-control" id="img2" name="<?= $res_row ? "img2" : "img[]" ?>" value="">
+                                <!-- <input type="hidden" name="$row_this['img2']"> -->
+                                <div style="<?= $res_row? 'height:70px;width:70px':'display:none'?>"><img class="img-fluid" src="<?= $res_row ? 'uploads/'.$row_this['img2']:'' ?>"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="img3">Image 3('jpg','jpeg','png','gif')</label>
+                                <input type="file" class="form-control" id="img3" name="<?= $res_row ? "img3" : "img[]" ?>" value="">
+                                <!-- <input type="hidden" name="$row_this['img2']"> -->
+                                <div style="<?= $res_row? 'height:70px;width:70px':'display:none'?>"><img class="img-fluid" src="<?= $res_row ? 'uploads/'.$row_this['img3']:'' ?>"></div>
+                            </div>
+                            <div class="form-group">
+                            <label for="img3">If you click on it, this news will appear in the list of important</label><br>
+                                <input type="checkbox" id='important' name='important' value='<?=$res_row? $row_this['important']: 0 ?>'>
+                            </div>
+                          <input type='hidden' id="this-id" name="this_id" value="<?= $res_row ? $row_this['id'] : '' ?>">
+                         
+                          <button   class="btn btn-primary <?= $res_row ? 'updateNews' : 'addNews' ?> p-2" type="submit" name="submit"  style="width:120px"><?= $res_row ? 'Update news' : 'Add news' ?></button>
                         </form>
                         
-                        <button   class="btn btn-primary <?= $res_row ? 'updateNews' : 'addNews' ?> p-2" type="submit"  style="width:120px"><?= $res_row ? 'Update news' : 'Add news' ?></button>
+                       
                         <p  class="m-5 text-center" id="rezult"></p>
                     </div>
                 </div>
@@ -103,8 +124,25 @@ else{
     <?php
     include "../footer.php";
     ?>
+    <script>
+         $('#important').on('change',function(){
+        
+        if($(this).prop('checked')==true){
+      
+           $(this).val(1)
+        }else{
+            $(this).val(0)
+        
+        }
+      
+    })
+    if($('#important').val()==1){
+        $('#important').prop('checked',true)
+    }
+    </script>
    <script src="../my_js/add_news.js"></script>
    <script src="../my_js/update_news.js"></script>
+   
 
     </body>
     </html>

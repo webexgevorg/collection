@@ -84,6 +84,7 @@ $img = $navbarimg['image'];
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Collections</a>
       </li> -->
+      <!-- sssssssssssssssssssssssssssssssssssssssss -->
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="nav-products" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Releases
@@ -208,8 +209,20 @@ $img = $navbarimg['image'];
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Followers</a>
       </li> -->
-      <li class="nav-item">
-        <a class="nav-link disabled" href="news.php">News</a>
+      <!------------------------------------------------------------- subnews-------------------------------- -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          News
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> 
+            <?php
+              $sqlnews="SELECT *FROM subnews";
+              $query=mysqli_query($con, $sqlnews);
+              while($row = mysqli_fetch_assoc($query)){
+                echo "<li class='dropdown-item main-a'>".$row['subnews_name']."</li>";
+              }
+            ?>            
+        </ul>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="publications.php">Publications</a>
