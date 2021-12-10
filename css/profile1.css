@@ -70,6 +70,17 @@
     color:#fff !important;
     text-transform: uppercase;
 }
+.add{
+    outline: none !important;
+}
+.change-profile, .send-message {
+    border-radius: 8px;
+    background: #fad565;
+    font-size: 15px;
+    border: none;
+    outline: none !important;
+    margin-top: 10px;
+}
 @media only screen and (max-width:1000px){
     .cards{
         flex-wrap:wrap;

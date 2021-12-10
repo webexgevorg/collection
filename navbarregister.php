@@ -96,7 +96,7 @@ $img = $navbarimg['image'];
                    <li class="dropdown">
                        <a class="dropdown-item main-a" href="#">Checklists</a>
                        <ul class="dropdown-menu">
-                           <li class="dropdown">
+                           <li class="">
                                <a class="dropdown-item" href="my_checklist.php">My Checklists</a>
                                <!-- <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="profile-page.php">Personal</a></li>

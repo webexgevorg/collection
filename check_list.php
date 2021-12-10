@@ -85,8 +85,8 @@ include "classes/pagination.php";
                     <div class="w-50">
                         <h2 class ="collectionName">CHECKLIST <?php echo $sport_type ." ".$year_prod; ?></h2>
                     </div>
-                    <div class="w-25 " id="star" data-collId='<?=$coll_id?>' data-checklistName='base_checklist'>
-                        <i class="fa fa-star-o mt-2" style="font-size:36px; color:#fad565;"></i>
+                    <div class="w-25 favorite " id="favorite" data-collId='<?=$coll_id?>' data-checklistType='base_checklist'>
+                        <i class="star mt-2 fa " style="font-size:36px; color:#fad565;"></i>
                     </div>
                 </div>
             </div>
@@ -265,9 +265,30 @@ include "classes/pagination.php";
     </div>
   </div>
 </div>
+<!-- -------------- modal for favorite result ----------------- -->
+<!-- Button trigger modal -->
+<button type="button" class="d-none open-modal-favorite-result" data-toggle="modal" data-target="#modalFavorite">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalFavorite" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Label"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="result-favorite my-4">    </div>
+    </div>
+  </div>
+</div>
 
 <script src="admin/assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="js/check_list.js"></script>
+<script src="js/favorite.js"></script>
 
 </body>
 </html>

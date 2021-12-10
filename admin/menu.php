@@ -132,6 +132,12 @@
                                         <span class="sidebar-normal">Publications</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../messages_for_change_profile_name_table/messages_for_change_profile_name.php">
+                                        <span class="sidebar-mini">MN</span>
+                                        <span class="sidebar-normal">Messages for profile name</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
