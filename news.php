@@ -1,12 +1,14 @@
 <?php
 include "header.php";
 include "config/con1.php";
-// require_once "user-logedin.php";
+include "classes/pagination.php";
+
 ?>
 <link rel="stylesheet" type="text/css" href="css/navbar-body.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/news.css">
+<link rel="stylesheet" href="css/pagination.css">
 </head>
 <body>
 <?php include "cookie.php"; ?>
@@ -96,7 +98,7 @@ include "config/con1.php";
                 </div>
         
     </div>
-    <button  data-attr="filter" class='my-2 py-1 px-5 item_button filter h5' >Filter</button>
+    <button  data-attr="filter" class='my-2 py-1 px-5 item_button filter filter-page h5' >Filter</button>
         
 
 
@@ -106,14 +108,14 @@ include "config/con1.php";
             <div class="d-flex justify-content-between">
                 <div><h1 class="font-weight-bold">NEWS</h1></div>
                 <div >
-                     <button  data-attr="newest" class='my-2 py-1 px-4 item_button Newest h5'>Newest</button>
-                     <button  data-attr="oldest" class='my-2 py-1 px-4 item_button Newest h5'>Oldest</button>
+                     <button  data-attr="newest" class='my-2 py-1 px-4 item_button Newest filter-page h5'>Newest</button>
+                     <button  data-attr="oldest" class='my-2 py-1 px-4 item_button Newest filter-page h5'>Oldest</button>
                 </div>
             </div>
             <div id="news">
                 <?php
                     $sql_news="SELECT*FROM news where status=1    order by id DESC limit 5";
-                    // echo $sql_news;
+                    echo $sql_news;
                     $query_news=mysqli_query($con, $sql_news);
                     while($row = mysqli_fetch_assoc($query_news)){
                         echo "
@@ -122,8 +124,8 @@ include "config/con1.php";
                                 <div class='d-flex  flex-wrap justify-content-between align-items-center my-2'>
                                     <div class='d-flex  justify-content-around align-items-center  news_item_title'  style='height:80px'>
                                         <div class='mx-2'><img src='admin/news/uploads/".$row['img1']."' class='img-fluid' style='height:100%;width:100%'></div>
-                                       
-                                        <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'>".$row['title']."</a>
+                                      
+                                        <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'><button   class='my-2 p-1  item_button  h5'>".$row['title']."</button></a>
                                     </div>
                                     <span  class='mx-3 font-weight-bold span_data'>".date('d M Y',strtotime($row['published_date']))."</span>
                                 </div>
@@ -133,6 +135,22 @@ include "config/con1.php";
                     }
                 ?>
             </div>
+            <?php
+             $sql_news_page="SELECT*FROM news where status=1 order by id DESC";
+             $sql_news_query_page=mysqli_query($con,$sql_news_page);
+             $pagination= new Pagination();
+             $pagination->limit=5;
+             $pagination->count_rows=mysqli_num_rows($sql_news_query_page);
+            
+            ?>
+
+            <div id="pagination">
+                        <nav aria-label="Page navigation ">
+                            <ul class="pagination justify-content-center r" >
+                        <?php echo $pagination->pages(); ?>
+                            </ul>
+                        </nav>
+                    </div>
         </div>
     </div>
     </div>
@@ -167,7 +185,9 @@ $(document).ready(function(){
                     data:{filter,period, sport_type, producer, all_news},
                     success:function(rezult){
                         console.log(rezult)
-                            $('#news').html(rezult)
+                        let json=JSON.parse(rezult)
+                            $('#news').html(json.news)
+                            $('.pagination').html(json.pagination)
                     }
                 })  
 
@@ -178,7 +198,9 @@ $(document).ready(function(){
                     data:{filter, sport_type, producer, all_news},
                     success:function(rezult){
                         console.log(rezult)
-                            $('#news').html(rezult)
+                        let json=JSON.parse(rezult)
+                            $('#news').html(json.news)
+                            $('.pagination').html(json.pagination)
                     }
                 })  
               }
@@ -202,9 +224,12 @@ $(document).ready(function(){
     }
 
 
-    $('.filter').on('click',function(){
+    $('.filter-page').on('click',function(){
         var filter=$(this).attr('data-attr')
         filter_data(filter)
+        $('.filter-page').removeClass('active-filter')
+        $(this).addClass('active-filter')
+
     })
     
     $('#all').on('change',function(){
@@ -224,18 +249,68 @@ $(document).ready(function(){
         }
       
     })
-// ---------------------newest --oldest--------------
+
+
+$('body').on('click', '.pg-link', function(event){
+    event.preventDefault()
+  
+    let limit=5;
+    let page=$(this).attr('data-value')*1
+  console.log(page)
+    $('.pg-link').removeClass('active-link')
+    $(this).addClass('active-link')
     
+        period=''
+        if($('#period').val()=='Last week'){
+        period='7 DAY'
+        }else if($('#period').val()=="Last months"){
+             period='31 DAY'
+        }else if($('#period').val()=="Last 3 months"){
+            period='93 DAY'
+        }else if($('#period').val()=="Last 6 months"){
+            period='186 DAY'
+        }else{
+            period='All news'
+        }
+              var filter=$('.active-filter').attr('data-attr');
+              var sport_type = get_filter('sport_type');
+              var producer = get_filter('producer');
+              var all_news = get_filter('all_news');
+            
+              if(filter=="filter"){
+                    $.ajax({
+                    type:'post',
+                    url:'checknews.php',
+                    data:{filter,period, sport_type, producer, all_news,limit,page},
+                    success:function(rezult){
+                   
+                        let json=JSON.parse(rezult)
+                            $('#news').html(json.news)
+                            $('.pagination').html(json.pagination)
+                    }
+                })  
 
-
-    $('.Newest').on('click',function(){
-        var filterNews=$(this).attr('data-attr')
-        filter_data(filterNews)
-    })
-
-
+              }else{
+                $.ajax({
+                    type:'post',
+                    url:'checknews.php',
+                    data:{filter, sport_type, producer, all_news, limit,page},
+                    success:function(rezult){
+                        let json=JSON.parse(rezult)
+                            $('#news').html(json.news)
+                            $('.pagination').html(json.pagination)
+                    }
+                })  
+              }
+   
+ })
 
 })
+
+
+
+
+
 
 
     

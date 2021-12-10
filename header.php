@@ -24,7 +24,7 @@ session_start();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
  <!-- <script src="js/google-translate.js"></script> -->
  <script src="//translate.google.com/translate_a/element.js?cb=TranslateInit"></script>
- <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
+ <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
  
 
