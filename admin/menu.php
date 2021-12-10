@@ -77,6 +77,12 @@
                                         <span class="sidebar-normal">Add Publications</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../aboutus/addabout.php">
+                                        <span class="sidebar-mini">AP</span>
+                                        <span class="sidebar-normal">AboutUs</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -133,11 +139,18 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
+
                                     <a class="nav-link"  href="../messages_for_change_profile_name_table/messages_for_change_profile_name.php">
                                         <span class="sidebar-mini">MN</span>
                                         <span class="sidebar-normal">Messages for profile name</span>
+                                </li>
+                                   <li class="nav-item ">
+                                     <a class="nav-link"  href="../contact_message_table/publications.php">
+                                        <span class="sidebar-mini">CM</span>
+                                        <span class="sidebar-normal">Contact Message</span>
                                     </a>
                                 </li>
+                                  
                             </ul>
                         </div>
                     </li>

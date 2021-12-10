@@ -1,10 +1,22 @@
 
-
 <?php
 include "config/con1.php";
+include "classes/pagination.php";
+
+$start=0;
+$limit=5;
+$page=1;  
+if(isset($_POST['page'])){
+    $page = $_POST['page'];
+    if($_POST['page']>1){
+        $start = (($_POST['page']-1)*$limit);
+    }else{
+        $start=0;
+    }
+}
 
 
-   $sql = "SELECT *FROM news WHERE status=1 ";
+ $sql = "SELECT *FROM news WHERE status=1 ";
     if(isset($_POST['period'])){
         $period=$_POST['period'];
         if($_POST['period']!="All news"){
@@ -47,24 +59,36 @@ include "config/con1.php";
         $sql.=" ORDER BY id DESC";
        
            
-        }
-        $sql.=" limit 5";
+        } 
+
+        $sql_pagination=$sql;
+ 
+        $query_sql_pagination=mysqli_query($con, $sql_pagination);
+       
+        $pagination= new Pagination();
+        $pagination->page=$page;
+        $pagination->limit=$limit;
+        $pagination->count_rows=mysqli_num_rows($query_sql_pagination);
+
+
+        $sql.=" limit ".$start.','.$limit."";;
     // echo $sql;
   
     $query=mysqli_query($con,$sql);
     $num_rows=mysqli_num_rows($query);
+    $arr=[];
+    $output='';
     if($num_rows>0){
     
         while($row=mysqli_fetch_assoc($query)){
                     
-            echo "
+            $output.= "
                             <div class='mx-2 news_item'>
 
                                 <div class='d-flex  flex-wrap justify-content-between align-items-center my-2'>
                                     <div class='d-flex  justify-content-around align-items-center  news_item_title'  style='height:80px'>
-                                        <div class='mx-1'><img src='admin/news/uploads/".$row['img1']."' class='img-fluid' style='height:100%;width:100%'></div>
-                                       
-                                        <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='' class='font-weight-bold h1'>".$row['title']."</a>
+                                        <div class='mx-1'><img src='admin/news/uploads/".$row['img1']."' class='img-fluid' style='height:100%;width:100%'></div> 
+                                        <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'><button   class='my-2 p-1  item_button  h5'>".$row['title']."</button></a>
                                     </div>
                                     <span  class='mx-3'>".date('d M Y',strtotime($row['published_date']))."</span>
                                 </div>
@@ -73,12 +97,14 @@ include "config/con1.php";
                         ";
         }
      }else{
-         echo " <div class='d-flex justify-content-center align-items-center news_item '>
+        $output.= " <div class='d-flex justify-content-center align-items-center news_item '>
                      <p class='text-center font-weight-bold h2'style='color:#3a9cae' >There is no record</p>
                 </div>
              ";
      }
 
-
+     $arr['news']=$output;
+     $arr['pagination']=$pagination->pages();
+    echo json_encode($arr); 
 
 ?>

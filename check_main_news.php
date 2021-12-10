@@ -1,7 +1,8 @@
 <?php
 include "config/con1.php";
+include "classes/pagination.php";
 $limit=5;
-    $page='';
+    $page=1;
     $output_footer='';
     if($_POST['page']>1){
         $start = (($_POST['page']-1)*$limit);
@@ -11,10 +12,10 @@ $limit=5;
 
     }
 
+ $sql_news="SELECT*FROM news where status=1  and important=1   order by id DESC limit ".$start.",".$limit."";
 
-$sql_news="SELECT*FROM news where status=1  and important=1   order by id DESC limit ".$start.",".$limit;
-// echo $sql_news;
 $query_news=mysqli_query($con, $sql_news);
+
 $output='';
 while($row = mysqli_fetch_assoc($query_news)){
     
@@ -24,7 +25,7 @@ while($row = mysqli_fetch_assoc($query_news)){
                 <div class='d-flex  justify-content-around align-items-center  news_item_title'  style='height:80px'>
                     <div class='mx-2'><img src='admin/news/uploads/".$row['img1']."' class='img-fluid' style='height:100%;width:100%'></div>
                    
-                    <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'>".$row['title']."</a>
+                    <a href='spacialnews.php?news_id=".$row['id']."' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'>".$row['title']."</a>
                 </div>
                 <span  class='mx-3 font-weight-bold span_data'>".date('d M Y',strtotime($row['published_date']))."</span>
             </div>
@@ -33,18 +34,34 @@ while($row = mysqli_fetch_assoc($query_news)){
     ";
 }
 
+
+  
 $sql_page="SELECT*FROM news where status=1  and important=1 order by id DESC ";
 $query_page=mysqli_query($con, $sql_page);
-$num = mysqli_num_rows($query_page);
-
-   $total_data=$num;
-   $total_links=ceil($total_data/$limit);
-   for($count=1;$count<=$total_links;$count++) {
-        $output.="<span class='pagination_link me' id='".$count."'style='cursor:pointer;padding:6px;border:1px solid #ccc'>".$count."</span>";
-    }
 
 
-    echo $output;
+$pagination= new Pagination();
+$pagination->page=$page;
+$pagination->limit=$limit;
+$pagination->count_rows=mysqli_num_rows($query_page);
+
+$arr=[];
+
+    $paginate="   
+            <div id='pagination'>
+                <nav aria-label='Page navigation '>
+                    <ul class='pagination justify-content-center r' >
+                    ".$pagination->pages()."
+                    </ul>
+                </nav>
+            </div>
+        ";
+
+$arr['main_news']=$output;
+$arr['pagination']=$paginate;
+echo json_encode($arr); 
+
+    
 
 
 ?>
