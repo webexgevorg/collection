@@ -77,6 +77,12 @@
                                         <span class="sidebar-normal">Add Publications</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../aboutus/addabout.php">
+                                        <span class="sidebar-mini">AP</span>
+                                        <span class="sidebar-normal">AboutUs</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -130,6 +136,12 @@
                                     <a class="nav-link"  href="../publications_tables/publications.php">
                                         <span class="sidebar-mini">P</span>
                                         <span class="sidebar-normal">Publications</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../contact_message_table/publications.php">
+                                        <span class="sidebar-mini">CM</span>
+                                        <span class="sidebar-normal">Contact Message</span>
                                     </a>
                                 </li>
                             </ul>

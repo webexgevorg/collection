@@ -312,7 +312,13 @@ else{
               $sqlnews="SELECT *FROM subnews";
               $query=mysqli_query($con, $sqlnews);
               while($row = mysqli_fetch_assoc($query)){
-                echo "<li class='dropdown-item main-a'>".$row['subnews_name']."</li>";
+                if($row['subnews_name']=='Collections News'){
+                  echo "<li class='dropdown-item main-a'><a href='news.php'>".$row['subnews_name']."</a></li>";
+                }else if($row['subnews_name']=='Main News'){
+                  echo "<li class='dropdown-item main-a'><a href='main_news.php'>".$row['subnews_name']."</a></li>";
+                }else{
+                  echo "<li class='dropdown-item main-a'>".$row['subnews_name']."</li>";
+                }
               }
             ?>            
         </ul>
@@ -321,10 +327,10 @@ else{
         <a class="nav-link disabled" href="publications.php">Publications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">About Us</a>
+        <a class="nav-link disabled" href="aboutus.php">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contacts</a>
+        <a class="nav-link disabled" href="contact.php">Contacts</a>
       </li>
     </ul>
   </div>

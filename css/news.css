@@ -92,7 +92,12 @@ select{
     .form-select{
         color:#3a9cae !important;
     }
-    
+    .public_color{
+        color:red
+    } 
+    .show{
+        height:auto !important
+    }
     
 @media (max-width: 768px){
     .news_filter {
