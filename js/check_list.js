@@ -3,8 +3,8 @@ $('body').on('click', '.pg-link', function(event){
     let limit=10;
     let page=$(this).attr('data-value')*1
     let count_rows=$('#num-rows').attr('data-rows')
-    let coll_id=$('#star').attr('data-collId')
-    let checklist_name=$('#star').attr('data-checklistName')
+    let coll_id=$('#favorite').attr('data-collId')
+    let checklist_name=$('#favorite').attr('data-checklistType')
     let search_all=$('.all-search').val()
 
     let obj=inputs_search()
@@ -42,9 +42,9 @@ $('body').on('click', '.pg-link', function(event){
     $('.all-search').val('')
      let obj=inputs_search()
      let limit=10
-     let coll_id=$('#star').attr('data-collId')
-    let checklist_name=$('#star').attr('data-checklistName')
-
+     let coll_id=$('#favorite').attr('data-collId')
+    let checklist_name=$('#favorite').attr('data-checklistType')
+console.log(checklist_name)
      $.ajax({
         'method': 'post',
         'url': 'post_check_list.php',
@@ -90,8 +90,8 @@ $('.all-search').on('input', function(){
     let search_all=$(this).val()
     let obj=inputs_search()
     let limit=10
-    let coll_id=$('#star').attr('data-collId')
-    let checklist_name=$('#star').attr('data-checklistName')
+    let coll_id=$('#favorite').attr('data-collId')
+    let checklist_name=$('#favorite').attr('data-checklistType')
 console.log(coll_id)
     $.ajax({
        'method': 'post',
