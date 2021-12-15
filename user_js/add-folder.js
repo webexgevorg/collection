@@ -46,9 +46,28 @@ $('.all-cards').click(function(){
 		        url: 'folder.php',
 		        data: {all_cards: all_cards},
 		        success: function(res){
-		        	// location.reload()
+		        	location.reload()
 		        	console.log(res)
 		        }
 	    })
 
 })
+// --------open card page--------------------------
+$(".card-item-a").on('click', function (e) {
+	// e.parentDefoult()
+	let tblname=$(this).attr('data-tblname')
+    let hr=$(location).attr('search').split('&')
+    let id='?card-id='+$(this).attr('data-id')
+    if (hr[0]==id){
+		if(tblname=='card1'){
+            $(this).attr('href','user-card.php'+hr[0]+'&tbl=1')
+		}
+		else if(tblname=='card2'){
+            $(this).attr('href','user-card.php'+hr[0]+'&tbl=2')
+		}
+		else{
+            $(this).attr('href','user-card.php'+hr[0]+'&tbl=3')
+		}
+    }
+    // let id=$(this).attr('data-id')
+});

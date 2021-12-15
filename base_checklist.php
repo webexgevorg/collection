@@ -25,7 +25,7 @@ if(isset($_GET['id'])){
 
 <!--    <link href="admin/assets/css/demo.css" rel="stylesheet" />-->
 <!--     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>-->
- -->
+ 
 
 <style>
     /*.table.table-hover.dataTable.no-footer.fixedHeader-locked{*/

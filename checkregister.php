@@ -7,12 +7,14 @@ if(isset($_POST['register'])){
 
 	$name = $con-> real_escape_string($_POST['name']);
 	$country = $con-> real_escape_string($_POST['country']);
+	$country_code = $con-> real_escape_string($_POST['country_code']);
+	$city = $con-> real_escape_string($_POST['city']);
 	$email = $con-> real_escape_string($_POST['email']);
 	$password = $con-> real_escape_string($_POST['password']);
 	$cPassword =$con-> real_escape_string($_POST['confirm_password']);
 	
 // echo $name.$country.$email.$password.$cPassword;
-	if(empty($name) || empty($email) ||empty($password)|| empty($cPassword)){
+	if(empty($name) || empty($email) || empty($password) || empty($cPassword) ){
 		echo 1;
 	}
 	elseif($password!=$cPassword){
@@ -29,7 +31,7 @@ if(isset($_POST['register'])){
 			$token = str_shuffle($token);
 			$token = substr($token,0,10);
 			$hashedPassword=md5($password);
-			$con->query("INSERT INTO users (name,email, password,isEmailConfirmed,token,country) VALUES('$name','$email', '$hashedPassword','0','$token','$country')");
+			$con->query("INSERT INTO users (name,email, password,isEmailConfirmed,token,country, country_code, city) VALUES('$name','$email', '$hashedPassword','0','$token','$country', '$country_code' '$city')");
 			
 				require_once 'swiftMailer/vendor/autoload.php';
 				

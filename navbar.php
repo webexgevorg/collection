@@ -67,14 +67,14 @@ else{
       </li> -->
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="nav-products" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Products
+          Releases
         </a>
 
         <!-- -------- -->
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                    <li class="dropdown">
-                       <a class="dropdown-item" href="">Checklists</a>
+                       <a class="dropdown-item main-a" href="">Checklists</a>
                        <ul class="dropdown-menu">
                         <?php
                         $sql="SELECT * FROM sports_type";
@@ -165,20 +165,21 @@ else{
                                    <li><a class="dropdown-item" href="#">2020</a></li>
                                </ul>
                            </li> -->
-                           <li class="dropdown">
+                           <!-- <li class="dropdown">
                                <a class="dropdown-item" href="#">Add collection</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="#">Base</a></li>
                                    <li><a class="dropdown-item" href="#">Custom</a></li>
                                    <li><a class="dropdown-item" href="#">Personal</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                        </ul>
                    </li>
                    <!-- -----------------------SETS----------------------- -->
 
                    <li class="dropdown">
-                       <a class="dropdown-item" href="#">Sets</a>
+                       <!-- <a class="dropdown-item" href="#">Sets</a>-->
+                       <a class="dropdown-item main-a" href="#">Releases</a>
                        <ul class="dropdown-menu">
                          <?php
                         $sql="SELECT * FROM sports_type";
@@ -269,19 +270,19 @@ else{
                                    <li><a class="dropdown-item" href="#">2020</a></li>
                                </ul>
                            </li> -->
-                           <li class="dropdown">
+                           <!-- <li class="dropdown">
                                <a class="dropdown-item" href="#">Add collection</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="#">Base</a></li>
                                    <li><a class="dropdown-item" href="#">Custom</a></li>
                                    <li><a class="dropdown-item" href="#">Personal</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                        </ul>
                    </li>
                    <!-- ----------------New releases calendar--------------------- -->
                    <li class="">
-                       <a class="dropdown-item" href="#">New releases<p>calendar</p> </a>
+                       <a class="dropdown-item main-a" href="#">New releases<p>calendar</p> </a>
                    </li>
                </ul>
         <!-- -------------------- -->
@@ -293,23 +294,43 @@ else{
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Checklists</a>
       </li>-->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">Template</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Store</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Statistics</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">News</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          News
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> 
+            <?php
+              $sqlnews="SELECT *FROM subnews";
+              $query=mysqli_query($con, $sqlnews);
+              while($row = mysqli_fetch_assoc($query)){
+                if($row['subnews_name']=='Collections News'){
+                  echo "<li class='dropdown-item main-a'><a href='news.php'>".$row['subnews_name']."</a></li>";
+                }else if($row['subnews_name']=='Main News'){
+                  echo "<li class='dropdown-item main-a'><a href='main_news.php'>".$row['subnews_name']."</a></li>";
+                }else{
+                  echo "<li class='dropdown-item main-a'>".$row['subnews_name']."</li>";
+                }
+              }
+            ?>            
+        </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">About</a>
+        <a class="nav-link disabled" href="publications.php">Publications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contact us</a>
+        <a class="nav-link disabled" href="aboutus.php">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="contact.php">Contacts</a>
       </li>
     </ul>
   </div>

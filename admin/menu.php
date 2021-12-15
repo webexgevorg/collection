@@ -52,7 +52,37 @@
                                         <span class="sidebar-normal">Add Store Rating</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" target="_blank" href="../news/add_news.php">
+                                        <span class="sidebar-mini">AN</span>
+                                        <span class="sidebar-normal">Add News</span>
+                                    </a>
+                                </li>
                                 
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../subnews/add_subnews.php">
+                                        <span class="sidebar-mini">AS</span>
+                                        <span class="sidebar-normal">Add SubNews</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../subnews/edit_subnews.php">
+                                        <span class="sidebar-mini">AS</span>
+                                        <span class="sidebar-normal">Edit SubNews</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../publications/add_publications.php">
+                                        <span class="sidebar-mini">AP</span>
+                                        <span class="sidebar-normal">Add Publications</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="../aboutus/addabout.php">
+                                        <span class="sidebar-mini">AP</span>
+                                        <span class="sidebar-normal">AboutUs</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -90,6 +120,37 @@
                                         <span class="sidebar-normal">Change Store</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../news_tables/news.php">
+                                        <span class="sidebar-mini">N</span>
+                                        <span class="sidebar-normal">News</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../subnews_table/subnews.php">
+                                        <span class="sidebar-mini">SN</span>
+                                        <span class="sidebar-normal">SubNews</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link"  href="../publications_tables/publications.php">
+                                        <span class="sidebar-mini">P</span>
+                                        <span class="sidebar-normal">Publications</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+
+                                    <a class="nav-link"  href="../messages_for_change_profile_name_table/messages_for_change_profile_name.php">
+                                        <span class="sidebar-mini">MN</span>
+                                        <span class="sidebar-normal">Messages for profile name</span>
+                                </li>
+                                   <li class="nav-item ">
+                                     <a class="nav-link"  href="../contact_message_table/publications.php">
+                                        <span class="sidebar-mini">CM</span>
+                                        <span class="sidebar-normal">Contact Message</span>
+                                    </a>
+                                </li>
+                                  
                             </ul>
                         </div>
                     </li>
@@ -97,8 +158,16 @@
                         <a class="nav-link" href="?out">
                             <i class="nc-icon nc-button-power"></i>
                             <p>
-                               Log Out
-                                
+                               Log Out 
+                            </p>
+                        </a>
+                       
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../formdata.php">
+                           
+                            <p>
+                               formdata 
                             </p>
                         </a>
                        

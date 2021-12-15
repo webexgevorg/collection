@@ -5,23 +5,38 @@
     })
 
     $('.save-collection').click(function(event){
+        let that=$(this)
         let n=$('.namecoll').val()
         let d=$('.desc').val()
         let f=$('.file').val()
         let ext=f.split('.')
-        
+        let extantion=ext.pop()
+        let k=false
+        let file_extantions=['png', 'jpeg', 'JPEG', 'PNG', 'JPG', 'jpg']
         if(d=='' || n=='' || f==''){
           event.preventDefault()
            $('.message-result').html('Fill all filds')
         }
         else{
-            if(ext.pop()!='png' && ext.pop()!='jpg' && ext.pop()!='jpeg'){
+            file_extantions.forEach(element => {
+                if(extantion==element){
+                     k=true
+                }
+            })
+            if(!k){
                 event.preventDefault()
                 $('.message-result').html('Plese chose image in png, jpg, jpeg')
             }
             else{
-                $(this).attr('type', 'submit')
+                    $(this).attr('type', 'submit')
             }
+            // if(ext.pop()!='png' && ext.pop()!='jpg' && ext.pop()!='jpeg' && ext.pop()!='JPEG' && ext.pop()!='JPG' && ext.pop()!='PNG'){
+            //     event.preventDefault()
+            //     $('.message-result').html('Plese chose image in png, jpg, jpeg')
+            // }
+            // else{
+            //     $(this).attr('type', 'submit')
+            // }
         }
     })
        

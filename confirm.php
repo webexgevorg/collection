@@ -24,4 +24,5 @@ include "config/con1.php";
 			redirect();
 	    }
     }
+	
 ?>

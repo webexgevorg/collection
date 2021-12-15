@@ -23,7 +23,7 @@ $img = $navbarimg['image'];
 <link rel="stylesheet" type="text/css" href="css/profile-page.css">
 <section id="fix">
 <header class="navbar navbar-expand-lg navbar-light bg-light" id="head-er">
-<div class="container ">
+<div class="container "> 
  <a class="navbar-brand" href="/test/collection-cards/">
     <div id="logo"> 
     <img src="logo-png.png" id="logo">
@@ -54,7 +54,7 @@ $img = $navbarimg['image'];
       </div>
     </div>
     <div class="userdiv">
-           <a href="profile-page.php"><img src="images_users/<?php echo $img ? $img : 'user-icon.svg' ?>" class="img-responsive user"></a>
+           <a href="profile.php"><img src="images_users/<?php echo $img ? $img : 'user-icon.svg' ?>" class="img-responsive user"></a>
         </div>
       <div class = "logout"><a href="navbarregister.php?log_out" class = "register">Log out</a></div>
        <div data-google-lang="<?php if($lng=='ru'){
@@ -84,23 +84,24 @@ $img = $navbarimg['image'];
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Collections</a>
       </li> -->
+      <!-- sssssssssssssssssssssssssssssssssssssssss -->
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="nav-products" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Products
+         Releases
         </a>
         
         <!-- -------- -->
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                    
                    <li class="dropdown">
-                       <a class="dropdown-item" href="#">Checklists</a>
+                       <a class="dropdown-item main-a" href="#">Checklists</a>
                        <ul class="dropdown-menu">
-                           <li class="dropdown">
-                               <a class="dropdown-item" href="#">My checklists</a>
-                               <ul class="dropdown-menu">
+                           <li class="">
+                               <a class="dropdown-item" href="my_checklist.php">My Checklists</a>
+                               <!-- <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="profile-page.php">Personal</a></li>
                                    <li><a class="dropdown-item" href="profile-page.php">Custom</a></li>
-                               </ul>
+                               </ul> -->
                            </li>
                            <?php
                         $sql="SELECT * FROM sports_type";
@@ -119,20 +120,21 @@ $img = $navbarimg['image'];
                            </li>';
                         }
                         ?>
-                           <li class="dropdown">
+                           <!-- <li class="dropdown">
                                <a class="dropdown-item" href="#">Add collection</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="#">Base</a></li>
                                    <li><a class="dropdown-item" href="#">Custom</a></li>
                                    <li><a class="dropdown-item" href="#">Personal</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                        </ul>
                    </li>
                    <!-- -----------------------SETS----------------------- -->
                    
                    <li class="dropdown">
-                       <a class="dropdown-item" href="#">Sets</a>
+                       <!-- <a class="dropdown-item" href="#">Sets</a> -->
+                       <a class="dropdown-item main-a" href="#">Releases</a>
                        <ul class="dropdown-menu">
                            <?php
                         $sql="SELECT * FROM sports_type";
@@ -151,19 +153,19 @@ $img = $navbarimg['image'];
                            </li>';
                         }
                         ?>
-                           <li class="dropdown">
+                           <!-- <li class="dropdown">
                                <a class="dropdown-item" href="#">Add collection</a>
                                <ul class="dropdown-menu">
                                    <li><a class="dropdown-item" href="#">Base</a></li>
                                    <li><a class="dropdown-item" href="#">Custom</a></li>
                                    <li><a class="dropdown-item" href="#">Personal</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                        </ul>
                    </li>
                    <!-- ----------------New releases calendar--------------------- -->
                    <li class="">
-                       <a class="dropdown-item" href="#">New releases<p>calendar</p> </a>
+                       <a class="dropdown-item main-a" href="#">New releases<p>calendar</p> </a>
                    </li>
                </ul>
         <!-- -------------------- -->
@@ -175,7 +177,7 @@ $img = $navbarimg['image'];
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Checklists</a>
       </li> -->
-       <li class="nav-item dropdown" >
+       <!-- <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="nav-products" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Template
         </a>
@@ -194,11 +196,11 @@ $img = $navbarimg['image'];
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Store</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Statistics</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">Post services</a>
       </li>
       <li class="nav-item">
@@ -206,15 +208,37 @@ $img = $navbarimg['image'];
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Followers</a>
+      </li> -->
+      <!------------------------------------------------------------- subnews-------------------------------- -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          News
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> 
+            <?php
+              $sqlnews="SELECT *FROM subnews";
+              $query=mysqli_query($con, $sqlnews);
+              while($row = mysqli_fetch_assoc($query)){
+              
+                if($row['subnews_name']=='Collections News'){
+                  echo "<li class='dropdown-item main-a'><a href='news.php'>".$row['subnews_name']."</a></li>";
+                }else if($row['subnews_name']=='Main News'){
+                  echo "<li class='dropdown-item main-a'><a href='main_news.php'>".$row['subnews_name']."</a></li>";
+                }else{
+                  echo "<li class='dropdown-item main-a'>".$row['subnews_name']."</li>";
+                }
+              }
+            ?>            
+        </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">News</a>
+        <a class="nav-link disabled" href="publications.php">Publications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">About</a>
+        <a class="nav-link disabled" href="aboutus.php">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contact us</a>
+        <a class="nav-link disabled" href="#">Contacts</a>
       </li>
     </ul>
   </div>

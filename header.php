@@ -1,13 +1,5 @@
 <?php 
 session_start();
-// if(isset($_COOKIE['user'])){
-  
-// 			 		        echo $_COOKIE['user'];
-// 			 		        $sql="SELECT * FROM users WHERE id='$_COOKIE[user]'";
-// 			 		        $query=mysqli_query($con,$sql);
-// 			 		           $row=mysqli_fetch_assoc($query);
-// }
-
 
 ?>
 
@@ -27,18 +19,12 @@ session_start();
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-   <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
-<!-- ---------------------4.5-bootstrap---------------------------------- -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- -->
- <!-- ------------------------------------------------------------------------ -->
+  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
  <!-- <script src="js/google-translate.js"></script> -->
  <script src="//translate.google.com/translate_a/element.js?cb=TranslateInit"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+ <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
  
 

@@ -11,14 +11,22 @@ $(document).ready(function(){
     var s_type=$(this).parent().parent().parent().find('.s_type').text()
   	console.log(s_type)
 
-  	$.ajax({
-  		type: 'post',
-  		url: 'navbar_products.php',
-  		data: {product: prod, year_prod: year, sport_type: s_type},
-  		success: function(ar){
-        $("#nav").html(ar)
-  		}
-  	})
+	$.ajax({
+		type: 'post',
+		url: 'post_navbar_products.php',
+		data: {product: prod, year_prod: year, sport_type: s_type},
+		success: function(ar){
+	       $("#nav").html(ar)
+		}
+	})
+  	// $.ajax({
+  	// 	type: 'post',
+  	// 	url: 'navbar_products.php',
+  	// 	data: {product: prod, year_prod: year, sport_type: s_type},
+  	// 	success: function(ar){
+    //     $("#nav").html(ar)
+  	// 	}
+  	// })
   })
 
   })

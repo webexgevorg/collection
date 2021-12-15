@@ -82,17 +82,38 @@ $row=mysqli_fetch_assoc($res);
     
 $('.dropdown-menu > .dropdown > a').addClass('dropdown-toggle');
 
-$('.dropdown-menu a.dropdown-toggle').on('mouseover', function(e) {
- 
+$('.dropdown-menu a.dropdown-item').on('mouseover', function(e) {
+
+  $(this).parent().parent().prev('.dropdown-item').css('background', 'rgb(110,164,174)')
   if (!$(this).next().hasClass('show')) {
     $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+
   }
+
   var $subMenu = $(this).next(".dropdown-menu");
   $subMenu.toggleClass('show');
+
   $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+    // $(this).parent().parent().prev('.dropdown-item').css('background', 'red')
+    console.log(e)
     $('.dropdown-menu > .dropdown .show').removeClass("show");
   });
+
   return false;
 });
+$('.dropdown-menu a.dropdown-item').on('mouseout', function(e) {
+  console.log('out')
+  if($(this).hasClass('main-a')){
+    if (!$(this).next().hasClass('show')) {
+        $(this).parent().parent().find('.dropdown-item').css('background', 'unset')
+     }
+  }
+  else{
+    if (!$(this).next().hasClass('show')) {
+         $(this).parent().parent().prev('.dropdown-item').css('background', 'unset')
+     }
+  }
+  
 
+})
 </script>

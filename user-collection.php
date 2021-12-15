@@ -1,4 +1,14 @@
 <?php
+$refresh_count=0;
+if (isset($_SERVER["HTTP_REFERER"])) {
+    $refresh_count++;
+    if($refresh_count==1){
+    ?>
+        <script> window.location.reload();
+         break;</script> 
+    <?php
+    }
+}
 include "header.php";
 include "config/con1.php";
 require_once "user-logedin.php";
@@ -26,6 +36,43 @@ else{
     header("loction: user-collections.php ");
     exit();
 }
+if(!empty($_SESSION['first_folder_id'])){
+    $_SESSION['first_folder_id']='';
+}
+if(!empty($_SESSION['second_folder_id'])){
+    $_SESSION['second_folder_id']='';
+}
+if(isset($_SESSION['bind_coll_id']) && !empty($_SESSION['bind_card_id'])){
+    $bind_card_id=$_SESSION['bind_card_id'];
+    $bind_coll_id=$_SESSION['bind_coll_id'];
+    $sel_bind_coll="SELECT 'description' FROM collections WHERE id=$bind_coll_id";
+    $res_bind_coll=mysqli_query($con, $sel_bind_coll);
+    $row_bind_coll=mysqli_fetch_assoc($res_bind_coll);
+    $bind_coll_desc=$row_bind_coll['description'];
+    
+// ---------info from bind card---------------------
+    $bind_cad_info="SELECT * FROM base_checklist WHERE realese_id=$bind_coll_id and id=$bind_card_id";
+    $res_bind_cad_info=mysqli_query($con, $bind_cad_info);
+    if(mysqli_num_rows($res_bind_cad_info)>0){
+        $row_bind_cad_info=mysqli_fetch_assoc($res_bind_cad_info);
+        $card_name=$row_bind_cad_info['card_name'];
+        $card_name=$row_bind_cad_info['card_name'];
+        $card_number=$row_bind_cad_info['card_number'];
+        $card_team=$row_bind_cad_info['team'];
+        $card_parallel=$row_bind_cad_info['parallel'];
+    }
+    
+    $_SESSION['bind_card_id']='';
+}
+else{
+    $bind_card_id='';
+    $bind_coll_id='';
+    $bind_coll_desc='';
+    $card_name='';
+    $card_number='';
+    $card_team='';
+    $card_parallel='';
+}
 $row_user='';
 $sql_coll = "SELECT * FROM new_collection_card WHERE user_id = $user_id and id=$coll_id";
 $res_coll = mysqli_query($con, $sql_coll);
@@ -34,6 +81,9 @@ if(mysqli_num_rows($res_coll)==1){
 }
 
 include "user_form/classes.php";
+isset($_GET['card-id']) ? $releases_info=CardInfo::Card($con, 'card1',  $_GET['card-id']) :'';
+isset($_GET['card-id']) ? $hide='d-none' :'';
+
 isset($_GET['folder-id']) ? $count_cards=CountCards::Cards($con, $_GET['folder-id'], 'card1'): $count_cards=CountCards::Cards($con, $coll_id, $user_id);
 $folders=Folders::AllFolders($con, 'collection_first_folder', 'coll_id', $coll_id);
 
@@ -41,7 +91,7 @@ include "user_form/pagination.php";
     $pagination= new Pagination();
 
 if(!empty($_SESSION['folders_id_array'])){
-    echo 'ffff';
+    print_r( $_SESSION['folders_id_array']);
     $folders_id_array=$_SESSION['folders_id_array'];
     $active_folder='active-folder';
     // $pagination= new Pagination();
@@ -52,8 +102,6 @@ if(!empty($_SESSION['folders_id_array'])){
     $items=$pagination->checkRow($conditions);
 }
 else if(isset($_SESSION['all_cards'])){
-    echo $_SESSION['all_cards'];
-    echo 'sssss';
     $conditions=$coll_id;
     $all_cards= $pagination->AllCards($conditions);
     $collection_row = $pagination->CollectionCardItems($con, $conditions);
@@ -61,7 +109,6 @@ else if(isset($_SESSION['all_cards'])){
 }
 else{
     $active_folder='';
-    echo "ppp";
     // $pagination= new Pagination();
     $pagination->tblName='card1';
     $conditions=array('coll_id' => $coll_id,
@@ -89,16 +136,32 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                      <img src="img/<?php echo $row_coll['image']; ?>">
                 </div>
                 <div class="my-3"><?php echo $row_coll['name_of_collection']?></div>
-                <div class="rating">
+                <div class="rating <?=$hide?>">
                     <span class="mx-2"><i class="fa fa-star star"></i></span>
                     <span class="mx-2"> 64</span>
                 </div>
-                <div class="my-4">
-                    <span class="mx-2"><i class="fa fa-star star"></i></span>
-                    <span><?php echo $count_cards ?></span>
+                <div>
+                    <?php echo isset($_GET['card-id']) && $releases_info ? 
+                        '<div><p><strong>Releases</strong></p>
+                          <a href="base_checklist.php?id='.$releases_info['id'].'">'.$releases_info['name_of_collection'].'</a></div>
+                          <div class="mt-3"><p><strong>Checklist</strong></p>
+                          <a href="base_checklist.php?id='.$releases_info['id'].'">'.$releases_info['name_of_collection'].'</a></div>' : null ?>
                 </div>
-                <div class="all-cards">all</div>
-                <div  data-coll-id="<?php echo $coll_id ?>" data-tblname="card2" >
+                <div class="my-4 d-flex justify-content-center <?=$hide?>">
+                    <span class="mx-2"><img src='icons/cards.png' class="icon-img"></span>
+                    <span class="count-cards"><?php echo $count_cards ?></span>
+                </div>
+                <div>
+                    <?php echo isset($_GET['card-id']) ? 
+                        '<div class="d-flex card-info">
+                            <div><img src="icons/users.png"><p>11</p></div>
+                            <div><img src="icons/price.png"><p>4</p></div>
+                            <div><img src="icons/change.png"><p>3</p></div>
+                            <div><img src="icons/search.png"><p>35</p></div>
+                        </div>' : null ?>
+                </div>
+                <div class="all-cards px-3 py-1 bg-yellow <?=$hide?>">All</div>
+                <div  data-coll-id="<?php echo $coll_id ?>" data-tblname="card2" class="<?=$hide?>">
                             <!-- folder ----------- -->
                      <?php
                            while($row_folder=mysqli_fetch_assoc($folders)){
@@ -127,11 +190,20 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                          while($row=mysqli_fetch_assoc($collection_row)){
                     ?>
                     <div class="w-22 collection-item" >
-                      <a href="<?php echo $_SERVER['PHP_SELF'].'?coll-id='.$row['id'].'&'.$uri_page ?>" class="collection-item-a" data-id="<?php echo $row['id']; ?>">
-                        <div class="h-75 img-cont d-flex flex-column justify-content-center <?php echo isset($_GET['coll-id']) && $_GET['coll-id']==$row['id'] ? 'active-collection' : '' ?>" >
-                             <img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100">
+                      <a href="<?php echo $_SERVER['PHP_SELF'].'?card-id='.$row['id'].'&'.$uri_page ?>" class="card-item-a" data-id="<?php echo $row['id']; ?>" data-tblname="<?php echo !empty($active_folder) ? "card2" : (isset($_SESSION['all_cards']) ? $row['t_name'] : "card1")?>">
+                        <div class="d-flex flex-column justify-content-center" >
+                             <div class="plus-div <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'show' : 'd-none' ?>">
+                                <i class="fa fa-plus-circle card-plus-icon card-icon" > </i>
+                                <i class="fa fa-info-circle card-info-icon card-icon" data-toggle="modal" data-target="#card-icons"></i>
+                                <i class="fa fa-remove card-remove-icon card-icon" data-toggle="modal" data-target="#card-icons"> </i>
+
+                            </div>
+                             <div class='img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-images/<?php echo $row['image'] ?>" class="w-100"></div>
+                            <!-- ------card name------------------ -->
+                             <!-- <div class='img-cont mt-2 <?php echo isset($_GET['card-id']) && $_GET['card-id']==$row['id'] ? 'active-collection' : '' ?>'><img src="card-editor/cards-name-images/<?php echo $row['card_name_image'] ?>" class="w-100"></div> -->
+
                         </div>
-                        <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div>
+                        <!-- <div class=" text-center mt-2 site-color fw-600"><?php echo $row['name'] ?></div> -->
                       </a>
                     </div>
                     <?php
@@ -193,16 +265,36 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
                 </button>
             </div>
             <div class="modal-body">
+               <a href="base-checklist-bind-card.php?link=user-collection"> <button class="px-4 py-2 mb-3 bg-yellow bind-card">Bind cаrd to checklist</button></a>
                 <form method="post" id="" action="user_form/add-card.php">
                     <div class="form-group">
-                        <label>Card name</label>
-                        <input type="text" class="form-control namecard" name="name-card">
+                        <div class="form-group">
+                             <label>Card number</label>
+                             <input type="text" class="form-control numbercard inp" name="number-card" value="<?=$card_number?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Card name</label>
+                             <input type="text" class="form-control namecard inp" name="name-card" value="<?=$card_name?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Team</label>
+                             <input type="text" class="form-control teamcard inp" name="team-card" value="<?=$card_team?>">
+                        </div>
+                        <div class="form-group">
+                             <label>Parallel</label>
+                             <input type="text" class="form-control parallelcard inp" name="parallel-card" value="<?=$card_parallel?>">
+                        </div>
+                        
+                        
                         <input type="hidden" value="<?php echo $coll_id ?>" name='coll-id' >
                         <input type="hidden" name="tbl-name-card" class="tbl-name-card">
+                        <input type="hidden" name="bind_card_id" class="bind-card-id inp" value='<?=$bind_card_id?>' >
+                        <input type="hidden" class="bind-c-id inp" value='<?=$bind_card_id?>'>
+                        <input type="hidden" name="bind_coll_id" class="bind-coll-id inp" value='<?=$bind_coll_id?>'>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control desc" name="description" id="desc-card"></textarea>
+                        <textarea class="form-control desc inp" name="description" id="desc-card"><?=$bind_coll_desc?></textarea>
                     </div>
                     <div class="message-result-card"></div>
                 <button type="" name="" class="banner-button float-right save-card">Save</button>
@@ -211,6 +303,7 @@ if(mysqli_num_rows($res_items)<9 && isset($_GET['page']) && $_GET['page']>1){ ?>
         </div>
     </div>
 </div>
+<?php include "info-modal.php" ?>
 <?php include "footer.php" ?>
 <script src="user_js/add-folder.js"></script>
 <script src="user_js/open-modal.js"></script>

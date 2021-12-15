@@ -10,6 +10,7 @@ include "config/con1.php";
 
 $msg = '';
  if(isset($_POST['login'])){
+	
      
     $name = $con-> real_escape_string($_POST['name']);
 	$password = $con-> real_escape_string($_POST['password']);
@@ -38,7 +39,7 @@ $msg = '';
 			    	    setcookie('user',$fetch['id'],time()+86400*30);
 			        	
 			        }
-			echo "<script>location.href='./profile-page.php'; </script>";
+			echo "<script>location.href='./profile.php'; </script>";
 			//header('http://localhost/collection-cards/profile-page.php');
 			
 				}
@@ -64,7 +65,7 @@ $msg = '';
 <section class="log-reg">
 	<div class="container">
 		<div class="row">
-			 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 " align="center">
+			 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
 			 	<div class="login">
 			 		<div class="header-log">
 			 			<p class="first-par">LOG IN</p>
@@ -113,7 +114,7 @@ $msg = '';
 			 		</div>
 			 		<div class="divpad">
 			 			<form action=''>
-				 			<p class="parag-log">Let's get you in board</p>
+				 			<p class="parag-log mt-4">Let's get you in board</p>
 				 			<div class="input-group dvlog">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-user inp7" aria-hidden="true"></i></span>
@@ -125,9 +126,16 @@ $msg = '';
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-map-marker inp7" aria-hidden="true"></i></span>
 								</div>
-								<select class="selectpicker countrypicker selpiker" data-flag="true" name='country' id="city"></select>
+								
+								<select class="selectpicker countrypicker selpiker" data-flag="true" name='country' id="country" ></select>
 							</div>
-							
+							<div class="input-group dvlog dvmarg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-map-marker inp7" aria-hidden="true"></i></span>
+							</div>
+							<input type="text" placeholder="City" class="form-control place_inp" name="city"  id="city">
+							</div>
+
 							<div class="input-group dvlog dvmarg">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fa fa-envelope-o inp7" aria-hidden="true"></i></span>
