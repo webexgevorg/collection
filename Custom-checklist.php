@@ -17,6 +17,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
+<link rel="stylesheet" type="text/css" href="css/checklist.css">
 </head>
 <body>
 <?php include "cookie.php"; ?>
@@ -24,6 +25,9 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <section class="section1 mt-5">
     <div class="my-5 container" style="min-height: 211px">
         <h2 class="text-center mb-5">CUSTOM CHECKLISTS</h2>
+        <div class="add_button">
+            <button>+ Add new</button>
+        </div>
         <div class="w-100 cards mb-5 " >
         <?php 
         $sql="SELECT * FROM custom_checklist where cid=$user_id";
@@ -45,10 +49,10 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
                                 $row_name=mysqli_fetch_assoc($query_checklist_name);
                                 echo "<tr data-collId='".$row['id']."' class='tr_checklist'>
                                     <td>".$count."</td>
-                                    <td>".$row_name['base_checklist_name']."</td>
-                                    <td>
-                                        <i class='fa fa-edit' style='font-size:30px; color: #6EA4AE; cursor: pointer; margin: 0 5px'></i>
-                                        <i class='fa fa-trash' style='font-size:30px; color: #6EA4AE; cursor: pointer; margin: 0 5px'></i>
+                                    <td class='info'>".$row_name['base_checklist_name']."</td>
+                                    <td class='icons'>
+                                        <i class='fa fa-edit'></i>
+                                        <i class='fa fa-trash'></i>
                                     </td>
                                 </tr>";
                             }

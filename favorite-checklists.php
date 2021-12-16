@@ -16,7 +16,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
-<link rel="stylesheet" type="text/css" href="css/my_checklist.css">
+<link rel="stylesheet" type="text/css" href="css/checklist.css">
 </head>
 <body>
 <?php include "cookie.php"; ?>
@@ -45,7 +45,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
                                 $row_name=mysqli_fetch_assoc($query_checklist_name);
                                 echo "<tr data-collId='".$row['id']."' class='tr_checklist'>
                                     <td>".$count."</td>
-                                    <td class=''>".$row_name['name_of_collection']."</td>
+                                    <td class='info'>".$row_name['name_of_collection']."</td>
                                     <td>
                                         <i class='fa fa-trash' style='font-size:30px; color: #6EA4AE; cursor: pointer'></i></td>
                                 </tr>";
