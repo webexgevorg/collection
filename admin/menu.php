@@ -143,9 +143,10 @@
                                     <a class="nav-link"  href="../messages_for_change_profile_name_table/messages_for_change_profile_name.php">
                                         <span class="sidebar-mini">MN</span>
                                         <span class="sidebar-normal">Messages for profile name</span>
+                                    </a>
                                 </li>
                                    <li class="nav-item ">
-                                     <a class="nav-link"  href="../contact_message_table/publications.php">
+                                     <a class="nav-link"  href="../contact_message_table/contact_message.php">
                                         <span class="sidebar-mini">CM</span>
                                         <span class="sidebar-normal">Contact Message</span>
                                     </a>
@@ -163,15 +164,7 @@
                         </a>
                        
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../formdata.php">
-                           
-                            <p>
-                               formdata 
-                            </p>
-                        </a>
-                       
-                    </li>
+                    
                 </ul>
             </div>
         </div>

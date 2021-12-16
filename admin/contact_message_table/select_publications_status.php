@@ -1,5 +1,5 @@
 <?php
-$status_array=array('0' => 'Unpublished', '1' => 'Publishing');
+$status_array=array('0' => 'Unread', '1' => 'Read');
 if(isset($_POST['sel-publications-status'])){
 		
 		$_SESSION['status_publications']=$_POST['sel-publications-status'];
@@ -28,8 +28,8 @@ else{
 		}
 		// if there is no session type this value  0 or 1
 		else{
-            echo "<option value='0'>Unpublished</option>
-		          <option value='1'>Publishing</option>";		
+            echo "<option value='0'>Unread</option>
+		          <option value='1'>Read</option>";		
 		}
 }
 ?>
