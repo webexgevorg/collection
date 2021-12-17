@@ -5,7 +5,7 @@ include "../../config/con1.php";
         $title = $_POST['title'];
         $discription = $_POST['discription'];
         $id=$_POST['id'];
-        echo $title.$discription.$id;
+        //echo $title.$discription.$id;
          $sql="UPDATE  aboutus set title='$title', discription='$discription' WHERE id=$id";
          //echo $sql;
     $query=mysqli_query($con,$sql);
