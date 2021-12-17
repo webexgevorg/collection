@@ -24,6 +24,7 @@
         <input type="hidden" name="" id="id" value="<?php  echo $row1['id'];?>">
     </div>          
 </section>
+
 <footer>
     <?php
 include "footer.php";
