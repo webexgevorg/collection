@@ -22,7 +22,7 @@ if(isset($_SESSION['product'])){
     
     $total_rows_query=mysqli_query($con, $sql_checklist);
     $pagination= new Pagination();
-    $pagination->limit=5;
+    $pagination->limit=2;
     $pagination->count_rows=mysqli_num_rows($total_rows_query);
     
 }
@@ -59,7 +59,7 @@ if(isset($_SESSION['product'])){
                     <div class="col-md-12">
                         <div class="card bootstrap-table">
                             <div class="card-body table-full-width table-responsive filterable">
-                                <table class="table" id="checklists" data-sport="<?=$sport_type?>" data-year="<?=$year_prod?>" data-product="checklist">
+                                <table class="table" id="checklists" data-sport="<?=$sport_type?>" data-year="<?=$year_prod?>" data-name="collections" data-product="checklist">
                                     <thead>
                                         <th data-field="id" class="text-center">#</th>
                                         <th data-field="Card number">Name checklist</th>

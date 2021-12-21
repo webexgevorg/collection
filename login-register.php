@@ -10,8 +10,6 @@ include "config/con1.php";
 
 $msg = '';
  if(isset($_POST['login'])){
-	
-     
     $name = $con-> real_escape_string($_POST['name']);
 	$password = $con-> real_escape_string($_POST['password']);
 	$password=md5($password);
@@ -39,8 +37,13 @@ $msg = '';
 			    	    setcookie('user',$fetch['id'],time()+86400*30);
 			        	
 			        }
-			echo "<script>location.href='./profile.php'; </script>";
-			//header('http://localhost/collection-cards/profile-page.php');
+					$date = date("Y-m-d h:i:s");
+					$user_id = $_SESSION['user'];
+					$sql = "UPDATE `users` SET login_date='$date' Where id=$user_id";
+					mysqli_query($con, $sql);
+
+					echo "<script>location.href='./profile.php'; </script>";
+					//header('http://localhost/collection-cards/profile-page.php');
 			
 				}
 		}

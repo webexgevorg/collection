@@ -2,6 +2,9 @@
 include "header.php";
 include "config/con1.php";
 require_once "user-logedin.php";
+include "classes/pagination.php";
+include "classes/table.php";
+
 if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
     if(!empty($_COOKIE['user'])){
         $user_id=$_COOKIE['user'];
@@ -9,6 +12,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
     if(!empty($_SESSION['user'])){
         $user_id=$_SESSION['user'];
     }
+   
 }
 
 
@@ -17,31 +21,46 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
 <link rel="stylesheet" type="text/css" href="css/checklist.css">
+<link rel="stylesheet" href="css/pagination.css">
 </head>
 <body>
 <?php include "cookie.php"; ?>
-<section style="height: 100px"></section>
+<section class="hide_div"></section>
 <section class="section1 mt-5">
     <div class="my-5 container" style="min-height: 211px">
-        <h2 class="text-center mb-5">FAVORITE CHECKLISTS</h2>
+        <h2 class="text-center mb-5 font">FAVORITE CHECKLISTS</h2>
         <div class="w-100 cards mb-5 " >
-        <?php 
+        <?php   
         $sql="SELECT * FROM favorite_checklists where user_id=$user_id";
         $query=mysqli_query($con, $sql);
-        $num_rows=mysqli_num_rows($query);
-           if($num_rows>0){  
+        $total_rows_query=mysqli_query($con, $sql);
+
+        $conditions = array('user_id' => $user_id);
+        $tables = new Tables();
+        $tables -> tblName = 'favorite_checklists';
+        $tables -> limit = 2;
+        $table = $tables -> Table($con, $conditions);
+
+        $pagination = new Pagination();
+        $pagination -> limit = 2;
+        $pagination -> count_rows = mysqli_num_rows($total_rows_query);
+        $num_rows = mysqli_num_rows($query);
+           if($num_rows > 0){  
         ?>
-            <table class="table" id="checklists" >
-                <tbody  >
+            <table class="table" id="checklists" data-name="favorite_checklists">
+                <tbody id="num-rows" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
                     <?php
                         $count = 0;
-                            while($row=mysqli_fetch_assoc($query)){
+                            while($row=mysqli_fetch_assoc($table)){
                                 $count++;
                                 // --- petq e poxel ------------
                                 // $tblName=$row['checklist_type'];
-                                $tblName='collections';
+                                // $tblName='collections';
                                 $checklist_name="SELECT name_of_collection FROM collections WHERE id=$row[checklist_id]";
                                 $query_checklist_name=mysqli_query($con, $checklist_name);
+
+                              
+
                                 $row_name=mysqli_fetch_assoc($query_checklist_name);
                                 echo "<tr data-collId='".$row['id']."' class='tr_checklist'>
                                     <td>".$count."</td>
@@ -55,16 +74,24 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
             </table>
         <?php
         }
-         else{
+        else{
             echo "<div class='text-center'>Nothing found</div>";
         }
         ?>
+        <div class="mt-3">
+            <nav aria-label="Page navigation ">
+                <ul class="pagination justify-content-center r" >
+                <?php echo $pp= $pagination->pages(); ?>
+                </ul>
+            </nav>
+        </div>
         </div>
     </div>
     <div class="delete"></div>
 </section>
 <?php include "footer.php"; ?>
 
-<script src="user_js/delete_checklist.js"></script>
+<script src="js/checklist.js"></script>
+
 </body>
 </html>
