@@ -8,14 +8,24 @@
 
 </head>
 </head>
+ <style>
+     #sec{
+        height: 100px;
+    }
+    @media only screen and (max-width: 1000px) {
+        #sec{
+            height: 30px;
+        }
+    }
+ </style>
 <body>
     <?php 
     include "cookie.php";
   
 
 ?>
-
-<section class="aboutus" style="margin-top:100px;">
+<section id="sec"></section>
+<section class="aboutus">
     <div class="container">
         <div class="text-center">
             <h3 class="fw-bold" style="color:#133960;" id="title"><?php echo $row1['title']; ?></h3>
@@ -24,6 +34,7 @@
         <input type="hidden" name="" id="id" value="<?php  echo $row1['id'];?>">
     </div>          
 </section>
+
 <footer>
     <?php
 include "footer.php";

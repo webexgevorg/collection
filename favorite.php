@@ -13,6 +13,7 @@ if(!empty($_POST['checklist_type']) && !empty($_POST['checklist_id'])){
             $user_id=$_SESSION['user'];
         }
     }
+    
     if(isset($user_id)){
         $sql_fvorite="SELECT id FROM favorite_checklists WHERE user_id=$user_id and checklist_id=$checklist_id and checklist_type='$checklist_type'";
         $favorite_query=mysqli_query($con, $sql_fvorite);

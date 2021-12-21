@@ -202,7 +202,13 @@ include "classes/pagination.php";
                             $sql_dislike="SELECT COUNT(*) as count_dislike FROM rating_info WHERE post_id = $row[id] AND rating_action='dislike'";
                             $query_dislike=mysqli_query($con,$sql_dislike);
                             $dislike_row=mysqli_fetch_assoc($query_dislike);
-                           
+
+                            // views count
+                            $sql_views_count="SELECT COUNT('publication_id') as public_count FROM publication_viewes_count WHERE publication_id='$row[id]'";
+                            $sql_views_count_query=mysqli_query($con,$sql_views_count);
+                            $sql_fetch_assoc=mysqli_fetch_assoc( $sql_views_count_query);
+                            // hot icon 
+                            
                         ?>    
                                 <div class='mx-2 news_item'>
                                     <div class='d-flex justify-content-between p-2'>
@@ -220,17 +226,27 @@ include "classes/pagination.php";
                                     <div class='p-2 block-ellipsis'>
                                         <p><?= $row['titledescription'] ?></p> 
                                         <div class='d-flex justify-content-end align-items-center font-weight'>
-                                            <img class='pl-3 mx-1' src='image_publication/hot.png'>
-
-                                            <i class="<?=$like_class ?> like-btn" data-id='<?=  $row['id'] ?>'></i>
+                                        <?php
+                                        // hot icon 
+                                        $sql_hot_icon = "SELECT COUNT(publication_id) as hot FROM publication_viewes_count where date>NOW()-INTERVAL 3 day and publication_id='$row[id]'";
+                                        $sql_hot_icon_query = mysqli_query($con,$sql_hot_icon);
+                                        $sql_hot = mysqli_fetch_assoc($sql_hot_icon_query);
+                                        if($sql_hot['hot'] >1){
+                                            echo "<img class='' src='image_publication/hot.png' >";
+                                        }
+                                        ?>
                                             
-                                            <span class='likes mx-1 font-weight-bold'><?= $like_row['count_like']; ?></span>
+
+                                            <i class="<?=$like_class ?> like-btn ml-2" data-id='<?=  $row['id'] ?>'></i>
+                                            
+                                            <span class='likes ml-2 font-weight-bold'><?= $like_row['count_like']; ?></span>
                                             &nbsp;&nbsp;
                                             <i class="<?=$dislike_class ?> dislike-btn" data-id='<?= $row['id'] ?>'></i>
                                             
-                                            <span class='dislikes mx-1 font-weight-bold'><?= $dislike_row['count_dislike']; ?></span>
-                                             <span class='pl-3'><b>134</b></span>
-                                             <img class='pl-3' src='image_publication/view.png'>
+                                            <span class='dislikes ml-2 font-weight-bold'><?= $dislike_row['count_dislike']; ?></span>
+                                            
+                                             <img class='ml-2' src='image_publication/view.png'>
+                                             <span class='ml-2'><b><?=$sql_fetch_assoc['public_count']?></b></span>
                                             </div>
                                         </div>
                                     </div>   
