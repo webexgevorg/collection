@@ -129,6 +129,22 @@ $query=mysqli_query($con,$sql);
             $sql_dislike="SELECT COUNT(*) as count_dislike FROM rating_info WHERE post_id = $row[id] AND rating_action='dislike'";
             $query_dislike=mysqli_query($con,$sql_dislike);
             $dislike_row=mysqli_fetch_assoc($query_dislike);
+
+            // publication  view count
+            $sql_views_count="SELECT COUNT('publication_id') as public_count FROM publication_viewes_count WHERE publication_id='$row[id]'";
+            $sql_views_count_query=mysqli_query($con,$sql_views_count);
+            $sql_fetch_assoc=mysqli_fetch_assoc( $sql_views_count_query);
+             
+            // hot icon 
+             $sql_hot_icon = "SELECT COUNT(publication_id) as hot FROM publication_viewes_count where date>NOW()-INTERVAL 3 day and publication_id='$row[id]'";
+             $sql_hot_icon_query = mysqli_query($con,$sql_hot_icon);
+             $sql_hot = mysqli_fetch_assoc($sql_hot_icon_query);
+            $hot_icon='';
+
+             if($sql_hot['hot'] >1){
+                 $hot_icon= "<img class='' src='image_publication/hot.png'>";
+             }
+            
            
             $output.= "
             <div class='mx-2 news_item'>
@@ -141,20 +157,21 @@ $query=mysqli_query($con,$sql);
                     <path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/>
                 </svg></span>
                 </div> 
-                <div class='p-2 block-ellipsis'>
+                <div class='p-2 block-ellipsis' >
                     <p>".$row['titledescription']." </p>
                     <div class='d-flex justify-content-end align-items-center font-weight'>
-                    <img class='pl-3' src='image_publication/hot.png'>
-
-                    <i class='".$like_class." like-btn' data-id='".$row['id']."'></i>
+                
+                   ".$hot_icon."
+                    <i class='".$like_class." like-btn ml-2' data-id='".$row['id']."'></i>
                     
-                    <span class='likes mx-1 font-weight-bold'>".$like_row['count_like']."</span>
-                    &nbsp;&nbsp;&nbsp;
+                    <span class='likes  font-weight-bold ml-2'>".$like_row['count_like']."</span>
+                    &nbsp;&nbsp;
                     <i class='".$dislike_class." dislike-btn' data-id='".$row['id']."'></i>
                     
-                    <span class='dislikes mx-1 font-weight-bold'>".$dislike_row['count_dislike']."</span>
-                     <span class='pl-3'><b>134</b></span>
-                     <img class='pl-3' src='image_publication/view.png'>
+                    <span class='dislikes  font-weight-bold ml-2'>".$dislike_row['count_dislike']."</span>
+                    
+                     <img class='ml-2' src='image_publication/view.png'>
+                     <span class='ml-2'><b>".$sql_fetch_assoc['public_count']."</b></span>
                     </div>
                 </div>
                 </div>   

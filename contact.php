@@ -5,28 +5,21 @@ include "config/con1.php";
 
 ?>
 </head>
-<style type="text/css">
 
-  #sec{
-    height: 150px;
-  }
-  @media only screen and (max-width: 1000px) {
-    #sec{
-      height: 50px;
-    }
-  }
-</style>
 <body>
 <?php 
     include "cookie.php";
   
 
 ?>
-<section id="sec"></section> 
-  <section  style="min-height:500px">
-    <div class="container text-center justify-content-center ">
-      <h3 class="fw-bold mb-4">SEND US A MESSAGE</h3>
-      <div class="d-flex flex-wrap justify-content-between mb-4 ">
+
+<section style="height: 150px"></section> 
+	<section  style="min-height:500px">
+		<div class="container text-center justify-content-center " style="border:solid 1px;">
+		<form>
+			<h3 class="fw-bold">SEND US A MESSAGE</h3>
+			<div class="d-flex flex-wrap justify-content-between mb-4 ">
+
                 <div class="form-group" style="width:48%">
                   <input type="text" class="form-control py-2" id="nametext" placeholder="Your name/ID">
                 </div>
