@@ -8,11 +8,15 @@ $sql="SELECT * FROM aboutus WHERE id=1";
 
 
 ?>
+</head>
+
+<link rel="stylesheet" type="text/css" href="">
     <body>
     <?php
     include "../menu.php";
     ?>
-    <div class="content">
+
+     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-7 add-bs" style="margin: 0 auto">
