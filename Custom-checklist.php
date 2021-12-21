@@ -12,32 +12,36 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
     if(!empty($_SESSION['user'])){
         $user_id=$_SESSION['user'];
     }
-   
 }
 
 
 ?>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
-<link rel="stylesheet" type="text/css" href="css/checklist.css">
 <link rel="stylesheet" href="css/pagination.css">
+<link rel="stylesheet" type="text/css" href="css/checklist.css">
 </head>
 <body>
 <?php include "cookie.php"; ?>
 <section class="hide_div"></section>
 <section class="section1 mt-5">
     <div class="my-5 container" style="min-height: 211px">
-        <h2 class="text-center mb-5 font">FAVORITE CHECKLISTS</h2>
+        <h2 class="text-center mb-5 font">CUSTOM CHECKLISTS</h2>
+        <div class="add_button">
+            <a href="custom.php">+ Add new</a>
+        </div>
         <div class="w-100 cards mb-5 " >
-        <?php   
-        $sql="SELECT * FROM favorite_checklists where user_id=$user_id";
+        <?php 
+        $sql="SELECT * FROM custom_name_checklist where user_id=$user_id";
         $query=mysqli_query($con, $sql);
         $total_rows_query=mysqli_query($con, $sql);
-
+        $num_rows=mysqli_num_rows($query);
+    
         $conditions = array('user_id' => $user_id);
         $tables = new Tables();
-        $tables -> tblName = 'favorite_checklists';
+        $tables -> tblName = 'custom_name_checklist';
         $tables -> limit = 2;
         $table = $tables -> Table($con, $conditions);
 
@@ -45,43 +49,40 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         $pagination -> limit = 2;
         $pagination -> count_rows = mysqli_num_rows($total_rows_query);
         $num_rows = mysqli_num_rows($query);
-           if($num_rows > 0){  
+
+           if($num_rows>0){  
         ?>
-            <table class="table" id="checklists" data-name="favorite_checklists">
+            <table class="table" id="checklists" data-name="custom_name_checklist" >
                 <tbody id="num-rows" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
                     <?php
                         $count = 0;
-                            while($row=mysqli_fetch_assoc($table)){
-                                $count++;
-                                // --- petq e poxel ------------
-                                // $tblName=$row['checklist_type'];
-                                // $tblName='collections';
-                                $checklist_name="SELECT name_of_collection FROM collections WHERE id=$row[checklist_id]";
-                                $query_checklist_name=mysqli_query($con, $checklist_name);
+                        while($row=mysqli_fetch_assoc($table)){
+                            $count++;
+                            $tblName='collections';
+                            echo "<tr data-collId='".$row['id']."' class='tr_checklist'>
+                                <td>".$count."</td>
+                                <td class='info'>".$row['name_of_checklist']."</td>
+                                <td class='icons'>
+                                    <i class='fa fa-edit'></i>
+                                    <i class='fa fa-trash'></i>
+                                </td>
+                            </tr>";
+                        }
 
-                              
 
-                                $row_name=mysqli_fetch_assoc($query_checklist_name);
-                                echo "<tr data-collId='".$row['id']."' class='tr_checklist'>
-                                    <td>".$count."</td>
-                                    <td class='info'>".$row_name['name_of_collection']."</td>
-                                    <td>
-                                        <i class='fa fa-trash' style='font-size:30px; color: #6EA4AE; cursor: pointer'></i></td>
-                                </tr>";
-                            }
                     ?>
                 </tbody>
             </table>
         <?php
         }
-        else{
+         else{
             echo "<div class='text-center'>Nothing found</div>";
         }
         ?>
         <div class="mt-3">
             <nav aria-label="Page navigation ">
                 <ul class="pagination justify-content-center r" >
-                <?php echo $pp= $pagination->pages(); ?>
+                    <?php echo $pp= $pagination->pages(); ?>
                 </ul>
             </nav>
         </div>

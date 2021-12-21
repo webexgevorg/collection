@@ -1,0 +1,71 @@
+.info {
+    width: 80%;
+    line-break: anywhere;
+}
+
+.icons {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.icons i {
+    font-size:30px; 
+    color: #6EA4AE;
+    cursor: pointer; 
+    margin: 5px
+}
+
+.add_button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.add_button a {
+    width: 11vw;
+    padding: 1% 0;
+    border: none;
+    background-color: #ffbc40;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide_div {
+    height: 100px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .hide_div {
+        height: 0px;
+    }
+    
+}
+
+@media only screen and (max-width: 900px) {
+    .add_button a {
+        width: 15vw;
+    }  
+    .font {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    .add_button a {
+        width: 20vw;
+    }  
+}
+
+@media only screen and (max-width: 460px) {
+    .add_button a {
+        width: 30vw;
+    }  
+    .font {
+        font-size: 23px;
+    }
+}

@@ -18,7 +18,7 @@ require_once "user-logedin.php";
             <a href='favorite-checklists.php'><div class=" py-5 px-5 text-center card-div">
                 <img src="icons/favorites.png"><h5 class="mt-5 text-white">FAVORITES</h5>
             </div></a>
-            <a hef=''><div class="py-5 px-5 text-center card-div">
+            <a href='http://collections/collection/Custom-checklist.php'><div class="py-5 px-5 text-center card-div">
                 <img src="icons/custom.png"><h5 class="mt-4 text-white">CUSTOM</h5>
             </div></a>
             
