@@ -13,8 +13,6 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         $user_id=$_SESSION['user'];
     }
 }
-
-
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
