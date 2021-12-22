@@ -9,8 +9,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
     }
     if(!empty($_SESSION['user'])){
         $user_id=$_SESSION['user'];
-    }
-   
+    }   
 }
 if(isset($_POST['page'])){
     $content='';
