@@ -12,7 +12,6 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
     }
    
 }
-
 if(isset($_POST['page'])){
     $content='';
     $product=$_SESSION['product'];
