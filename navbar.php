@@ -300,9 +300,14 @@ else{
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Store</a>
       </li> -->
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Statistics</a>
-      </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Statistics
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li class='dropdown-item main-a'><a href="total-statistics.php">Total Statistics</a></li>
+            </ul>
+        </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           News

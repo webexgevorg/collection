@@ -1,5 +1,16 @@
 <?php
 include "header.php";
+require "config/con1.php";
+
+$sql_banner = "SELECT * FROM banner";
+$result_banner = mysqli_query($con, $sql_banner);
+
+    if($result_banner) {
+        $row_banner = mysqli_fetch_assoc($result_banner);
+    }else {
+        echo "tvyalner@ bacakayum en";
+    }
+
 ?>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,11 +23,11 @@ include "header.php";
 </head>
 <body class="page_fix">
     <?php include "cookie.php";?>
-<section id="banner">
+<section id="banner" style="background: url('images_banner/<?= $row_banner['image'] ?>')">
     <div class="container">
         <div class="banner-text">
-           <h1>Lorem, ipsum dolor sit amet </h1>
-           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus suscipit quasi non tenetur officiis, sapiente ut voluptatum totam libero distinctio, tempora doloribus voluptas vitae, laborum odio quia dicta? Perspiciatis, dolores.</p>
+           <h1><?= $row_banner['tittle'] ?></h1>
+           <p><?= $row_banner['description'] ?></p>
            <button class="banner-button">More...</button>
         </div>
     </div>

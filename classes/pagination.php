@@ -1,7 +1,7 @@
 <?php  
         class Pagination {
            
-            public $limit=10;
+            public $limit=20;
             public $count_rows='';
             public $page=1;
             public $page_index='';

@@ -4,12 +4,12 @@
                header('location:../index.php');
           }
         ?>
-    <body>
-        <?php
-           include "../menu.php";
-           include "../../config/con1.php";
-           
-        ?>
+        <body>
+            <?php
+            include "../menu.php";
+            include "../../config/con1.php";
+            
+            ?>
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">

@@ -151,6 +151,14 @@
                                         <span class="sidebar-normal">Contact Message</span>
                                     </a>
                                 </li>
+
+                                </li>
+                                   <li class="nav-item ">
+                                     <a class="nav-link"  href="../users/users.php">
+                                        <span class="sidebar-mini">US</span>
+                                        <span class="sidebar-normal">Users</span>
+                                    </a>
+                                </li>
                                   
                             </ul>
                         </div>

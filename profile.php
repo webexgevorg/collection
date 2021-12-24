@@ -24,10 +24,17 @@ require_once "user-logedin.php";
 //   if(isset($_SESSION['user'])){
 //       $id=$_SESSION['user'];
 //   }
+
+
+
 $id = $_SESSION['user'];
 $sql = "SELECT * FROM users where id = $id";
 $res = mysqli_query($con, $sql);
 $ard = mysqli_fetch_assoc($res);
+
+$sql_years = "SELECT TIMESTAMPDIFF(YEAR, '" . $ard['birth_day']. "', curdate()) AS years";
+$query_years = mysqli_query($con, $sql_years);
+$result_years = mysqli_fetch_assoc($query_years);
 
 $sql1 = "SELECT * FROM custom_name_checklist WHERE user_id = $id";
 $res1 = mysqli_query($con, $sql1);
@@ -69,11 +76,13 @@ $row3 = mysqli_num_rows($res3);
                     }
                     ?>
                 </p>
+                <p class="parag-log">Birth Day <?= $ard['birth_day'] ?> (<?= $result_years["years"]  ?> years) </p>
                 <button class="add" data-toggle="modal" data-target="#exampleModall">Edit</button>
             </div>
             <div class="d-flex flex-column align-items-center k3">
                 <h4 class="text-center">My Achievements</h4>
                 <div class="d-flex flex-column  justify-content-around  icon">
+
                     <div class="d-flex p-1 align-items-center justify-content-between div_icon">
                         <img  src="profile_image/Заливка цветом 1.png">
                         <h5>15</h5>
@@ -90,6 +99,9 @@ $row3 = mysqli_num_rows($res3);
                         <img  class='m-1'src="profile_image/Заливка цветом 4.png">
                         <h5>30</h5>
                     </div>
+
+
+
                 </div>
             </div>
 
@@ -150,13 +162,14 @@ include "footer.php";
 							<select class="form-control countrypicker selpiker" data-flag="true" name='country_code' id="country" ></select>
 						</div>
                         <input type="text" class="form-control mt-2" name="city" value="<?php echo $ard['city'] ?>">
+                        <input type="date" class="form-control mt-2" name="date" value="<?= $ard['birth_day'] ?>">
                         <input type="file" name="image" class="form-control mt-2">
                         <textarea name="text" cols="50" class="form-control mt-2">
                             <?php
                             if ($ard['more']) {
                             echo $ard['more'];
                             } else {
-                            echo "Add more information";
+                            echo "add more information";
                             }
                             ?>
                         </textarea>

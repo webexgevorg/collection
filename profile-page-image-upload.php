@@ -15,13 +15,14 @@ if(isset($_POST['send'])){
     $country = $_POST['country'];
     $country_code = $_POST['country_code'];
     $city = $_POST['city'];
+    $date = $_POST["date"];
     
     $text = $_POST['text'];
     $sql="SELECT image FROM users WHERE id=$user_id";
     $query=mysqli_query($con, $sql);
     $row=mysqli_fetch_assoc($query);
      if (!file_exists($_FILES['image']['tmp_name']) || !is_uploaded_file($_FILES['image']['tmp_name'])){
-        $ins="UPDATE users SET more = '$text', city = '$city', country='$country', country_code='$country_code' WHERE id = $user_id";
+        $ins="UPDATE users SET more = '$text', city = '$city', country='$country', birth_day = '$date', country_code='$country_code' WHERE id = $user_id";
         $res=mysqli_query($con, $ins);
             
         if($res){

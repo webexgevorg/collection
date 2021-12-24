@@ -9,12 +9,13 @@ $(document).ready(function(){
 	var email=$('#email').val()
 	var password=$('#password').val()
 	var confirm_password=$('#cpass').val()
+	var bday = $("#bday").val()
 
 	console.log(country_code)
 	$.ajax({
 		type: "POST",
 		url: "checkregister.php",
-		data: {name, country, country_code, city, email, password, confirm_password, register},
+		data: {name, country, country_code, city, email, password, confirm_password, register, bday},
 		success: function (rezult) {
 			if(rezult==1){
 				$('#ard').html("Please check your inputs!")

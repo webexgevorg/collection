@@ -23,6 +23,25 @@
     margin-bottom: 20px;
 }
 
+thead {
+    background: #6ea4ae;
+    font-size: 14px !important;
+    text-align: center;
+}
+
+tr:hover {
+    background: #6ea4ae;
+    cursor: pointer;
+}
+
+tr:hover td i {
+    color: white !important;
+}
+
+.table>tbody>tr>td:nth-child(1) {
+    background: #6ea4ae;
+}
+
 .add_button a {
     width: 11vw;
     padding: 1% 0;

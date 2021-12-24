@@ -19,34 +19,41 @@ $msg = '';
 	}else{
 	    
 		$object=mysqli_query($con,"SELECT*FROM users where name='$name' and password='$password'");
-		if(mysqli_num_rows($object)==0){
-			$msg='Wrong name or password';
-		}else{
-			$fetch=mysqli_fetch_assoc($object);
-			
-			if($fetch['isEmailConfirmed']==0){
-					$msg="Please verify your email!";
-				}
-				else{
-					$msg="You have been logged in!";
-					session_start();
-					
-					$_SESSION['user']=$fetch['id'];
-			
-		        	if(isset($_POST['remember'])){
-			    	    setcookie('user',$fetch['id'],time()+86400*30);
-			        	
-			        }
-					$date = date("Y-m-d h:i:s");
-					$user_id = $_SESSION['user'];
-					$sql = "UPDATE `users` SET login_date='$date' Where id=$user_id";
-					mysqli_query($con, $sql);
+        $fetch=mysqli_fetch_assoc($object);
+        if($fetch["active"] == 1) {
+            if(mysqli_num_rows($object)==0){
+                $msg='Wrong name or password';
+            }else{
 
-					echo "<script>location.href='./profile.php'; </script>";
-					//header('http://localhost/collection-cards/profile-page.php');
-			
-				}
-		}
+
+                if($fetch['isEmailConfirmed']==0){
+                    $msg="Please verify your email!";
+                }
+                else{
+                    $msg="You have been logged in!";
+                    session_start();
+
+                    $_SESSION['user']=$fetch['id'];
+
+                    if(isset($_POST['remember'])){
+                        setcookie('user',$fetch['id'],time()+86400*30);
+
+                    }
+                    $date = date("Y-m-d h:i:s");
+                    $user_id = $_SESSION['user'];
+                    $sql = "UPDATE `users` SET login_date='$date' Where id=$user_id";
+                    mysqli_query($con, $sql);
+
+                    echo "<script>location.href='./profile.php'; </script>";
+                    //header('http://localhost/collection-cards/profile-page.php');
+
+                }
+            }
+        }else {
+            $msg = "The administration has blocked your account";
+        }
+
+
 	}
 }
 
@@ -130,8 +137,8 @@ $msg = '';
 									<span class="input-group-text"><i class="fa fa-map-marker inp7" aria-hidden="true"></i></span>
 								</div>
 								
-								<select class="selectpicker countrypicker selpiker" data-flag="true" name='country' id="country" ></select>
-							</div>
+                                <select class="selectpicker countrypicker selpiker" data-flag="true" name='country' id="country" ></select>
+                            </div>
 							<div class="input-group dvlog dvmarg">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fa fa-map-marker inp7" aria-hidden="true"></i></span>
@@ -147,19 +154,25 @@ $msg = '';
 							</div>
 							
 							<div class="input-group dvlog dvmarg">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fa fa-lock inp7" aria-hidden="true"></i></i></span>
-							</div>
-							<input type="password" name="password" class="form-control place_inp" placeholder="Password" id="password">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock inp7" aria-hidden="true"></i></i></span>
+                                </div>
+							    <input type="password" name="password" class="form-control place_inp" placeholder="Password" id="password">
 							</div>
 							
 							<div class="input-group dvlog dvmarg">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fa fa-lock inp7" aria-hidden="true"></i></i></span>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock inp7" aria-hidden="true"></i></i></span>
+                                </div>
+							    <input type="password" name="confirm_password" class="form-control place_inp" placeholder="Confirm Password" id="cpass" >
 							</div>
-							<input type="password" name="confirm_password" class="form-control place_inp" placeholder="Confirm Password" id="cpass" >
-							</div>
-							<br>
+                            <div class="input-group dvlog dvmarg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar inp8" aria-hidden="true"></i></i></span>
+                                </div>
+                                <input type="date" name="date" class="form-control place_inp" id="bday" >
+                            </div>
+                            <br>
 						</form>
 						<button class="btn log-in" name="register" id="register">REGISTER</button>
 						<p></p>
