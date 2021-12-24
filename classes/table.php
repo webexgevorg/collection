@@ -2,7 +2,7 @@
 class Tables{
     public $tblName='';
     public $collId;
-    public $limit=2;
+    public $limit=20;
     public $start=0;
 
     public function __construct(){
@@ -33,6 +33,23 @@ class Tables{
     }
 
     function Table($con, $conditions = array()){
+
+        $sql = 'SELECT * FROM ' . $this -> tblName;
+        if(!empty($conditions) && is_array($conditions)){
+            $sql .= ' WHERE ';
+            $i = 0;
+            foreach($conditions as $key => $value){
+                $pre = ($i > 0) ? ' AND ' : '';
+                $sql .= $pre.$key." = '".$value."'";
+                $i++;
+            }
+        }
+        $sql .=" LIMIT ". $this->start.", ".$this->limit;
+        $result = mysqli_query($con, $sql);
+        return !empty(mysqli_num_rows($result) > 0) ? $result : false;
+    }
+
+    function UsersTable($con){
 
         $sql = 'SELECT * FROM ' . $this -> tblName;
         if(!empty($conditions) && is_array($conditions)){

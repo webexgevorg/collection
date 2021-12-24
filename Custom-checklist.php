@@ -40,11 +40,11 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         $conditions = array('user_id' => $user_id);
         $tables = new Tables();
         $tables -> tblName = 'custom_name_checklist';
-        $tables -> limit = 2;
+        $tables -> limit = 20;
         $table = $tables -> Table($con, $conditions);
 
         $pagination = new Pagination();
-        $pagination -> limit = 2;
+        $pagination -> limit = 20;
         $pagination -> count_rows = mysqli_num_rows($total_rows_query);
         $num_rows = mysqli_num_rows($query);
 
