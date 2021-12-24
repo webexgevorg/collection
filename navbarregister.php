@@ -268,7 +268,7 @@ $img = $navbarimg['image'];
         <a class="nav-link disabled" href="aboutus.php">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contacts</a>
+        <a class="nav-link disabled" href="contact.php">Contacts</a>
       </li>
     </ul>
   </div>
