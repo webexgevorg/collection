@@ -1,23 +1,36 @@
-$('body').on('click', '.tr_checklist', function(){
-    let coll_id=$(this).attr('data-collId')
-    let year_prod=$('#checklists').attr('data-year')
-    let product=$('#checklists').attr('data-product')
-    let sport_type=$('#checklists').attr('data-sport')
-    $.ajax({
-    	type: 'post',
-    	url: 'navbar_products.php',
-    	data: {coll_id, year_prod, sport_type, product},
-    	success: function(ar){
-           $("#nav").html(ar)
-    	}
+
+    $('body').on('click', '.tr_checklist', function(){
+        if($("table").attr("data-name") == "collections") {
+            let coll_id=$(this).attr('data-collId')
+            let year_prod=$('#checklists').attr('data-year')
+            let product=$('#checklists').attr('data-product')
+            let sport_type=$('#checklists').attr('data-sport')
+            $.ajax({
+                type: 'post',
+                url: 'navbar_products.php',
+                data: {coll_id, year_prod, sport_type, product},
+                success: function(ar){
+                    $("#nav").html(ar)
+                }
+            })
+        }else {
+            let coll_id=$(this).attr('data-collId')
+            $.ajax({
+                type: 'post',
+                url: 'navbar_products.php',
+                data: {coll_id},
+                success: function(ar){
+                    $("#nav").html(ar)
+                }
+            })
+        }
     })
-})
 
 $('body').on('click', '.pg-link', function(event){
     event.preventDefault()
     let count_rows=$('#num-rows').attr('data-rows')
     let page_table=$(this).attr('data-value')*1
-    let limit=2;
+    let limit=20;
     let table_name = $(".table").attr("data-name")
     
 // --------- for pagination ------------

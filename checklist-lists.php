@@ -22,7 +22,7 @@ if(isset($_SESSION['product'])){
     
     $total_rows_query=mysqli_query($con, $sql_checklist);
     $pagination= new Pagination();
-    $pagination->limit=2;
+    $pagination->limit=20;
     $pagination->count_rows=mysqli_num_rows($total_rows_query);
     
 }
@@ -91,7 +91,7 @@ if(isset($_SESSION['product'])){
                 <div class="mt-3">
                     <nav aria-label="Page navigation ">
                         <ul class="pagination justify-content-center r" >
-                       <?php echo $pp= $pagination->pages(); ?>
+                       <?php echo $pp = $pagination->pages(); ?>
                         </ul>
                     </nav>
                 </div>

@@ -1,6 +1,5 @@
 <?php
     include "header.php";
-    require_once "user-logedin.php";
     if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         if(!empty($_COOKIE['user'])){
             $user_id=$_COOKIE['user'];
