@@ -83,7 +83,7 @@ include "classes/pagination.php";
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collectionNameDiv text-center"  >
                 <div class="d-flex text-right justify-content-center">
                     <div class="w-50">
-                        <h2 class ="collectionName">CHECKLIST <?php echo $sport_type ." ".$year_prod; ?></h2>
+                        <h2 class ="collectionName">CHECKLIST <?= $sport_type ." ".$year_prod; ?></h2>
                     </div>
                     <div class="w-25 favorite " id="favorite" data-collId='<?=$coll_id?>' data-checklistType='base_checklist'>
                         <i class="star mt-2 fa " style="font-size:36px; color:#fad565;"></i>

@@ -20,11 +20,11 @@ $msg = '';
 	    
 		$object=mysqli_query($con,"SELECT*FROM users where name='$name' and password='$password'");
         $fetch=mysqli_fetch_assoc($object);
-        if($fetch["active"] == 1) {
-            if(mysqli_num_rows($object)==0){
-                $msg='Wrong name or password';
-            }else{
 
+        if(mysqli_num_rows($object)==0){
+            $msg='Wrong name or password';
+        }else{
+            if(!empty($fetch["active"]) && $fetch["active"] == 1) {
 
                 if($fetch['isEmailConfirmed']==0){
                     $msg="Please verify your email!";
@@ -48,9 +48,9 @@ $msg = '';
                     //header('http://localhost/collection-cards/profile-page.php');
 
                 }
+            }else {
+                $msg = "The administration has blocked your account";
             }
-        }else {
-            $msg = "The administration has blocked your account";
         }
 
 

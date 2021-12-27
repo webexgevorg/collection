@@ -308,6 +308,18 @@ else{
                 <li class='dropdown-item main-a'><a href="total-statistics.php">Total Statistics</a></li>
             </ul>
         </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Users
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li class='dropdown-item main-a'><a href="">Group1</a></li>
+                <li class='dropdown-item main-a'><a href="">Group2</a></li>
+                <li class='dropdown-item main-a'><a href="">Group3</a></li>
+            </ul>
+        </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="nav-products" href="news.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           News

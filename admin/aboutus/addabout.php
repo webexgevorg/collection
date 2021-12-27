@@ -8,6 +8,7 @@ $sql="SELECT * FROM aboutus WHERE id=1";
 
 
 ?>
+
 </head>
 
 <link rel="stylesheet" type="text/css" href="">
