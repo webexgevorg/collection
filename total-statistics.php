@@ -95,7 +95,7 @@
             yValueFormatString: "#,##0.0\"%\"",
             showInLegend: true,
             legendText: "{label} : {y}",
-            dataPoints: <?php echo json_encode($active_users_week, JSON_NUMERIC_CHECK); ?>
+            dataPoints: <?php echo json_encode($users_active_statistics, JSON_NUMERIC_CHECK); ?>
         }]
     });
     chart2.render();

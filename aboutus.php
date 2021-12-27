@@ -1,15 +1,16 @@
 <?php 	
- include "header.php";
- include "config/con1.php";
- echo $sql1="SELECT * FROM aboutus WHERE id=1";
-  $query1=mysqli_query($con, $sql1);
-  $row1=mysqli_fetch_assoc($query1);
- ?>
+    include "header.php";
+    include "config/con1.php";
+    $sql1="SELECT * FROM aboutus WHERE id=1";
+    $query1=mysqli_query($con, $sql1);
+    $row1=mysqli_fetch_assoc($query1);
+?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/my_checklist.css">
 
-</head>
-</head>
- <style>
-     #sec{
+<style>
+    #sec{
         height: 100px;
     }
     @media only screen and (max-width: 1000px) {
@@ -17,7 +18,10 @@
             height: 30px;
         }
     }
- </style>
+</style>
+
+</head>
+
 <body>
     <?php 
     include "cookie.php";
@@ -25,8 +29,8 @@
 
 ?>
 <section id="sec"></section>
-<section class="aboutus">
-    <div class="container">
+<section class="aboutus" style="min-height: 344px">
+    <div class="container" style="min-height: 344px; margin: 24px auto 0">
         <div class="text-center">
             <h3 class="fw-bold" style="color:#133960;" id="title"><?php echo $row1['title']; ?></h3>
         </div>

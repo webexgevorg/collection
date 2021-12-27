@@ -66,6 +66,24 @@ class Tables{
         return !empty(mysqli_num_rows($result) > 0) ? $result : false;
     }
 
+    function ContactsTable($con, $conditions = array()){
+
+        $sql = 'SELECT * FROM ' . $this -> tblName;
+        if(!empty($conditions) && is_array($conditions)){
+            $sql .= ' WHERE ';
+            $i = 0;
+            foreach($conditions as $key => $value){
+                $pre = ($i > 0) ? ' AND ' : '';
+                $sql .= $pre.$key." = '".$value."'";
+                $i++;
+            }
+        }
+        $sql .=" LIMIT ". $this->start.", ".$this->limit;
+        $result = mysqli_query($con, $sql);
+        return !empty(mysqli_num_rows($result) > 0) ? $result : false;
+    }
+
+
 }
 
 ?>

@@ -28,7 +28,7 @@ if(isset($_POST['btn-bs-checklist'])){
      $row=mysqli_fetch_assoc($res);
      
      $sort_number= $row['id']+1;
-     $sql_insert="INSERT INTO base_checklist (sort_number, year_of_releases, producer, name_of_collection, card_number, card_name, team, set_type, sport_type, parallel, print_run) VALUES ($sort_number, '$year_of_releases', '$producer', '$name_collection', '$card_number', '$card_name', '$team', '$set_type', '$sport_type', '$parallel', '$print_run')";
+     $sql_insert="INSERT INTO base_checklist (sort_number, year_of_releases, producer, name_of_collection, card_number, card_name, team, set_type, sport_type, parallel, prin t_run) VALUES ($sort_number, '$year_of_releases', '$producer', '$name_collection', '$card_number', '$card_name', '$team', '$set_type', '$sport_type', '$parallel', '$print_run')";
 		
 			if(mysqli_query($con, $sql_insert)){
 			    echo "<h5 class='text-success'>Successfully added base checklist</h5>";

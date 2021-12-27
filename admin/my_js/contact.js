@@ -1,13 +1,33 @@
-$("#users_search").on("input", function () {
-    let search = $("#users_search").val()
-    $.post(
-        "search.php",
-        {search},
-        function (result) {
-            $(".status").html(result)
+$("table").on('click', '.change-status', function(event) {
+    event.preventDefault()
+    $(this).parent().parent().css("background", "#afffafad")
+    let change_contact_status=$(this).attr('id')
+    let row_id = $(this).parent().attr('data-id');
+    $.ajax({
+        type: "post",
+        url: "change_contact_message_status.php",
+        data: {row_id},
+        success: function(res){
+            console.log(res);
         }
-    )
-})
+
+    })
+});
+$("table").on('click', '.remove', function(event) {
+    event.preventDefault()
+    let tr = $(this).parent().parent()
+    let row_id = $(this).parent().attr('data-id');
+    $.ajax({
+        type: "post",
+        url: "delete_contact_message.php",
+        data: {row_id },
+        success: function(res){
+            tr.remove()
+        }
+    })
+});
+
+
 
 
 

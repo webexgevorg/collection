@@ -9,16 +9,6 @@
 ?>
 
 <style>
-    .users_table {
-        width: 100%;
-        margin: 0 auto;
-        border-collapse: collapse;
-        color: #555;
-    }
-    th, td{
-        border: 1px solid #aaa;
-        padding: 5px 10px;
-    }
 
     .fa-minus-circle {
         color: red;
@@ -32,19 +22,6 @@
         cursor: pointer;
     }
 
-    .fa-check-circle {
-        color: green;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .fa-info-circle {
-        color: blue;
-        font-size: 20px;
-        cursor: pointer;
-        margin-left: 10px;   
-    }
-
     .data-tables .pagination {
         float: none;
     }
@@ -56,6 +33,7 @@
     .disabled_tr {
         background: #f7707073 !important;
     }
+
 
 </style>
 
@@ -92,7 +70,6 @@
                         <td>" .  $row["birth_day"] . " </td>
                         <td class='icon'>
                             <i class='disabled fa fa-minus-circle' data-disabled='0'></i>
-                            <i class='fa fa-info-circle'></i>
                         </td>
                         
                     </tr>";
@@ -105,8 +82,7 @@
                                 <td>" .  $row["city"] . " </td>
                                 <td>" .  $row["birth_day"] . " </td>
                                 <td class='icon'>
-                                    class='disabled fa fa-check-circle' data-disabled='1'></i>
-                                    <i class='fa fa-info-circle' style='font-size:24px'></i>
+                                    <i class='disabled fa fa-check-circle' data-disabled='1'></i>
                                 </td>
 
                                 </tr>";
@@ -123,9 +99,11 @@
                             <div class="card data-tables">
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-ex-10 " style="margin: 0 auto">
-                                        <table class="users_table">
+                                        <div></div>
+                                        <input type="search" id="users_search">
+                                        <table class="users_table table table-striped table-no-bordered table-hover" data-name="users">
                                             <thead>
-                                                <th>ID</th>
+                                                <th>#</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Country</th>
@@ -136,6 +114,15 @@
                                             <tbody id="num-rows" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
                                                 <?=  $content ?>
                                             </tbody>
+                                            <tfoot>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Country</th>
+                                                <th>City</th>
+                                                <th>Birth day</th>
+                                                <th>Actions</th>
+                                            </tfoot>
                                         </table>
                                         <div class="mt-3">
                                             <nav aria-label="Page navigation ">

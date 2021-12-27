@@ -66,9 +66,7 @@ if(isset($_POST['page'])){
         $table=$tables->Table($con, $conditions);
         $count = $tables->start;
         if($table){
-            
             while($row=mysqli_fetch_assoc($table)){
-                
                     $count++;
                     $content .= "<tr data-collId='".$row['id']."' class='tr_checklist'>
                         <td>".$count."</td>
