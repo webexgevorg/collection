@@ -33,7 +33,11 @@
     .disabled_tr {
         background: #f7707073 !important;
     }
-
+     @media only screen and (max-width: 400px) {
+    #search{
+        width: 170px; 
+    }
+   }
 
 </style>
 
@@ -87,9 +91,17 @@
                         <div class="col-md-12">
                             <div class="card data-tables">
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
-                                    <div class="col-lg-10 col-md-10 col-sm-10 col-ex-10 " style="margin: 0 auto">
+                                    <div style="margin: 0 auto">
+                                        <div style="margin: 0 auto">
                                         <div></div>
-                                        <table class="users_table table table-striped table-no-bordered table-hover" data-name="messages_for_change_profile_name">
+                                        <div class="d-flex" id="inp_search">
+                                             <div class="form-group">
+                                                <input type="text" class="form-control ml-2" id="search" placeholder="Search">
+                                              </div>
+                                        </div>
+                                        
+                                        <div></div>
+                                        <table class="users_table table table-striped table-no-bordered table-hover table-responsive" data-name="messages_for_change_profile_name">
                                             <thead>
                                                 <th>#</th>
                                                 <th >User ID</th>

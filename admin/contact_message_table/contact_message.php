@@ -15,6 +15,16 @@
     .pagination>li > a {
         color: #000 !important;
     }
+
+   @media only screen and (max-width: 700px) {
+        .inp{
+            flex-wrap: wrap !important;
+
+        }
+        .form-control {
+          
+        }
+   }
 </style>
 
 <link rel="stylesheet" href="../../css/pagination.css">
@@ -107,7 +117,7 @@
                         <div class="col-md-12">
                             <div class="card data-tables">
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
-                                    <div class="col-lg-10 col-md-10 col-sm-10 col-ex-10 " style="margin: 0 auto">
+                                    <div  style="margin: 0 auto">
                                         <div></div>
                                         <div class='col-md-12 text-center'>
                                             <div class='col-md-7 mx-auto'>
@@ -115,13 +125,20 @@
                                                     <div class="form-group">
                                                         <label>Select a section</label>
                                                         <select onchange="this.form.submit()" class="form-control select" id="sel-messages-status" name='sel-messages   -status'>
+
+                                           
                                                             <?= $option ?>
                                                         </select>
                                                     </div>
+                                                    <div class="col">
+                                                        <label>Search FROM TABLE</label>
+                                                      <input type="text" class="form-control" placeholder="Search">
+                                                    </div>
+                                                  </div>
                                                 </form>
-                                            </div>
+                                                                                           
                                         </div>
-                                        <table class="users_table table table-striped table-no-bordered table-hover" data-name="contact_message">
+                                        <table class="users_table table table-striped table-no-bordered table-hover table-responsive" data-name="contact_message">
                                             <thead>
                                                 <th>#</th>
                                                 <th>Name</th>

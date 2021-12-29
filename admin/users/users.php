@@ -7,7 +7,7 @@
        header('location:../index.php');
   }
 ?>
-
+<link rel="stylesheet" type="text/css" href="">
 <style>
 
     .fa-minus-circle {
@@ -33,8 +33,12 @@
     .disabled_tr {
         background: #f7707073 !important;
     }
-
-
+    
+   @media only screen and (max-width: 400px) {
+    #search{
+        width: 170px;
+    }
+   }
 </style>
 
     <link rel="stylesheet" href="../../css/pagination.css">
@@ -43,6 +47,8 @@
         <?php
            include "../menu.php";
            include "../../config/con1.php";
+
+           $content = "";
 
            $sql = "Select * From users";
            $total_rows_query = mysqli_query($con, $sql);
@@ -98,12 +104,14 @@
                         <div class="col-md-12">
                             <div class="card data-tables">
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
-                                    <div class="col-lg-10 col-md-10 col-sm-10 col-ex-10 " style="margin: 0 auto">
+                                    <div style="margin: 0 auto">
                                         <div></div>
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                                             <label for="floatingInput">Email address</label>
                                         </div>
+
+                                       
                                         <table class="users_table table table-striped table-no-bordered table-hover table-responsive" data-name="users">
                                             <thead>
                                                 <th>#</th>
