@@ -15,6 +15,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 }
 ?>
 
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
@@ -51,6 +52,13 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
            if($num_rows>0){  
         ?>
             <table class="table" id="checklists" data-name="custom_name_checklist" >
+                <thead>
+                    <tr>
+                        <th data-field="id" class="text-center">#</th>
+                        <th data-field="Card number">Name checklist</th>
+                        <th data-field="Card year">Actions</th>
+                    </tr>
+                </thead>
                 <tbody id="num-rows" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
                     <?php
                         $count = 0;
@@ -62,7 +70,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
                                 <td class='info'>".$row['name_of_checklist']."</td>
                                 <td class='icons'>
                                     <i class='fa fa-edit'></i>
-                                    <i class='fa fa-trash'></i>
+                                    <i class='fa fa-trash remove'></i>
                                 </td>
                             </tr>";
                         }
@@ -86,7 +94,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         </div>
         </div>
     </div>
-    <div class="delete"></div>
+    <div class="status"></div>
 </section>
 <?php include "footer.php"; ?>
 

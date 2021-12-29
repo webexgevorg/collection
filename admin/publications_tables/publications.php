@@ -24,10 +24,9 @@ if(empty($_SESSION['login']) || $_SESSION['login']!="admin"){
     include "../../config/con1.php";
 
 
+    //publication status (read, unread)
+
     include "select_publications_status.php";
-
-    echo $_SESSION['status_publications'];
-
 
     if($option == "") {
         $option = "<option value='0'>Unpublished</option><option value='1'>Published</option>";
@@ -112,14 +111,14 @@ if(empty($_SESSION['login']) || $_SESSION['login']!="admin"){
                                     <form method="post" action=''>
                                         <div class="form-group">
                                             <label>Select a section</label>
-                                            <select onchange="this.form.submit()" class="form-control select" id="sel-publications-status" name='sel-publications-status'>
+                                            <select onchange="this.form.submit()" class="form-control select" id="sel-publications-status" name=''>
                                                 <?= $option ?>
                                             </select>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <table class="users_table table table-striped table-no-bordered table-hover" data-name="contact_message">
+                            <table class="users_table table table-striped table-no-bordered table-hover" data-name="publications">
                                 <thead>
                                     <th>#</th>
                                     <th>Title</th>
@@ -162,7 +161,7 @@ if(empty($_SESSION['login']) || $_SESSION['login']!="admin"){
 <?php include "../footer.php";?>
 
 
-<script src="../my_js/contact.js"></script>
+<script src="../my_js/publications.js"></script>
 
 
 

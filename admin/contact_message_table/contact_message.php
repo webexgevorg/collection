@@ -36,18 +36,16 @@
 
                 //publication status (read, unread)
 
-            include "select_publications_status.php";
-
+            include "select_messages_status.php";
 
             if($option == "") {
                 $option = "<option value='0'>Unread</option><option value='1'>Read</option>";
             }
 
 
-                if( isset($_SESSION['status_publications']) ){
-                    $status_publications = $_SESSION['status_publications'];
-
-                    if( $status_publications == 0 ){
+                if( isset($_SESSION['status_messages']) ){
+                    $status_messages = $_SESSION['status_messages'];
+                    if( $status_messages == 0 ){
                         $icon = '<i class="bi bi-file-earmark-plus" title="Published"></i>';
                         $btn_status = 'btn-success';
                         $change_contact_status = 1;
@@ -59,27 +57,32 @@
                     }
                 }
                 else{
-                    $status_publications = 0;
+                    $status_messages = 0;
                     $icon = '<i class="bi bi-file-earmark-minus"></i>';
                     $btn_status = 'btn-danger';
                     $change_contact_status = 1;
                 }
 
-//                $sql="SELECT * FROM contact_message WHERE status=$status_publications ORDER BY id ASC ";
-                $sql="SELECT * FROM contact_message WHERE status=$status_publications ORDER BY id ASC ";
+                echo $_SESSION['status_messages'];
+
+
+//                $sql="SELECT * FROM contact_message WHERE status=$status_messages ORDER BY id ASC ";
+                $sql="SELECT * FROM contact_message WHERE status=$status_messages ORDER BY id ASC ";
                 $result=mysqli_query($con, $sql);
 
                 $tables = new Tables();
                 $tables -> tblName = 'contact_message';
                 $tables -> limit = 20;
-                $conditions=array('status' => $_SESSION['status_publications']);
+                $conditions=array('status' => $_SESSION['status_messages']);
                 $table=$tables->ContactsTable($con, $conditions);
 
                 $pagination = new Pagination();
                 $pagination -> limit = 20;
                 $pagination -> count_rows = mysqli_num_rows($result);
 
-                if($table) {
+
+
+            if($table) {
                     $count=0;
                     while($row=mysqli_fetch_assoc($table)){
                         $count++;
@@ -117,22 +120,13 @@
                                     <div  style="margin: 0 auto">
                                         <div></div>
                                         <div class='col-md-12 text-center'>
-                                            
-                                                <!--form method="post" action='' class="">
-                                                    <div class="inp d-flex flex-wrap justify-content-between">
-                                                    <div class="form-group w-50" style="border: solid 1px;">
-                                                        
-                                                    </div>
-                                                     <div class="form-group w-50" style="border: solid 1px;">
-                                                            <input type="text" class="form-control" id="search" placeholder="Search">
-                                                    </div>
-                                                    </div>
-                                                </form-->
-                                                <form method="post" action='' class="">
-                                                  <div class="inp row">
-                                                    <div class="col">
-                                                      <label>Select a section</label>
-                                                        <select onchange="this.form.submit()" class="form-control select" id="sel-publications-status" name='sel-publications-status'>
+                                            <div class='col-md-7 mx-auto'>
+                                                <form method="post" action=''>
+                                                    <div class="form-group">
+                                                        <label>Select a section</label>
+                                                        <select onchange="this.form.submit()" class="form-control select" id="sel-messages-status" name='sel-messages   -status'>
+
+                                           
                                                             <?= $option ?>
                                                         </select>
                                                     </div>
@@ -167,7 +161,7 @@
                                         </table>
                                         <div class="mt-3">
                                             <nav aria-label="Page navigation ">
-                                                <ul class="pagination justify-content-center r" >
+                                                <ul class="pagination justify-content-center" >
                                                     <?php echo $pp= $pagination->pages(); ?>
                                                 </ul>
                                             </nav>

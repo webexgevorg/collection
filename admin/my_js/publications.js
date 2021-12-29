@@ -1,18 +1,3 @@
-$('.remove').on('click',function(){
-    $tr=$(this).parent().parent()
-    let row_id = $(this).parent().attr('data-id');
-    $.ajax({
-        type: "post",
-        url: "delete_subnews.php",
-        data: {row_id },
-        success: function(res){
-            $tr.remove()
-            // location.reload()
-        }
-    })
-
-})
-
 $('body').on('click', '.pg-link', function(event){
     event.preventDefault()
     let table_name = $(".users_table").attr("data-name")
