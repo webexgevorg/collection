@@ -73,7 +73,7 @@ if(isset($_POST['page'])){
                         <td class='info'>".$row['name_of_checklist']."</td>
                         <td class='icons'>
                             <i class='fa fa-edit'></i>
-                            <i class='fa fa-trash'></i>
+                            <i class='fa fa-trash remove'></i>
                         </td>
                     </tr>";
             }

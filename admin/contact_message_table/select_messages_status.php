@@ -1,13 +1,13 @@
 <?php
 $status_array=array('0' => 'Unread', '1' => 'Read');
 $option = "";
-if(isset($_POST['sel-publications-status'])){
+if(isset($_POST['sel-messages-status'])){
 
-		$_SESSION['status_publications']=$_POST['sel-publications-status'];
-		
-		if(isset($_SESSION['status_publications'])){
+		$_SESSION['status_messages']=$_POST['sel-messages-status'];
+
+		if(isset($_SESSION['status_messages'])){
 			foreach ($status_array as $key => $value) {
-				if($_SESSION['status_publications']==$key){
+				if($_SESSION['status_messages']==$key){
                    $option .= "<option value='$key' name='aa' selected>$value</option>";
 				}
 				else{
@@ -17,9 +17,9 @@ if(isset($_POST['sel-publications-status'])){
 		}
 }
 else{
-	if(isset($_SESSION['status_publications'])){
+	if(isset($_SESSION['status_messages'])){
 			foreach ($status_array as $key => $value) {
-				if($_SESSION['status_publications']==$key){
+				if($_SESSION['status_messages']==$key){
                     $option .= "<option value='$key'  selected>$value</option>";
 				}
 				else{

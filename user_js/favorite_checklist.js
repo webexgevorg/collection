@@ -5,7 +5,7 @@ $(".fa-trash").click(function() {
         "Checklist-php/delete.php",
         {checklist_id: checklist_id},
         function (result) {
-            $(".delete"),html(result)
+            $(".delete").html(result)
         }
     )
 })

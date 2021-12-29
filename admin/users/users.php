@@ -100,8 +100,11 @@
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-ex-10 " style="margin: 0 auto">
                                         <div></div>
-                                        <input type="search" id="users_search">
-                                        <table class="users_table table table-striped table-no-bordered table-hover" data-name="users">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                            <label for="floatingInput">Email address</label>
+                                        </div>
+                                        <table class="users_table table table-striped table-no-bordered table-hover table-responsive" data-name="users">
                                             <thead>
                                                 <th>#</th>
                                                 <th>Name</th>

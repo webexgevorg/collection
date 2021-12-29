@@ -47,7 +47,6 @@ if(isset($_POST['page'])){
                         </tr>";
                     }
                 }
-                echo $content;
             }
         }
 
@@ -72,7 +71,6 @@ if(isset($_POST['page'])){
                                 </td>
                            </tr>";
                 }
-                echo $content;
             }
         }
 
@@ -95,10 +93,36 @@ if(isset($_POST['page'])){
                                 </td>
                             </tr>";
                 }
-                echo $content;
             }
         }
 
+        else if($_POST["table_name"] == "publications") {
+            $table=$tables->ContactsTable($con, $conditions);
+            $count = $tables -> start;
+            if($table) {
+                while ($row = mysqli_fetch_assoc($table)) {
+                    $count++;
+                    $content .= "<tr name=''>
+                                <td class=''>".$count."</td>
+                                <td class=''>".$row['title']."</td>
+                                <td class=''>".$row['titledescription']."</td>
+                                <td class=''>".$row['sport_type']."</td>
+                                <td class=''>".$row['producer']."</td>
+                                <td class=''>".$row['news_type']."</td>
+                                <td class=''>".$row['created_date']."</td>
+                                <td class='text-right d-flex flex-column' data-id='".$row['id']."' class='btn btn-link btn-marning edit'> 
+                                    <a href='..piblications/add_publications.php?id=".$row['id']."'></a>   
+                                    <a href='#' class='btn btn-link change-status ".$btn_status."'  name='".$change_contact_status."'>".$icon."</a>
+                                    <a href='#' class='btn btn-link btn-danger remove' data_name=''>
+                                        <i class='fa fa-times '></i>
+                                    </a>
+                                </td>
+                           </tr>    ";
+                }
+            }
+        }
+
+    echo $content;
 
 
 }

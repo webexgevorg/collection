@@ -4,9 +4,8 @@
 }
 
 .icons {
-    display: flex;
-    justify-content: flex-end;
-    
+    text-align: right;
+
 }
 
 .icons i {
@@ -35,7 +34,7 @@ tr:hover {
 }
 
 tr:hover td i {
-    color: white !important;
+    color: #000 !important;
 }
 
 .table>tbody>tr>td:nth-child(1) {
