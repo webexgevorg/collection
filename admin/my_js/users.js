@@ -1,16 +1,3 @@
-$("#users_search").on("input", function () {
-    let search = $("#users_search").val()
-    $.post(
-        "search.php",
-        {search},
-        function (result) {
-            $(".status").html(result)
-        }
-    )
-})
-
-
-
 $('body').on('click', '.pg-link', function(event){
     event.preventDefault()
     let table_name = $(".users_table").attr("data-name")
@@ -37,4 +24,9 @@ $('body').on('click', '.pg-link', function(event){
 
         }
     })
+})
+
+$("body").on("click", "tr", function() {
+    let id = $(this).attr("data-id")
+    location.assign("about_user.php?user_id=" + id)
 })
