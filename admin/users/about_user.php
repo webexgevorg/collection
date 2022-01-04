@@ -152,9 +152,6 @@
 
             }
 
-
-
-
         ?>
             <!-- End Navbar -->
             <div class="content">
