@@ -143,15 +143,14 @@
             $card_content = "";
             $cards_qty = mysqli_num_rows($result_card);
             if($cards_qty < 1) {
-                
+                echo "qicha";
+            }else {
+                while($row_card = mysqli_fetch_assoc($result_card)) {
+                    $card_total += $row_card["count"];
+                    $card_content .= "<p><span>" . $row_card["sport_type"] . "</span><span> Cards - </span><span>" . $row_card['count'] . "</span></p>";
+                }
+
             }
-
-            while($row_card = mysqli_fetch_assoc($result_card)) {
-                $card_total += $row_card["count"];
-                $card_content .= "<p><span>" . $row_card["sport_type"] . "</span><span> Cards - </span><span>" . $row_card['count'] . "</span></p>";
-            }
-
-
 
         ?>
             <!-- End Navbar -->
