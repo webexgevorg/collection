@@ -40,7 +40,7 @@ if(isset($_GET['public_id'])){
                                 <p class='p-3 mt-2'>".$row['titledescription']."</p>
                             </div>
                         ";
-                        $visitor_ip=$_SERVER['REMOTE_ADDR'];
+                        $visitor_ip=$_SERVER['SERVER_ADDR'];
                         $sql_check="SELECT *FROM publication_viewes_count WHERE  api_address='$visitor_ip' AND publication_id='$row[id]'";
                         $sql_check_query=mysqli_query($con,$sql_check);
                         $num_rows=mysqli_num_rows($sql_check_query);
