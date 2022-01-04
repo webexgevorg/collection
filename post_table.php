@@ -66,14 +66,16 @@ if(isset($_POST['page'])){
         $table=$tables->Table($con, $conditions);
         $count = $tables->start;
         if($table){
+            
             while($row=mysqli_fetch_assoc($table)){
+                
                     $count++;
                     $content .= "<tr data-collId='".$row['id']."' class='tr_checklist'>
                         <td>".$count."</td>
                         <td class='info'>".$row['name_of_checklist']."</td>
                         <td class='icons'>
                             <i class='fa fa-edit'></i>
-                            <i class='fa fa-trash remove'></i>
+                            <i class='fa fa-trash'></i>
                         </td>
                     </tr>";
             }

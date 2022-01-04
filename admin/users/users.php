@@ -7,8 +7,18 @@
        header('location:../index.php');
   }
 ?>
-<link rel="stylesheet" type="text/css" href="">
+
 <style>
+    .users_table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        color: #555;
+    }
+    th, td{
+        border: 1px solid #aaa;
+        padding: 5px 10px;
+    }
 
     .fa-minus-circle {
         color: red;
@@ -22,6 +32,19 @@
         cursor: pointer;
     }
 
+    .fa-check-circle {
+        color: green;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .fa-info-circle {
+        color: blue;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: 10px;   
+    }
+
     .data-tables .pagination {
         float: none;
     }
@@ -33,12 +56,7 @@
     .disabled_tr {
         background: #f7707073 !important;
     }
-    
-   @media only screen and (max-width: 400px) {
-    #search{
-        width: 170px;
-    }
-   }
+
 </style>
 
     <link rel="stylesheet" href="../../css/pagination.css">
@@ -47,8 +65,6 @@
         <?php
            include "../menu.php";
            include "../../config/con1.php";
-
-           $content = "";
 
            $sql = "Select * From users";
            $total_rows_query = mysqli_query($con, $sql);
@@ -76,6 +92,7 @@
                         <td>" .  $row["birth_day"] . " </td>
                         <td class='icon'>
                             <i class='disabled fa fa-minus-circle' data-disabled='0'></i>
+                            <i class='fa fa-info-circle'></i>
                         </td>
                         
                     </tr>";
@@ -88,7 +105,8 @@
                                 <td>" .  $row["city"] . " </td>
                                 <td>" .  $row["birth_day"] . " </td>
                                 <td class='icon'>
-                                    <i class='disabled fa fa-check-circle' data-disabled='1'></i>
+                                    class='disabled fa fa-check-circle' data-disabled='1'></i>
+                                    <i class='fa fa-info-circle' style='font-size:24px'></i>
                                 </td>
 
                                 </tr>";
@@ -104,11 +122,10 @@
                         <div class="col-md-12">
                             <div class="card data-tables">
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
-                                    <div style="margin: 0 auto">
-                                        <div></div>
-                                        <table class="users_table table table-striped table-no-bordered table-hover table-responsive" data-name="users">
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-ex-10 " style="margin: 0 auto">
+                                        <table class="users_table">
                                             <thead>
-                                                <th>#</th>
+                                                <th>ID</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Country</th>
@@ -119,15 +136,6 @@
                                             <tbody id="num-rows" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
                                                 <?=  $content ?>
                                             </tbody>
-                                            <tfoot>
-                                                <th>#</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Country</th>
-                                                <th>City</th>
-                                                <th>Birth day</th>
-                                                <th>Actions</th>
-                                            </tfoot>
                                         </table>
                                         <div class="mt-3">
                                             <nav aria-label="Page navigation ">

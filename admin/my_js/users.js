@@ -1,6 +1,5 @@
 $('body').on('click', '.pg-link', function(event){
     event.preventDefault()
-    let table_name = $(".users_table").attr("data-name")
     let count_rows=$('#num-rows').attr('data-rows')
     let page_table=$(this).attr('data-value')*1
     let limit=20;
@@ -18,15 +17,10 @@ $('body').on('click', '.pg-link', function(event){
     $.ajax({
         'method': 'post',
         'url': '../post_table.php',
-        'data': {page: page_table, limit, table_name},
+        'data': {page: page_table, limit},
         success:function(res){
             $('#num-rows').html(res)
 
         }
     })
-})
-
-$("body").on("click", "tr", function() {
-    let id = $(this).attr("data-id")
-    location.assign("about_user.php?user_id=" + id)
 })

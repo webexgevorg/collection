@@ -4,18 +4,6 @@ include "config/con1.php";
 
 
 ?>
-
-<style>
-    .red {
-        color: red;
-    }
-
-    .green {
-        color: green;
-    }
-
-</style>
-
 </head>
 
 <body>
@@ -48,26 +36,29 @@ include "config/con1.php";
                 </div>
                 </div>
   </div>
-
-        <div class="result"></div>
-
   </section>
     <?php
 include "footer.php";
 ?>
 <script>
-    $('#message').on('click',function(event){
-        event.preventDefault()
-        let name = $("#nametext").val()
-        let email = $("#email").val()
-        let discription = $('#discription').val()
-        $.ajax({
-            type:'POST',
-            url:'check_contact_message.php',
-            data: { name, email, discription },
-            success:function(result){
-                $(".result").html(result)
-            }
-        })
+   $('#message').on('click',function(){
+    var name = $("#nametext").val()
+    var email = $("#email").val()
+    var discription = $('#discription').val()
+    alert(name+email)
+       $.ajax({
+        type:'POST',
+        url:'check_contact_message.php',
+        data: { name: name,
+                email: email,
+                discription: discription
+                },
+                success:function(result){
+                console.log(result)
+                }
+           
     })
+
+})
 </script>
+

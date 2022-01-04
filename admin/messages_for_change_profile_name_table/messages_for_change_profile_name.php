@@ -1,89 +1,15 @@
 <?php
-    include "../heder.php";
-    include "../../classes/table.php";
-    include "../../classes/pagination.php";
-
-    if(empty($_SESSION['login']) || $_SESSION['login']!="admin"){
-        header('location:../index.php');
-    }
-?>
-
-<style>
-
-    .fa-minus-circle {
-        color: red;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .fa-check-circle {
-        color: green;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .data-tables .pagination {
-        float: none;
-    }
-
-    .pagination>li > a {
-        color: #000 !important;
-    }
-
-    .disabled_tr {
-        background: #f7707073 !important;
-    }
-     @media only screen and (max-width: 400px) {
-    #search{
-        width: 170px; 
-    }
-   }
-
-</style>
-
-<link rel="stylesheet" href="../../css/pagination.css">
-
+           include "../heder.php";
+           if(empty($_SESSION['login']) || $_SESSION['login']!="admin"){
+               header('location:../index.php');
+          }
+        ?>
     <body>
         <?php
            include "../menu.php";
            include "../../config/con1.php";
-
-            $sql="SELECT * FROM messages_for_change_profile_name";
-            $result=mysqli_query($con, $sql);
-
-            $tables = new Tables();
-            $tables -> tblName = 'messages_for_change_profile_name';
-            $tables -> limit = 20;
-            $table = $tables -> Table($con);
-
-            $pagination = new Pagination();
-            $pagination -> limit = 20;
-            $pagination -> count_rows = mysqli_num_rows($result);
-
-            $count=0;
-            while($row=mysqli_fetch_assoc($table)){
-                $count++;
-                $sql_user="SELECT name FROM users WHERE id=$row[user_id]";
-                $query_user=mysqli_query($con, $sql_user);
-                $row_user=mysqli_fetch_assoc($query_user);
-                $content .= "<tr name='' data-id='".$row['id']."'>
-                                <td class=''>".$count."</td>
-                                <td class='user_id'>".$row['user_id']."</td>
-                                <td class=''>".$row_user['name']."</td>
-                                <td class='new_profile_name'>".$row['new_profile_name']."</td>
-                                <td class=''>".$row['message']."</td>
-                                <td class=''>".$row['date']."</td>
-                                <td class=''>".$row['status']."</td>
-                                <td class='text-right'>
-                                    <div class='chnge-name text-warning' ><i class='fa fa-edit '></i></div>
-                                </td>
-                            </tr>";
-            }
-
-
+           
         ?>
-
-
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
@@ -91,48 +17,37 @@
                         <div class="col-md-12">
                             <div class="card data-tables">
                                 <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
-                                    <div style="margin: 0 auto">
-                                        <div style="margin: 0 auto">
-                                        <div></div>
-                                        <div class="d-flex" id="inp_search">
-                                             <div class="form-group">
-                                                <input type="text" class="form-control ml-2" id="search" placeholder="Search">
-                                              </div>
-                                        </div>
-                                        
-                                        <div></div>
-                                        <table class="users_table table table-striped table-no-bordered table-hover table-responsive" data-name="messages_for_change_profile_name">
+                                    <div class="fresh-datatables">
+                                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%" data-tblname='messages_for_change_profile_name'>
                                             <thead>
-                                                <th>#</th>
-                                                <th >User ID</th>
-                                                <th >Old Name/Nikname</th>
-                                                <th >New Name/Nikname</th>
-                                                <th >Message</th>
-                                                <th >Date</th>
-                                                <th >Status</th>
-                                                <th>Action</th>
+                                                <tr>
+                                                     <th>#</th>
+                                                     <th  class='th' data-name='id'>User ID</th>
+                                                     <!-- <th >Old Name/Nikname</th> -->
+                                                     <th  class='th' data-name='new_profile_name'>New Name/Nikname</th>
+                                                     <th  class='th' data-name='message'>Message</th>
+                                                     <th  class='th' data-name='date'>Date</th>
+                                                     <th  class='th' data-name='status'>Status</th>
+                                                     <th>Action</th>
+                                                </tr>
                                             </thead>
-                                            <tbody id="num-rows" data-rows="<?=mysqli_num_rows($result)?>">
-                                            <?=  $content ?>
-                                            </tbody>
                                             <tfoot>
+                                                <tr>
                                                 <th>#</th>
-                                                <th >User ID</th>
-                                                <th >Old Name/Nikname</th>
-                                                <th >New Name/Nikname</th>
-                                                <th >Message</th>
-                                                <th >Date</th>
-                                                <th >Status</th>
-                                                <th>Action</th>
+                                                     <th >User ID</th>
+                                                     <!-- <th >Old Name/Nikname</th> -->
+                                                     <th >New Name/Nikname</th>
+                                                     <th >Message</th>
+                                                     <th >Date</th>
+                                                     <th >Status</th>
+                                                     <th>Action</th>
+                                                </tr>
+                                                </tr>
                                             </tfoot>
+                                            <tbody id="tbody">
+                                            
+                                            </tbody>
                                         </table>
-                                        <div class="mt-3">
-                                            <nav aria-label="Page navigation ">
-                                                <ul class="pagination justify-content-center r" >
-                                                    <?php echo $pp= $pagination->pages(); ?>
-                                                </ul>
-                                            </nav>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -140,10 +55,9 @@
                     </div>
                 </div>
             </div>
-            <div class="status"></div>
-            <?php
-                include "../footer.php";
-            ?>
+             <?php 
+                                    include "../footer.php";
+                                    ?>
 
 
 <!-- ----------- modal -------------------- -->
@@ -165,6 +79,13 @@
   </div>
 </div>
     <script src="../my_js/change_profile_name_by_admin.js"></script>
+    <script src="../my_js/post_data_table.js"></script>
+    <script>
+        $(function(){
+            $('#datatables_info').parent().remove()
+            $('#datatables_length').remove()
+        })
+    </script>
    
 </body>
 </html>

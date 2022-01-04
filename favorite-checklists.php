@@ -97,7 +97,6 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <?php include "footer.php"; ?>
 
 <script src="js/checklist.js"></script>
-<script src="user_js/favorite_checklist.js"></script>
 
 <script>
 

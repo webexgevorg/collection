@@ -21,6 +21,7 @@ include "classes/pagination.php";
 </head>
 <body>
 <?php 
+    $user_id='';
     include "cookie.php";
   
 
@@ -207,7 +208,7 @@ include "classes/pagination.php";
                             $sql_views_count="SELECT COUNT('publication_id') as public_count FROM publication_viewes_count WHERE publication_id='$row[id]'";
                             $sql_views_count_query=mysqli_query($con,$sql_views_count);
                             $sql_fetch_assoc=mysqli_fetch_assoc( $sql_views_count_query);
-                            // hot icon
+                            // hot icon 
                             
                         ?>    
                                 <div class='mx-2 news_item'>

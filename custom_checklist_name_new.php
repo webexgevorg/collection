@@ -51,7 +51,7 @@
                 <thead>
                 <!--<th data-field="state" data-checkbox="true"></th>-->
                 <th data-field="id" class="text-center">ID-count</th>
-                <th data-field="id" class="text-center">ID</th>
+                <th data-field="id" class="text-center">ID</th>a
                 <th data-field="Card number">Card name</th>
                 <th data-field="Card name">Team</th>
                 <th data-field="Team">Set type</th>

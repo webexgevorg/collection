@@ -27,11 +27,6 @@
                 <p class="statistics-text">Number of Collections</p>
             </div>
 
-           <div class="statistics">
-               <div id="number_checklist"></div>
-               <p class="statistics-text">Number of Checklists</p>
-           </div>
-
             <div class="statistics">
                 <div id="users"></div>
                 <p class="statistics-text">Registered Users</p>
@@ -39,10 +34,13 @@
 
             <div class="statistics">
                 <div id="active_users_week"></div>
-                <p class="statistics-text">Active users</p>
+                <p class="statistics-text">Active for week</p>
             </div>
 
-
+            <div class="statistics">
+                <div id="active_users_mounth"></div>
+                <p class="statistics-text">Active for month</p>
+            </div>
 
             <?php include "Statics/total-statics.php"?>
         </div>
@@ -97,12 +95,12 @@
             yValueFormatString: "#,##0.0\"%\"",
             showInLegend: true,
             legendText: "{label} : {y}",
-            dataPoints: <?php echo json_encode($users_active_statistics, JSON_NUMERIC_CHECK); ?>
+            dataPoints: <?php echo json_encode($active_users_week, JSON_NUMERIC_CHECK); ?>
         }]
     });
     chart2.render();
 
-    var chart3 = new CanvasJS.Chart("number_checklist", {
+    var chart3 = new CanvasJS.Chart("active_users_mounth", {
         theme: "light2",
         animationEnabled: true,
         title: {
@@ -114,7 +112,7 @@
             yValueFormatString: "#,##0.0\"%\"",
             showInLegend: true,
             legendText: "{label} : {y}",
-            dataPoints: <?php echo json_encode($checklists_array, JSON_NUMERIC_CHECK); ?>
+            dataPoints: <?php echo json_encode($active_users_mounth, JSON_NUMERIC_CHECK); ?>
         }]
     });
     chart3.render();

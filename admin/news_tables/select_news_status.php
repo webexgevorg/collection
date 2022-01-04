@@ -2,11 +2,11 @@
 $status_array=array('0' => 'Unpublished', '1' => 'Publishing');
 if(isset($_POST['sel-news-status'])){
 		
-		$_SESSION['status_news']=$_POST['sel-news-status'];
+		$_SESSION['status']=$_POST['sel-news-status'];
 		
-		if(isset($_SESSION['status_news'])){
+		if(isset($_SESSION['status'])){
 			foreach ($status_array as $key => $value) {
-				if($_SESSION['status_news']==$key){
+				if($_SESSION['status']==$key){
                    echo "<option value='$key' name='aa' selected>$value</option>";
 				}
 				else{
@@ -16,9 +16,9 @@ if(isset($_POST['sel-news-status'])){
 		}
 }
 else{
-	if(isset($_SESSION['status_news'])){
+	if(isset($_SESSION['status'])){
 			foreach ($status_array as $key => $value) {
-				if($_SESSION['status_news']==$key){
+				if($_SESSION['status']==$key){
                    echo "<option value='$key' name='aa' selected>$value</option>";
 				}
 				else{

@@ -115,7 +115,7 @@ include "classes/pagination.php";
             <div id="news">
                 <?php
                     $sql_news="SELECT*FROM news where status=1    order by id DESC limit 5";
-                    echo $sql_news;
+                    // echo $sql_news;
                     $query_news=mysqli_query($con, $sql_news);
                     while($row = mysqli_fetch_assoc($query_news)){
                         echo "
