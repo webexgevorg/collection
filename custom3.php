@@ -3,7 +3,7 @@
 	if(isset($_POST['rid'])){
 		$rid  = mysqli_real_escape_string($con, $_POST['rid']);
 		$id  = mysqli_real_escape_string($con, $_POST['id']);
-
+ 
 		if($rid == 0){
 			$sql = "SELECT name_of_collection,id FROM collections";
 			$res = mysqli_query($con, $sql);
