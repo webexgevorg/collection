@@ -26,7 +26,7 @@ $('body').on('click', '.pg-link', function(event){
     })
 })
 
-$("body").on("click", "tr", function() {
-    let id = $(this).attr("data-id")
+$("body").on("click", ".select_user", function() {
+    let id = $(this).parent().parent().attr("data-id")
     location.assign("about_user.php?user_id=" + id)
 })

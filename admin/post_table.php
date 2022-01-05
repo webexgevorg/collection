@@ -33,7 +33,10 @@ if(isset($_POST['page'])){
                         <td>" . $row["country"] . "</td>
                         <td>" . $row["city"] . " </td>
                         <td>" . $row["birth_day"] . " </td>
-                        <td class='icon'><i class='disabled fa fa-minus-circle' data-disabled='0'></i></td>
+                        <td class='icon'>
+                            <i class='disabled fa fa-minus-circle' data-disabled='0'></i>
+                            <i class='fa fa-info-circle select_user' ></i>
+                        </td>
                     </tr>";
                     } else {
                         $content .= "<tr class='disabled_tr' data-id='" . $row['id'] . "'>
@@ -43,7 +46,10 @@ if(isset($_POST['page'])){
                         <td>" . $row["country"] . "</td>
                         <td>" . $row["city"] . " </td>
                         <td>" . $row["birth_day"] . " </td>
-                        <td class='icon'><i class='disabled fa fa-check-circle' data-disabled='1'></i></td>
+                        <td class='icon'>
+                            <i class='disabled fa fa-check-circle' data-disabled='1'></i>
+                            <i class='fa fa-info-circle select_user' ></i>
+                        </td>
                         </tr>";
                     }
                 }
@@ -90,6 +96,7 @@ if(isset($_POST['page'])){
                                 <td class=''>".$row['status']."</td>
                                 <td class='text-right'>
                                     <div class='chnge-name text-warning' ><i class='fa fa-edit '></i></div>
+                                    
                                 </td>
                             </tr>";
                 }

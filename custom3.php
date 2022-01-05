@@ -1,4 +1,4 @@
-<?php
+ <?php
 	include "config/con1.php";
 	if(isset($_POST['rid'])){
 		$rid  = mysqli_real_escape_string($con, $_POST['rid']);

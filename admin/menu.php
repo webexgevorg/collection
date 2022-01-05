@@ -58,19 +58,7 @@
                                         <span class="sidebar-normal">Add News</span>
                                     </a>
                                 </li>
-                                
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="../subnews/add_subnews.php">
-                                        <span class="sidebar-mini">AS</span>
-                                        <span class="sidebar-normal">Add SubNews</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="../subnews/edit_subnews.php">
-                                        <span class="sidebar-mini">AS</span>
-                                        <span class="sidebar-normal">Edit SubNews</span>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item ">
                                     <a class="nav-link" href="../publications/add_publications.php">
                                         <span class="sidebar-mini">AP</span>

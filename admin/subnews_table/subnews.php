@@ -45,7 +45,6 @@ if($table) {
                         
                         <td class='text-right' data-id='".$row['id']."'>
                            <a href='../subnews/add_subnews.php?id=".$row['id']."' class='btn btn-link btn-warning edit' name=''><i class='fa fa-edit'></i></a>
-                           <a href='#'  id=".$row['id']." class='btn btn-link btn-danger remove' data_name=''><i class='fa fa-times'></i></a>
                         </td>
                        </tr>";
     }

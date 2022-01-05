@@ -7,39 +7,7 @@
        header('location:../index.php');
   }
 ?>
-<link rel="stylesheet" type="text/css" href="">
-<style>
-
-    .fa-minus-circle {
-        color: red;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .fa-check-circle {
-        color: green;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .data-tables .pagination {
-        float: none;
-    }
-
-    .pagination>li > a {
-        color: #000 !important;
-    }
-
-    .disabled_tr {
-        background: #f7707073 !important;
-    }
-    
-   @media only screen and (max-width: 400px) {
-    #search{
-        width: 170px;
-    }
-   }
-</style>
+<link rel="stylesheet" href="../css/users.css">
 
     <link rel="stylesheet" href="../../css/pagination.css">
 
@@ -72,10 +40,11 @@
                         <td>" . $row["name"] . "</td>
                         <td>" . $row["email"] . "</td>
                         <td>" . $row["country"] . "</td>
-                        <td>" .  $row["city"] . " </td>
+                        <td>"    .  $row["city"] . " </td>
                         <td>" .  $row["birth_day"] . " </td>
                         <td class='icon'>
                             <i class='disabled fa fa-minus-circle' data-disabled='0'></i>
+                            <i class='fa fa-info-circle select_user' ></i>
                         </td>
                         
                     </tr>";
@@ -89,6 +58,7 @@
                                 <td>" .  $row["birth_day"] . " </td>
                                 <td class='icon'>
                                     <i class='disabled fa fa-check-circle' data-disabled='1'></i>
+                                    <i class='fa fa-info-circle select_user'></i>
                                 </td>
 
                                 </tr>";
