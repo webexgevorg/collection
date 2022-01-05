@@ -1,0 +1,106 @@
+.icon_username{
+    width:100%;
+    height: 50px;
+    border-bottom: 1px solid #8080803d;;
+    display: flex
+}
+.level_up_div{
+    width: 50px;
+    height: 50px;
+    float: left;
+    text-align: center
+}
+.use_p{
+    color: grey;
+    font-size: 15px
+}
+.part_one_div, .part_two_div{
+    margin-top: 10px;
+}
+.part_one_div{
+    width:65%
+}
+.part_two_div{
+    width: 35%;
+    height: 100%
+}
+.icon_logo{
+    height: 100px
+}
+.circle_img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #c2bdbd;
+}
+.user_color{
+    color:#2d5a7a;
+    font-weight: bold
+}
+.cit_sp{
+    color: grey;
+    font-size: 14px
+}
+.parts{
+    width: 300px;
+}
+.parts > p{
+    color: #2d5a7a;
+    font-weight: bold;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px
+}
+.grey_spans{
+    color: grey;
+    font-weight: 400
+}
+.icons_part{
+    width: 300px;
+    height: auto;
+    border: 1px solid #2d5a7a;
+    margin: 0 20px;
+    border-radius: 10px;
+
+}
+.exp_div{
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    border-bottom: 1px solid #2d5a7a;
+}
+.exp_div > p{
+    font-size: 15px;
+    padding-top: 10px
+}
+.ic_des{
+    width:99px;
+    height: 80px;
+    text-align: center;
+    padding-top: 5px;
+
+}
+.ic_des > img{
+    width: 50%;
+    cursor: pointer;
+}
+@media (max-width: 650px){
+    .img_p{
+        display: flex;
+        justify-content: center
+    }
+}
+@media (min-width: 650px) and (max-width: 768px){
+    .icons_part{
+        width:100%;
+        /* text-align: center */
+    }
+    .img_p{
+        display: flex;
+        justify-content: start
+    }
+    .exp_div > p {
+        font-size: 13px;
+        padding-top: 10px
+    }
+
+}

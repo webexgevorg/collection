@@ -1,0 +1,35 @@
+.fa-minus-circle {
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fa-check-circle {
+    color: green;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fa-info-circle {
+    color: blue;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.data-tables .pagination {
+    float: none;
+}
+
+.pagination>li > a {
+    color: #000 !important;
+}
+
+.disabled_tr {
+    background: #f7707073 !important;
+}
+
+@media only screen and (max-width: 400px) {
+    #search{
+        width: 170px;
+    }
+}
