@@ -1,0 +1,121 @@
+.collectionName{
+    color:white !important;
+    padding:10px 0;
+    font-size:22px;
+}
+.section1{
+    margin-top: 150px;
+    margin-bottom: 20px;
+}
+.collectionNameDiv{
+    background: #133960;
+    height:50px;
+}
+.inpt2::-webkit-input-placeholder{ 
+   color: #6ea4ae;
+   font-size:12px;
+}
+
+.inpt2::-moz-placeholder { 
+   color: #6ea4ae; 
+   font-size:12px;
+}
+
+.inpt2:-ms-input-placeholder { 
+   color: #6ea4ae;
+   font-size:12px;
+}
+ h1{
+    font-weight:bold;
+    color: #133960;
+    margin-top: 93px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top:143px;
+}
+
+.btn{
+    padding: 4px 4px !important;
+}
+.inpt2{
+  /*background:  #03a9f4 !important; */
+}
+ thead{
+    background: #6ea4ae;
+    font-size: 14px !important;
+    text-align:center;
+ }
+ .bootstrap-table{
+    border: none;
+ }
+.dataTables_filter{
+     display: none !important;
+ }
+
+ .toolbar{
+    background: red;
+ }
+ .table>tbody>tr>td:nth-child(1) {
+    background:#6ea4ae ;
+}
+.about{
+    text-align: left;
+    font-size:14px;
+}
+.rowheight{
+    margin-bottom: 5px;
+    margin-top: 126px;
+}
+.fixed-table-loading{
+    display: none;
+}
+.personImg {
+    height: 100%;
+    width: 100%;
+}
+.imgdiv{
+    width: 60%;
+    margin-left: 135px;
+    height: 283px;
+}
+.btn-srch{
+    border-radius: .25rem!important;
+    
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    color: gray;
+    border: 1px solid #ced4da;
+}
+.add-cards-personal-checklist, .select-personal-checklist{
+    background: #fad565;
+    border-radius: 8px;
+    border: none;
+}
+@media (max-width: 425px) and (min-width:320px){
+.imgdiv {
+    width: 100%;
+    margin-left: 0px;
+    height: 340px;
+    margin-bottom: 25px;
+}
+}
+@media (max-width: 600px){
+   .section1{
+    margin-top: 0px;
+    margin-bottom: 50px;
+    }
+}
+@media (max-width: 768px){
+   .imgdiv {
+    width: 91%;
+    margin-left: 0px;
+    height: 340px;
+    margin-bottom: 25px;
+}
+}
+.checkmark{
+    display: none;
+}
+.edt-btn{
+    width: auto;
+}

@@ -15,30 +15,57 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 }
 ?>
 
+<?php
+    if(isset($_GET["public"])) {
+        $status = 1;
+        $buttons = '<a class="def_passive" href="Custom-checklist.php?private">Privite<a class="def_active" href="Custom-checklist.php?public">Public</a>';
+    }else if(isset($_GET["private"])) {
+        $status = 0;
+        $buttons = '<a class="def_active" href="Custom-checklist.php?private">Privite</a><a class="def_passive" href="Custom-checklist.php?public">Public</a>';
+    }
+
+    $_SESSION["def_custom_name_status"]=$status;
+?>
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
 <link rel="stylesheet" href="css/pagination.css">
-<link rel="stylesheet" type="text/css" href="css/checklist.css">
+<link rel="stylesheet" type="text/css" href="css/checklist.css?7">
 </head>
 <body>
 <?php include "cookie.php"; ?>
 <section class="hide_div"></section>
 <section class="section1 mt-5">
+    <div class="notification_modal">
+        <div class="notification_content">
+            <input type="hidden" class="notification_remove_id">
+            <div class="notification">If you delete this checklist and delete the cards inside it</div>
+            <div class="notification_buttons">
+                <button class="cancel">CANCEL</button>
+                <button class="delete_checklist">DELETE</button>
+            </div>
+        </div>
+    </div>
+
     <div class="my-5 container" style="min-height: 211px">
         <h2 class="text-center mb-5 font">CUSTOM CHECKLISTS</h2>
+
         <div class="add_button">
+            <div class="define">
+                <?= $buttons ?>
+            </div>
             <a href="custom.php">+ Add new</a>
         </div>
         <div class="w-100 cards mb-5 " >
-        <?php 
-        $sql="SELECT * FROM custom_name_checklist where user_id=$user_id";
+        <?php
+        $sql="SELECT * FROM custom_name_checklist where user_id=$user_id AND status=$status AND delete_status = 1";
         $query=mysqli_query($con, $sql);
         $total_rows_query=mysqli_query($con, $sql);
         $num_rows=mysqli_num_rows($query);
     
-        $conditions = array('user_id' => $user_id);
+        $conditions = array('user_id' => $user_id, 'status' => $status, "delete_status" => 1);
         $tables = new Tables();
         $tables -> tblName = 'custom_name_checklist';
         $tables -> limit = 20;
@@ -59,7 +86,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
                         <th data-field="Card year">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="num-rows" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
+                <tbody id="num-rows" class="search_from_table" data-rows="<?=mysqli_num_rows($total_rows_query)?>">
                     <?php
                         $count = 0;
                         while($row=mysqli_fetch_assoc($table)){
@@ -95,6 +122,8 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         </div>
     </div>
     <div class="status"></div>
+
+
 </section>
 <?php include "footer.php"; ?>
 

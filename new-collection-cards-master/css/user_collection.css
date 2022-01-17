@@ -1,0 +1,66 @@
+.folder-div{
+	background: #3e8d9c;
+	border-radius: 8px;
+	color: #fff;
+	cursor: pointer;
+}
+.active-folder{
+	border: 3px solid #133960;
+}
+.active-collection img{
+	filter: brightness(0.7);
+}
+.sign-in:hover{
+	transform: scale(1.2);
+	transition: .5s
+}
+.this-folder{
+	background: #133960;
+}
+.bind-card{
+	border-radius: 8px;
+}
+.card-info img{
+	width: 40px;
+}
+.plus-div{
+	text-align: end;
+    margin-right: 26px;
+}
+.card-plus-icon, .card-info-icon, .card-remove-icon{
+	position: absolute;
+	font-size: 28px !important;
+    color: #133960;
+	margin-top: 4px;
+	z-index: 2;
+    background: #ffc107;
+    border-radius: 50%;
+}
+.card-remove-icon{
+	margin-top: 60px;
+}
+.card-info-icon{
+	margin-top: 30px;
+}
+.plus i{
+	font-size: 32px;
+	color: #ffc107;
+}
+.add-img{
+	border: 2px solid #133960;
+	border-radius: 8px;
+	height: 300px;
+}
+.add-img-cont{
+	height: 250px;
+}
+#yes-delete, #no-delete{
+	background: #133960;
+	color: #fff;
+}
+#yes-delete:hover{
+	background:#3e8d9c;
+}
+#no-delete:hover{
+	background:#3e8d9c;
+}

@@ -1,0 +1,39 @@
+.custom_checklist{
+    margin:150px 0 100px 0;
+}
+ h1{
+    font-weight:bold;
+    color: #133960;
+}
+form label{
+    font-weight:bold;
+     color: #133960;
+}
+.btn_check{
+    width:150px;
+    background: #fad565;
+}
+#ard {
+    font-weight:bold;
+    color: #133960;
+}
+
+button{
+    color: #133960;
+}
+/* custom_checklist_checklist*/
+th{
+   
+    font-size:10px;
+    position:relative;
+}
+th>select{
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+
+
+   
+    

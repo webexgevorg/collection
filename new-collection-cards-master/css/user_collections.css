@@ -1,0 +1,133 @@
+.hidden{
+	height: 110px
+}
+.bg-yellow{
+	background: #fad565;;
+}
+button{
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+button:focus {
+   outline: none;
+}
+.w-22{
+	width: 22%
+}
+.w-6{
+	width: 6px;
+	height: auto;
+}
+.w-72{
+	width: 72%
+}
+.cont-left div{
+	width: 100%
+}
+.cont-left img{
+	width: 100%
+}
+.site-color{
+	color: #133960;
+}
+.star{
+	color: #fad466;
+}
+input[type='file']{
+   display: none;
+}
+.rating span{
+	font-size: 30px
+}
+.center-div{
+	background: #6ea4ae;
+	border-radius: 10px
+}
+.add-collection, .add-folder, .add-card, .all-cards{
+	border-radius: 8px
+}
+.all-cards{
+	cursor: pointer;
+}
+.img-cont{
+	border: 2px solid #133960;
+	border-radius: 8px;
+	overflow: hidden;
+}
+/* .collection-item{
+   height: 280px
+} */
+.pg-link{
+   padding: 6px 8px;
+   color: #133960;
+   font-weight: 600
+}
+.fw-600{
+	font-weight: 600
+}
+.file_label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100px;
+    height: 35px;
+    border-radius: 7px;
+    border: 1px solid rgb(19,57,96);
+    background-color: #e5e5e5;
+}
+.active-page{
+	padding: 1px 9px;
+    background: #6ea4ae;
+    border-radius: 50%;
+}
+.active-collection{
+	box-shadow: 0px 4px 4px 6px #133960;
+	border-radius: 10px;
+}
+.icon-img{
+	width: 62% !important;
+
+}
+.count-cards{
+	font-size: 22px;
+	padding: 12px;
+}
+/*-----------------------max-width: 768px------------------*/
+@media(max-width: 768px){
+	.w-22 {
+       width: 45%;
+	   margin-top: 6px;
+    }
+    .hidden{
+		display: none;
+	}
+}
+/*-----------------------max-width: 430px------------------*/
+@media(max-width: 430px){
+	.big-container{
+		display: flex;
+		flex-flow: wrap;
+	}
+	.cont-left, .cont-right{
+		width: 100% !important;
+	}
+	.center-div{
+		width: 100% !important;
+		height: 6px !important;
+		margin: 10px 0 20px !important;
+	}
+}
+
+/*-----------------------max-width: 380px------------------*/
+@media(max-width: 380px){
+	.w-22 {
+       width: 70%;
+	   margin-top: 6px;
+	   margin-right: 0 !important;
+    }
+    .rite-items{
+		justify-content: center !important;
+	}
+}

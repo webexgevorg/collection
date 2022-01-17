@@ -89,9 +89,12 @@ else{
                                 <input type="date" id="published">
                             </div> -->
                           <input type='hidden' id="this-id" value="<?= $res_row ? $row_this['id'] : '' ?>">
+                           <div class="form-group">
+                       <button   class="btn <?= $res_row ? 'updatePublication' : 'addPublication' ?> p-2" type="submit"  style="width:120px"><?= $res_row ? 'Update Publication' : 'Add Publication' ?></button>
+                    </div>
                         </form>
                         
-                        <button   class="btn btn-primary <?= $res_row ? 'updatePublication' : 'addPublication' ?> p-2" type="submit"  style="width:120px"><?= $res_row ? 'Update Publication' : 'Add Publication' ?></button>
+                    
                         <!-- <button   class="btn btn-primary  p-2 addPublication" type="submit"  style="width:120px">Add publication</button> -->
                         <p  class="m-5 text-center" id="rezult"></p>
                     </div>
