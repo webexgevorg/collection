@@ -150,7 +150,7 @@ $query=mysqli_query($con,$sql);
             <div class='mx-2 news_item'>
                 <div class='d-flex justify-content-between p-2'>
                     <div class='d-flex'>
-                    <a href='selected_publication.php?public_id=".$row['id']."' target='blank'> <button   class='p-1 item_button filter h5' >".$row['title']."</button></a>
+                    <a href='selected_publication.php?public_id=".$row['id']."' target='blank'> <button   class='p-1 created_user_name item_button filter h5' >".$row['title']."</button></a>
                     <h5 class='mx-3'>".date('d M Y',strtotime($row['published_date']))."</h5>
                     </div>
                     <span class='animate_x'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-down-fill' viewBox='0 0 16 16'>

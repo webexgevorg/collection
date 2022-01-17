@@ -13,7 +13,7 @@ include "classes/pagination.php";
 <!-- link fontawsome for like and dislike buttons -->
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
-<link rel="stylesheet" type="text/css" href="css/news.css">
+<link rel="stylesheet" type="text/css" href="css/news.css?2">
 
 <link rel="stylesheet" type="text/css" href="css/publications.css">
 <link rel="stylesheet" href="css/pagination.css">
@@ -52,10 +52,10 @@ include "classes/pagination.php";
                 <h5 class="my-2">Apply filters</h5>
                     <div id="accordion">
                     <div class="card">
-                        <select class="form-select p-4" aria-label="Default select example" style="border:none" id="period">
+                        <select class="card-header form-select p-4" aria-label="Default select example" style="border:none" id="period">
                         <div class="card-header" id="headingTwo">
-                           
-                        </div>  
+
+                        </div>
                             <optgroup label ="Period" >
                                 <option class="py-3" value="Last week" class="period">Last week</option>
                                 <option class="py-3" value="Last months" class="period">Last months</option>
@@ -65,6 +65,8 @@ include "classes/pagination.php";
                             </optgroup>
                         </select>
                     </div>
+
+
                 
                 <div class="card">
                     <div class="card-header" id="headingTwo">
@@ -129,8 +131,9 @@ include "classes/pagination.php";
                     </div>
                 </div>
     </div>
-    <button  data-attr="filter" class='my-2 py-1 px-5 item_button filter h5 filter-page' >Filter</button>
-        
+    <button  data-attr="filter" class='new_button my-2 py-1 px-5 clear_filter_button filter h5 filter-page' >Clear filter</button>
+    <button  data-attr="filter" class='new_button my-2 py-1 px-5 clear_filter_button filter h5 filter-page' >Filter</button>
+
 
 
 
@@ -142,17 +145,19 @@ include "classes/pagination.php";
 
             <div class="d-flex flex-column news_second">
                 <!-- <h1 class="mx-2">Publications</h1> -->
-                <div class="d-flex justify-content-between">
-                <div><h1 class="font-weight-bold">Publications</h1></div>
-                <div >
-                     <button  data-attr="newest" class='my-2 py-1 px-4 item_button Newest h5 filter-page'>Newest</button>
-                     <button  data-attr="oldest" class='my-2 py-1 px-4 item_button Newest h5 filter-page'>Oldest</button>
-                </div>
+                <div class="d-flex justify-content-between flex-wrap">
+                <div class="ml-3"><h1 class="font-weight-bold">Publications</h1></div>
+
             </div>
+                <div class="ml-3">
+                    <button  data-attr="newest" class='new_button my-2 py-1 px-4 item_button Newest h5 filter-page'>Newest</button>
+                    <button  data-attr="oldest" class='new_button my-2 py-1 px-4 item_button Newest h5 filter-page'>Oldest</button>
+                </div>
             <div id="news_table">
                 <div id="news">
                 
                     <?php
+
                      $sql_last_publications="SELECT*FROM publications where status=1 order by id desc limit 5";
                      $query_publish=mysqli_query($con, $sql_last_publications);
                         $sql_last_publications_pagination="SELECT*FROM publications where status=1 order by id desc";
@@ -161,7 +166,9 @@ include "classes/pagination.php";
                             $pagination->limit=5;
                             $pagination->count_rows=mysqli_num_rows($query_publish_pagination);
                         while($row = mysqli_fetch_assoc( $query_publish)){
-
+                            if($row["role"] == 1) {
+                                $user_name = "admin";
+                            }
                             $sql_like="SELECT COUNT(*) as count_like FROM rating_info WHERE post_id = $row[id] AND rating_action='like'";
                             $query_like=mysqli_query($con,$sql_like);
                             $like_row=mysqli_fetch_assoc($query_like);
@@ -213,8 +220,8 @@ include "classes/pagination.php";
                                 <div class='mx-2 news_item'>
                                     <div class='d-flex justify-content-between p-2'>
                                         <div class='d-flex flex-wrap'>
-                                        <a href="selected_publication.php?public_id=<?= $row['id']?>" target="blank"> <button   class='p-1 item_button filter h5' ><?= $row['title'] ?></button></a>
-                                         
+                                        <a href="selected_publication.php?public_id=<?= $row['id']?>" target="blank"> <button   class='p-1 created_user_name h5' ><?= $row['title'] ?></button></a>
+
                                             <h5 class='mx-3'><?= date('d M Y',strtotime($row['published_date'])) ?></h5>
                                         </div>
                                         <span class='animate_x'>
@@ -225,7 +232,9 @@ include "classes/pagination.php";
                                     </div> 
                                     <div class='p-2 block-ellipsis'>
                                         <p><?= $row['titledescription'] ?></p> 
-                                        <div class='d-flex justify-content-end align-items-center font-weight'>
+                                        <div class='d-flex justify-content-between align-items-center font-weight'>
+                                            <div>Created by: <?= $user_name ?></div>
+                                            <div>
                                         <?php
                                         // hot icon 
                                         $sql_hot_icon = "SELECT COUNT(publication_id) as hot FROM publication_viewes_count where date>NOW()-INTERVAL 3 day and publication_id='$row[id]'";
@@ -235,6 +244,7 @@ include "classes/pagination.php";
                                             echo "<img class='' src='image_publication/hot.png' >";
                                         }
                                         ?>
+
                                             
 
                                             <i class="<?=$like_class ?> like-btn ml-2" data-id='<?=  $row['id'] ?>'></i>
@@ -248,6 +258,7 @@ include "classes/pagination.php";
                                              <img class='ml-2' src='image_publication/view.png'>
                                              <span class='ml-2'><b><?=$sql_fetch_assoc['public_count']?></b></span>
                                             </div>
+                                        </div>
                                         </div>
                                     </div>   
                             <?php
@@ -403,7 +414,6 @@ $(document).ready(function(){
                     data:{filter, sport_type, producer, all_news, limit,page},
                     success:function(rezult){
                         let json=JSON.parse(rezult)
-                        // console.log(rezult)
                             $('#news').html(json.publication)
                             $('.pagination').html(json.pagination)
                     }

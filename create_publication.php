@@ -18,64 +18,8 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/checklist.css">
+<link rel="stylesheet" type="text/css" href="css/create_publication.css">
 
-<style>
-    .main{
-        width: 50%;
-        margin: 50px auto;
-    }
-    .public{
-        width: 100%;
-        height: 100px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 25px;
-        color: #495057;
-    }
-    .form-control{
-        width: 70%;
-        margin: 0 auto
-    }
-    .cen_sel{
-        width: 70%;
-        height:50px;
-        color: #495057;
-        border-color: #80bdff;
-        border-radius: 5px
-    }
-    .form-group > input{
-        height: 50px
-    }
-    .cen_sel:focus{
-        box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
-        outline:none;
-        color: #495057;
-    }
-    .form-group{
-        text-align: center;
-    }
-    .buts{
-        color: #495057;
-        background-color: #ffc10796;
-        height: 50px;
-        font-size: 17px;
-        width: 180px;
-        border-radius: 5px;
-        margin-top: 10px
-    }
-    @media (max-width: 550px){
-        .main{
-            width: 90%
-        }
-        .form-group > input{
-            width: 100%
-    }
-    .cen_sel{
-        width: 100%;
-    }
-    }
-   
-</style>
 
 </head>
 <body>

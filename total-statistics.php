@@ -42,8 +42,6 @@
                 <p class="statistics-text">Active users</p>
             </div>
 
-
-
             <?php include "Statics/total-statics.php"?>
         </div>
     </section>
@@ -118,6 +116,23 @@
         }]
     });
     chart3.render();
+
+    var chart4 = new CanvasJS.Chart("users123", {
+        theme: "light2",
+        animationEnabled: true,
+        title: {
+            text: ""
+        },
+        data: [{
+            type: "doughnut",
+            indexLabel: "{symbol} - {y}",
+            yValueFormatString: "#,##0.0\"%\"",
+            showInLegend: true,
+            legendText: "{label} : {y}",
+            dataPoints: <?php echo json_encode($checklists_array, JSON_NUMERIC_CHECK); ?>
+        }]
+    });
+    chart4.render();
 
 
  $('.canvasjs-chart-credit').addClass('d-none')

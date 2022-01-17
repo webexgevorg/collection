@@ -20,18 +20,16 @@
 
 .rel_checklist_column:nth-child(1){
     flex: 1;
-    background: #6EA4AE;
 }
 .rel_checklist_column:nth-child(2){
     margin-left: 1em;
-    background: #6EA4AE;
     flex: 3;
 }
 .checklist_flex{
     width: 80% !important;
 }
 h1{
-    color: #fff;
+    color: #133960;
 }
 .first_flex{
     width:100%
@@ -50,12 +48,11 @@ h1{
 .item1>img{
     width:90%
 }
-h3{
+.col_gold{
     color: #FAD466 !important;
-
 }
-.item>h3{
-    padding: 20px !important;
+.item>.col_gold{
+    padding: 10px 20px 20px !important;
 }
 .flag_div{
     height: 200px;

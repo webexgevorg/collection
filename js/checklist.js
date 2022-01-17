@@ -54,11 +54,34 @@ $('body').on('click', '.pg-link', function(event){
 })
 
 $("body").on("click", ".remove", function() {
-    let tr = $(this).parent().parent().remove()
+    let tr = $(this).parent().parent()
     let id = $(tr).attr("data-collId")
+    $(".notification_modal").css("display", "flex")
+    $(".notification_remove_id").val(id)
+    $("body").css("overflow", "hidden")
+    // $.post(
+    //     "Checklist-php/delete_custom.php",
+    //     {id},
+    //     function (res) {
+    //         $(".status").html(res)
+    //         console.log(res)
+    //     }
+    // )
+})
+
+$(".cancel").click(function () {
+    $(".notification_modal").css("display", "none")
+    $("body").css("overflow", "auto")
+})
+
+$(".delete_checklist").click(function () {
+    let check_id = $(".notification_remove_id").val()
+    $(".notification_modal").css("display", "none")
+    $("body").css("overflow", "auto")
+    $(".search_from_table").find("[data-collId ='" + check_id + "']").remove()
     $.post(
         "Checklist-php/delete_custom.php",
-        {id},
+        {check_id},
         function (res) {
             $(".status").html(res)
             console.log(res)
