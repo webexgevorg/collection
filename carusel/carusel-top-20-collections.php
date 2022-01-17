@@ -1,5 +1,5 @@
 <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="top-collections">
+    <section id="testimonials" class="top-collections" style="background: white">
 <h2 class="text-center text-uppercase">top 20 collections</h2>
 
       <div class="container">
@@ -8,7 +8,7 @@
 
           <div class="testimonial-item">
           <div class="row-d" >
-                <div class="collect-card carusel-card">
+                <div class="collect-card carusel-card color1">
                 <div class="img-card">
                     <img src="images/11.png">
                 </div>
@@ -39,7 +39,7 @@
 
           <div class="testimonial-item">
           <div class="row-d">
-                <div class="collect-card carusel-card">
+                <div class="collect-card carusel-card color1">
             <div class="img-card">
                     <img src="images/22.png"> 
                 </div>
@@ -69,7 +69,7 @@
 
           <div class="testimonial-item">
           <div class="row-d">
-                <div class="collect-card carusel-card">
+                <div class="collect-card carusel-card color1">
             <div class="img-card">
                     <img src="images/33.png"> 
                 </div>
@@ -99,7 +99,7 @@
 
           <div class="testimonial-item">
           <div class=" row-d">
-                <div class="collect-card carusel-card">
+                <div class="collect-card carusel-card color1">
             <div class="img-card">
                     <img src="images/44.png"> 
                 </div>
@@ -130,7 +130,7 @@
 
           <div class="testimonial-item">
           <div class="row-d">
-                <div class="collect-card carusel-card">
+                <div class="collect-card carusel-card color1">
             <div class="img-card">
                     <img src="images/44.png"> 
                 </div>

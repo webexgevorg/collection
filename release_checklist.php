@@ -35,14 +35,18 @@ if ($qanak1) {
             <div class="d-flex flex-column  align-items-end rel_checklist_column">
                 <div class="column_first">
                     <div class="item" id="first_item">
-                        <img src="images_rel_checklist/Заливка цветом 4.png"/>
+<!--                        <img src="images_rel_checklist/Заливка цветом 4.png"/>-->
+                        <p class="h4">Releases</p>
+
 <!-- collections row  count -->
-                        <h3 id="k"> <?= $k;?> </h3>
+                        <p class="h4 col_gold" id="k"> <?= $k;?> </p>
                     </div>
                     <div class="item" id="second_item">
-                        <img class="img-responsive" src="images_rel_checklist/Заливка цветом 5 копия.png"/>
+<!--                     <img class="img-responsive" src="images_rel_checklist/Заливка цветом 5 копия.png"/>-->
+                        <p class="h4">Checklists</p>
+
                         <!-------- base_checklist row  count -------------------->
-                        <h3> <?= $t;?> </h3>
+                        <p class="h4 col_gold"> <?= $t;?> </p>
                     </div>
 
                 </div>
@@ -98,7 +102,7 @@ $(document).on('dblclick','.item1',function(){
     for($i=0;$i<$item;$i++){
         $item_block[$i].onclick=function(){
             $(this).css('background','grey')
-            $(this).siblings().css('background','#6EA4AE')
+            $(this).siblings().css('background','white')
 
             var sports= $(this).find('h3').text()
                     $.ajax({

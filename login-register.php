@@ -170,7 +170,7 @@ $msg = '';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar inp8" aria-hidden="true"></i></i></span>
                                 </div>
-                                <input type="date" name="date" class="form-control place_inp" id="bday" >
+                                <input type="date" name="date" style="color: #6ea4ae" class="form-control place_inp" id="bday" >
                             </div>
                             <br>
 						</form>

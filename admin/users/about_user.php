@@ -180,7 +180,14 @@
             $card_content = "";
             $cards_qty = mysqli_num_rows($result_card);
 
+            $select_publication = "select count(id) as count, sport_type from custom_checklist where cid = $id Group By sport_type";
+            $result_publication = mysqli_query($con, $select_publication);
+            $publication_content = "";
+            $publication_qty = mysqli_num_rows($result_publication);
 
+        while($row_publication = mysqli_fetch_assoc($result_publication)) {
+                $publication_total += $row_publication["count"];
+                $publication_content .= "<p><span>" . $row_publication["sport_type"] . "</span><span> Cards - </span><span>" . $row_publication['count'] . "</span></p>";
             }
 
             $select_publication = "select count(id) as count, sport_type from custom_checklist where cid = $id Group By sport_type";
@@ -192,6 +199,7 @@
                 $publication_total += $row_publication["count"];
                 $publication_content .= "<p><span>" . $row_publication["sport_type"] . "</span><span> Cards - </span><span>" . $row_publication['count'] . "</span></p>";
             }
+
 
 
 
