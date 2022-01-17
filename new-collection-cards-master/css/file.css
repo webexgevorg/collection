@@ -1,0 +1,99 @@
+.file{
+	margin-top: 150px;
+	margin-bottom: 100px; 
+}
+.img-icon {
+    width: 50px;
+}
+.bord{
+    margin: auto;
+    text-align: center;
+    border: 1px solid #6ea4ae;
+    padding: 5px;
+}
+.icon-text{
+	color: #133960;
+}
+.col-md-5.p-0{
+	margin: 10px;
+}
+.bord:hover{
+	cursor:pointer;
+	box-shadow: 0px 0px 7px 0px black;
+}
+.bord2{
+	border:1px solid #6ea4ae;
+	padding: 10px;
+}
+.bord-dotted{
+	border:3px dotted #6ea4ae;
+	padding: 0;
+	height: 100%;
+}
+/* styles de base si JS est activé */
+.js .input-file-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+}
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #fff;
+  color: #133960;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  height: 100%;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  padding: 14px 0;
+  opacity: 0;
+  cursor: pointer;
+}
+ 
+/* quelques styles d'interactions */
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: gray;
+  text-decoration:none !important;
+}
+ 
+/* styles du retour visuel */
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+
+.credit
+{
+  border: 1px solid #ddd;
+  padding : 2px;
+  width: 410px;
+  background: #eee;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+}
+.img_upload {
+    width: 70px;
+}
+.upload_div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

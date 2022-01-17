@@ -1,0 +1,23 @@
+body{
+	background: url('../images/bg-img.jpg');
+}
+.cont-right, .cont-left{
+	background: #fff;
+	border: 2px solid #3e8d9c;
+}
+.active-template{
+	box-shadow: 0px 4px 4px 6px #133960;
+	border-radius: 10px;
+	height: max-content;
+}
+.delete-template{
+	cursor: pointer;
+	text-align: end;
+	margin-right: 26px;
+}
+.delete-template i{
+	position: absolute;
+	font-size: 24px;
+	color: #133960;
+	margin-top: 4px;
+}

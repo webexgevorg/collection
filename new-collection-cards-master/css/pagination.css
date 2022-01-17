@@ -1,0 +1,11 @@
+.page-item, .prev_item, .next_item{
+    border-radius: 50%;
+    background: #6ea4ae;
+    font-size: 20px;
+    padding: 1px 10px;
+    margin: 0 4px;
+}
+.active-page{
+    background: #133960;
+    color: #fff;
+}

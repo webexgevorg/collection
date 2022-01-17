@@ -1,0 +1,48 @@
+thead input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+thead {
+    background: #6ea4ae;
+    font-size: 14px !important;
+    text-align: center;
+}
+tr{
+    border-right: 1px solid #6ea4ae;
+}
+td::after{
+    display: none !important;
+}
+td::before{
+    display: none !important;
+}
+#example{
+    margin: 20px 0;
+}
+.page-link {
+    padding: 0.4rem .75rem;
+    border-radius: 50%;
+    margin-left: -1px;
+    color: rgb(19,57,96);
+    border: none !important;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: rgb(19,57,96);
+    background-color: #6ea4ae;
+    border-color: #6ea4ae;
+}
+.bind{
+    border-radius: 8px;
+    background: #6ea4ae;
+    color: rgb(19,57,96);
+    outline: none;
+}
+.bind:hover{
+    background: rgb(19,57,96);
+    color: #6ea4ae;
+}
+#example_info, #example_paginate{
+    margin-bottom: 20px;
+}

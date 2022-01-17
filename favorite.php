@@ -13,6 +13,7 @@ if(!empty($_POST['checklist_type']) && !empty($_POST['checklist_id'])){
             $user_id=$_SESSION['user'];
         }
     }
+
     
     if(isset($user_id)){
         $sql_fvorite="SELECT id FROM favorite_checklists WHERE user_id=$user_id and checklist_id=$checklist_id and checklist_type='$checklist_type'";
@@ -60,4 +61,15 @@ else{
     echo 0;
 }
 
+?>
+<?php
+    if(isset($_GET["public"])) {
+        $status = 1;
+        $buttons = '<a class="def_passive" href="Custom-checklist.php?private">Privite<a class="def_active" href="Custom-checklist.php?public">Public</a>';
+    }else if(isset($_GET["private"])) {
+        $status = 0;
+        $buttons = '<a class="def_active" href="Custom-checklist.php?private">Privite</a><a class="def_passive" href="Custom-checklist.php?public">Public</a>';
+    }
+
+    $_SESSION["def_custom_name_status"]=$status;
 ?>

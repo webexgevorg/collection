@@ -27,6 +27,9 @@
 .icon_logo{
     height: 100px
 }
+.part2 {
+    padding: 20px 0 !important;
+}
 .circle_img{
     width: 80px;
     height: 80px;
@@ -58,9 +61,21 @@
     width: 300px;
     height: auto;
     border: 1px solid #2d5a7a;
-    margin: 0 20px;
+    margin: 10px 20px;
     border-radius: 10px;
 
+}
+.users_achivment {
+    width: 30px;
+    margin-left: 5px;
+    display: flex;
+}
+.add_achivment {
+    display: flex;
+}
+.users_achivment img {
+    width: 100%;
+    cursor: pointer;
 }
 .exp_div{
     width: 100%;
@@ -101,6 +116,12 @@
     .exp_div > p {
         font-size: 13px;
         padding-top: 10px
+    }
+
+    .ic_des{
+        width: 100%;
+        height: 100px;
+        text-align: center
     }
 
 }

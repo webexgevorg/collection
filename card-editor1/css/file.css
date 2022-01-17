@@ -100,7 +100,7 @@
 .img_upload {
     width: 70px;
 }
-.upload_div {
+.upload_div {''
     position: absolute;
     top: 50%;
     left: 50%;

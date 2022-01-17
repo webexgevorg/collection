@@ -1,0 +1,154 @@
+/*.first_prof{*/
+/*    !*height:350px;*!*/
+/*    border:1px solid red*/
+/*}*/
+/*.first_prof>div{*/
+/*    border:1px solid blue*/
+/*}*/
+
+.k1{
+    /*height:350px;*/
+    width:25%;
+}
+.k2{
+    width:40%;
+}
+.k3{
+    /*height:350px;*/
+    width:25%;
+}
+.icon{
+    width:30%;
+    height:300px;
+    /*border:2px solid;*/
+}
+.div_icon{
+    width: 112px;
+
+}
+
+/*nerqevi diver*/
+*{
+    margin:0;
+    padding:0
+}
+.container_profile{
+    padding:0 !important;
+    margin-bottom:100px;
+}
+.cards{
+    width:100%;
+    display:flex;
+    margin:10px 0;
+
+
+}
+
+
+.cards>div{
+
+    flex-basis: 100%;
+    background:rgba(110,164,174,1);
+    border-radius:10px;
+    height:320px;
+    position:relative;
+}
+
+.cards>div:not(:first-child){
+    margin-left: 15px;
+}
+.cards img{
+    position:absolute;
+    top:30px;
+    left:50%;
+    transform:translate(-50%, 0)
+}
+
+.cards h5{
+    margin-top:270px;
+    text-align:center;
+    color:#fff !important;
+    text-transform: uppercase;
+}
+.add{
+    outline: none !important;
+}
+.change-profile, .send-message {
+    border-radius: 8px;
+    background: #fad565;
+    font-size: 15px;
+    border: none;
+    outline: none !important;
+    margin-top: 10px;
+}
+@media only screen and (max-width:1000px){
+    .cards{
+        flex-wrap:wrap;
+        justify-content: space-around;
+    }
+
+    .cards>div{
+        flex-basis:45%;
+        margin:10px;
+    }
+}
+@media only screen and (max-width:950px){
+    .container_profile{
+        margin-top:15px !important;
+    }
+  .cards{
+        flex-wrap:wrap;
+        justify-content: space-around;
+    }
+
+    .cards>div{
+        flex-basis:40%;
+        margin:20px;
+    }
+    /*.k1{*/
+    /*    flex-wrap:wrap;*/
+    /*   width:45%*/
+    /*}*/
+}
+@media only screen and (max-width:769px){
+    .first_prof{
+
+
+        justify-content: space-evenly !important;
+    }
+    .k1,.k2{
+        flex-basis:45% !important;
+
+    }
+    .k3{
+        flex-basis:100% !important;
+    }
+.icon{
+    flex-direction:row !important;
+    width:100%;
+    height:unset;
+}
+.div_icon{
+    flex-direction:column !important;
+    justify-content: center !important;
+
+}
+
+
+}
+
+@media only screen and (max-width:510px) {
+    .cards>div{
+        flex-basis:80%;
+        margin:20px;
+    }
+}
+@media only screen and (max-width:426px) {
+    .k1,.k2{
+        flex-basis:100% !important;
+        justify-content:center !important;
+    }
+    .k2{
+        padding:10px;
+    }
+}

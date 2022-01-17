@@ -11,6 +11,9 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         $user_id=$_SESSION['user'];
     }   
 }
+
+$status = $_SESSION["def_custom_name_status"];
+
 if(isset($_POST['page'])){
     $content='';
     $product=$_SESSION['product'];
@@ -61,8 +64,9 @@ if(isset($_POST['page'])){
             echo $content;
         }
     }
-    else if($_POST["table_name"] == "custom_name_checklist") {      
-        $conditions=array('user_id' => $user_id);
+    else if($_POST["table_name"] == "custom_name_checklist") {
+        echo "status = " . $status;
+        $conditions=array('user_id' => $user_id, "status" => $status, "delete_status" => 1);
         $table=$tables->Table($con, $conditions);
         $count = $tables->start;
         if($table){
