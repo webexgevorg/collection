@@ -1,0 +1,17 @@
+.custom_checklist_name{
+    margin-top:126px;
+    height:auto;
+
+}
+#plag  a{
+    display:inline-block;
+    padding:10px;
+    background:blue;
+    border-radius:50%;
+    margin:5px;
+}
+footer{
+    bottom:0;
+}
+
+display:inline-block;padding:10px;background:blue;border-radius:50%;margin:5px;

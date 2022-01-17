@@ -124,7 +124,7 @@ $msg = '';
 			 		</div>
 			 		<div class="divpad">
 			 			<form action=''>
-				 			<p class="parag-log mt-4">Let's get you in board</p>
+				 			<p class="parag-log mt-2">Let's get you in board</p>
 				 			<div class="input-group dvlog">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-user inp7" aria-hidden="true"></i></span>

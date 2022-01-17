@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.dvbtn{
+    text-align: right; 
+    margin-right: 31px;
+    position: absolute;
+    right: 0;
+    top: 150px;
+}
+.log-in{ 
+    width: 180px;
+    height: 40px;
+    border-radius: 9px;
+    background: #fad565;
+    padding: 8px;
+    font-size: 15px;
+    border: 1px solid #fad565;
+}
+.add{
+    background: #fad565;
+}
+.discdiv{
+    margin: 42px auto 20px;
+    /*width: 88%;
+    height: 200px;*/
+    text-align: center;
+}
+.collect{
+   font-family: "Tahoma Regular", serif !important;
+    font-size: 26px;
+    color: #c90e36;
+    margin-top: 11px;
+    font-weight: 700;
+}
+@media (max-width: 600px){
+    .dvbtn{
+    margin-left: 10px;
+    margin-top: 10px;   
+    }
+    .discdiv{
+        margin-left: 10px
+    }
+}
+@media (max-width: 375px){
+    .collect{
+        font-size: 41px;
+    }
+}
+@media (max-width: 320px){
+    .collect{
+        font-size: 35px;
+    }
+}
