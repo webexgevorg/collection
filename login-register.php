@@ -78,7 +78,7 @@ $msg = '';
 			 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
 			 	<div class="login">
 			 		<div class="header-log">
-			 			<p class="first-par">LOG IN</p>
+			 			<p class="first-par text-center">LOG IN</p>
 			 		</div>
 			 		<div class="divpad">
 			 		   
@@ -170,7 +170,7 @@ $msg = '';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar inp8" aria-hidden="true"></i></i></span>
                                 </div>
-                                <input type="date" name="date" style="color: #6ea4ae" class="form-control place_inp" id="bday" >
+                                <input type="date" name="date" class="form-control place_inp" id="bday" style="color: #6ea4ae">
                             </div>
                             <br>
 						</form>

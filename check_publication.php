@@ -90,6 +90,9 @@ $query=mysqli_query($con,$sql);
             $sql_like="SELECT COUNT(*) as count_like FROM rating_info WHERE post_id = $row[id] AND rating_action='like'";
             $query_like=mysqli_query($con,$sql_like);
             $like_row=mysqli_fetch_assoc($query_like);
+            if($row["role"] == 1) {
+                $user_name = "Admin";
+            }
             if($user_id){
              
                 $sql_user_like="SELECT * FROM rating_info WHERE post_id = $row[id] AND user_id=$user_id and rating_action='like'";
@@ -150,7 +153,7 @@ $query=mysqli_query($con,$sql);
             <div class='mx-2 news_item'>
                 <div class='d-flex justify-content-between p-2'>
                     <div class='d-flex'>
-                    <a href='selected_publication.php?public_id=".$row['id']."' target='blank'> <button   class='p-1 created_user_name item_button filter h5' >".$row['title']."</button></a>
+                    <a href='selected_publication.php?public_id=".$row['id']."' target='blank'> <button   class='p-1 created_user_name h5' >".$row['title']."</button></a>
                     <h5 class='mx-3'>".date('d M Y',strtotime($row['published_date']))."</h5>
                     </div>
                     <span class='animate_x'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-down-fill' viewBox='0 0 16 16'>
@@ -159,8 +162,9 @@ $query=mysqli_query($con,$sql);
                 </div> 
                 <div class='p-2 block-ellipsis' >
                     <p>".$row['titledescription']." </p>
-                    <div class='d-flex justify-content-end align-items-center font-weight'>
-                
+                    <div class='d-flex justify-content-between align-items-center font-weight'>
+                <div>Created by: $user_name </div>
+                <div>
                    ".$hot_icon."
                     <i class='".$like_class." like-btn ml-2' data-id='".$row['id']."'></i>
                     
@@ -172,6 +176,7 @@ $query=mysqli_query($con,$sql);
                     
                      <img class='ml-2' src='image_publication/view.png'>
                      <span class='ml-2'><b>".$sql_fetch_assoc['public_count']."</b></span>
+                     </div>
                     </div>
                 </div>
                 </div>   

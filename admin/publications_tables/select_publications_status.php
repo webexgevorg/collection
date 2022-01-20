@@ -1,28 +1,28 @@
 <?php
 $status_array=array('0' => 'Unpublished', '1' => 'Publishing');
 if(isset($_POST['sel-publications-status'])){
-    $option = "";
-		$_SESSION['status_publications']=$_POST['sel-publications-status'];
 		
-		if(isset($_SESSION['status_publications'])){
+		$_SESSION['status']=$_POST['sel-publications-status'];
+		
+		if(isset($_SESSION['status'])){
 			foreach ($status_array as $key => $value) {
-				if($_SESSION['status_publications']==$key){
-                   $option .= "<option value='$key' name='aa' selected>$value</option>";
+				if($_SESSION['status']==$key){
+                   echo "<option value='$key' name='aa' selected>$value</option>";
 				}
 				else{
-                   $option .= "<option value='$key' name='aa'>$value</option>";
+					echo "<option value='$key' name='aa'>$value</option>";
 				}
 			}
 		}
 }
 else{
-	if(isset($_SESSION['status_publications'])){
+	if(isset($_SESSION['status'])){
 			foreach ($status_array as $key => $value) {
-				if($_SESSION['status_publications']==$key){
-                    $option .= "<option value='$key'  selected>$value</option>";
+				if($_SESSION['status']==$key){
+                   echo "<option value='$key'  selected>$value</option>";
 				}
 				else{
-                    $option .= "<option value='$key' >$value</option>";
+					echo "<option value='$key' >$value</option>";
 				}
 			}
 		}

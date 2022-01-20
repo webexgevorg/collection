@@ -25,12 +25,12 @@ class Search{
         if(!empty($conditions) && is_array($conditions)){
             $i = 0;
             foreach($conditions as $key => $value){
-                $pre = ($i > 0) ? ' OR ' : ' AND ';
+                $pre = ($i > 0) ? ' OR ' : ' AND ( ';
                 $sql .= $pre. $key." LIKE '". str_replace(' ','%',$search_value). "%'";
                 $i++;
             }
             
-            $sql.=' ORDER BY id ASC ';
+            $sql.=' ) ORDER BY id ASC ';
         }
 
         return $sql;
@@ -50,16 +50,16 @@ class Search{
         if(!empty($likes) && is_array($likes) && !empty($search_value)){
             $i = 0;
             foreach($likes as $key => $value){
-                $pre = ($i > 0) ? ' OR ' : ' AND ';
+                $pre = ($i > 0) ? ' OR ' : ' AND ( ';
                 $sql .= $pre. $key." LIKE '". str_replace(' ','%',$search_value). "%'";
                 $i++;
             }
-
-
+            $sql.=' )';
+            
         }
         $sql.=' ORDER BY id ASC ';
         return $sql;
-    }
+	}
 }
        
 ?>

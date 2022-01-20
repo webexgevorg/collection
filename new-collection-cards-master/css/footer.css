@@ -1,0 +1,81 @@
+#footer{
+    background: #133960;
+    color: #fff;
+}
+.row-div{
+    margin-top: 60px;
+}
+.row-div p:first-child, .social-p{
+    font-size: 22px;
+}
+.row-div p:last-child{
+    font-size: 12px;
+}
+.social-div{
+    width: 35px;
+    height: 35px;
+    margin: 6px;
+    color: #133960;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    font-size: 24px;
+}
+#i-facebook{
+    margin: 13px;
+}
+.i-telegram{
+    color: #133960;
+}
+.social-center{
+    margin: 0 auto;
+    width: 67%;
+}
+.social-button{
+    width: 180px;
+    height: 36px;
+    border:none;
+    margin-top: 30px;
+    outline: none;
+    background: #fad565;
+    border-radius: 5px;
+    font-size: 15px !important;
+    cursor: pointer;
+}
+#under-footer{
+    background: rgb(110,164,174);
+    padding: 16px 0;
+    color: #133960;
+}
+#under-footer p{
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+#year{
+    font-size: 12px;
+}
+/*--------------modal--------------------*/
+.modal-header{
+    background: #133960;
+}
+.modal-header h5{
+    color: #fff !important;
+}
+.modal-body{
+    padding: 30px 60px !important;
+}
+.modal-body input{
+    border: 1px solid #6ea4ae;
+}
+.close span{
+    color: #fff;
+}
+.subscribe{
+    width: 100%;
+    background: #fad565;
+}
+.result{
+    text-align: center;
+    padding-top: 14px;
+}

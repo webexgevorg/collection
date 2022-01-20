@@ -15,8 +15,10 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
    
 }
 
-
 ?>
+
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/my_checklist.css">
@@ -29,6 +31,13 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
 <section class="section1 mt-5">
     <div class="my-5 container" style="min-height: 211px">
         <h2 class="text-center mb-5 font">FAVORITE CHECKLISTS</h2>
+         <div class="add_button">
+            <div class="define">
+                <a class="def_active" href="#">Collectors</a>
+                <a class="def_passive" href="#">Collections</a>
+                <a class="def_passive" href="#">Cards</a>
+            </div>
+        </div>
         <div class="w-100 cards mb-5 " >
         <?php   
         $sql="SELECT * FROM favorite_checklists where user_id=$user_id";

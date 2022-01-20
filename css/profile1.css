@@ -7,20 +7,17 @@
 /*}*/
 
 .k1{
-    /*height:350px;*/
     width:25%;
 }
+
 .k2{
     width:40%;
 }
 .k3{
-    /*height:350px;*/
     width:25%;
 }
 .icon{
-    width:30%;
-    height:300px;
-    /*border:2px solid;*/
+    width:100%;
 }
 .div_icon{
     width: 112px;
@@ -42,6 +39,23 @@
     margin:10px 0;
 
 
+}
+.ic_des{
+    width: 60px;
+    text-align: center;
+    padding-top: 10px;
+}
+.ic_des > img{
+    width: 80%;
+}
+.ach_img{
+    width: 60px;
+    height: 70px;
+}
+.my_ach{
+    font-size: 20px;
+    font-weight: bold;
+    color: #2d5a7a;
 }
 
 
@@ -124,7 +138,7 @@
         flex-basis:100% !important;
     }
 .icon{
-    flex-direction:row !important;
+    /* flex-direction:row !important; */
     width:100%;
     height:unset;
 }

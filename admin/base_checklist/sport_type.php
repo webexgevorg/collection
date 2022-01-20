@@ -19,7 +19,7 @@
                                         <!--        Here you can write extra buttons/actions for the toolbar              -->
                                     </div>
                                     <div class="fresh-datatables">
-                                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                             <thead>
                                                 <tr>
                                                      <th>#</th>
@@ -70,6 +70,14 @@
                                     include "../footer.php";
                                     ?>
     <script src="../my_js/sport_type.js"></script>
+    <script>
+        $(function(){
+            $('#datatables_info').parent().remove()
+            $('#datatables_length').remove()
+            $('.pagination').remove()
+            $('#datatables_filter').remove()
+        })
+    </script>
     
 </body>
 </html>

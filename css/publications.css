@@ -5,3 +5,9 @@
     border:1px solid red !important;
 
 }
+.add_publication{
+    background: #FAD565;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@font-face {
+    font-family: "Tahoma Regular";
+    src: url("../fonts/911Fonts.com_TahomaRegular__-_911fonts.com_fonts_ADPX.ttf") format("ttf");
+  }
+.divimg{
+    position: relative;
+    width: 30px;
+    height: 26px;
+}
+
+.row-collection {
+    padding-bottom: 60px;
+}
+.fab {
+    font-family: "Font Awesome 5 Brands";
+}
+.personalSection{
+    margin-bottom: 70px;
+}
+.add{
+    width: 80px;
+    height: 30px;
+    border-radius: 9px;
+    background: #fad565;
+    font-size: 15px;
+    border: 1px solid #fad565;
+    margin-top: 10px;
+}
+.userdiv{
+    display: inline-block;
+    width: 42px;
+    height: 29px;
+}
+.userRow{
+    margin-top: 35px;
+}
+.logout{
+    margin-left:21px;
+}
+.logout > a{
+    color: white;
+}
+.description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.del{
+    position: absolute;
+    left: 83%;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: grey;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    top: 7px;
+
+}
+.hr {
+    padding: 8px 20px;
+    float: right;
+    width: max-content;
+    background: #fad565;
+    border-radius: 5px;
+}
+.user{
+    width: 32px;
+    height: 32px;
+    border-radius:50%;
+}
+.disc{   
+    width: 30px; 
+    position: absolute;
+}
+.oxak{
+    position: absolute;
+    width: 27px;
+    left: 1px;
+    top: 1px;
+}
+.discdiv > img{
+   width: 150px;
+    height: 150px;
+}
+.divspan{
+    position: absolute;
+    font-size: 8px;
+    left: 20px;
+    top: 5px;
+}
+.register{
+    color: white;
+}
+.register:hover{
+    text-decoration: none;
+    color: white;
+}
+@media (max-width: 1000px){
+    .dvbtn{
+       text-align: left; 
+    }
+}
+
+
+
+
+

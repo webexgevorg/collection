@@ -15,7 +15,7 @@ require_once "user-logedin.php";
 <link rel="stylesheet" type="text/css" href="css/navbar-body.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/profile1.css">
+<link rel="stylesheet" type="text/css" href="css/profile1.css?7">
 <!--<link rel="stylesheet" href="css/profile.css">-->
 </head>
 <body>
@@ -79,29 +79,60 @@ $row3 = mysqli_num_rows($res3);
                 <p class="parag-log">Birth Day <?= $ard['birth_day'] ?> (<?= $result_years["years"]  ?> years) </p>
                 <button class="add" data-toggle="modal" data-target="#exampleModall">Edit</button>
             </div>
-            <div class="d-flex flex-column align-items-center k3">
-                <h4 class="text-center">My Achievements</h4>
-                <div class="d-flex flex-column  justify-content-around  icon">
-
-                    <div class="d-flex p-1 align-items-center justify-content-between div_icon">
-                        <img  src="profile_image/Заливка цветом 1.png">
-                        <h5>15</h5>
+            <div class="d-flex flex-column k3">
+                <div>
+                    <div>
+                        <p class="my_ach">My Achievements</p>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between div_icon">
-                        <img  src="profile_image/Заливка цветом 2.png">
-                        <h5>2345</h5>
+                    <div class="d-flex flex-wrap icon">
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1078.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1077.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1076.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1075.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1079.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1072.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1073.png" alt="">
+                        </div>
+                        <div class="ach_img">
+                            <img src="profile_achivments_icons/Group 1074.png" alt="">
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between div_icon">
-                        <img  src="profile_image/Заливка цветом 3.png">
-                        <h5>23</h5>
+                </div>
+                <div class = "img_p d-flex flex-wrap mt-4">
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/football.png" alt="">
                     </div>
-                    <div class="d-flex align-items-center justify-content-between div_icon">
-                        <img  class='m-1'src="profile_image/Заливка цветом 4.png">
-                        <h5>30</h5>
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/hockey.png" alt="">
                     </div>
-
-
-
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/soccer.png" alt="">
+                    </div>
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/baseball.png" alt="">
+                    </div>
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/basketball.png" alt="">
+                    </div>
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/autosport.png" alt="">
+                    </div>
+                    <div class = "ic_des">
+                        <img src="admin/sport_icons/wwe.png" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -110,14 +141,14 @@ $row3 = mysqli_num_rows($res3);
         <div class="cards" style="margin-top:70px">
             <div><a href="release_checklist.php"> <img src="images_users/user-icon.svg" class="img-responsive user w-100 h-50" ><h5>Profile</h5></a></div>
             <div><img src="profile_image/Заливка цветом 7 копия.png"><h5>followers</h5></div>
-            <div><img src="profile_image/Заливка цветом 8 копия 2.png"><h5>my search</h5></div>
+            <div><img src="profile_image/my_search.png"><h5>my search</h5></div>
 
             <div><img src="profile_image/Заливка цветом 9.png"><h5>post service</h5></div>
         </div>
         <div class="cards">
             <div><a href='user-collections.php'> <img src="profile_image/Заливка цветом 8.png"><h5>my collections</h5></a></div>
             <div><a href="my_checklist.php"><img src="profile_image/Заливка цветом 8 копия.png"><h5>MY CHECKLISTS</h5></a></div>
-            <div><img src="profile_image/Заливка цветом 8 копия 2.png"><h5>Search Engine</h5></div>
+            <div><img src="profile_image/search_engine .png"><h5>Search Engine</h5></div>
             <div><img src="profile_image/Заливка цветом 8 копия 3.png"><h5>my templates</h5></div>
         </div>
 </div>

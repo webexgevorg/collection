@@ -25,7 +25,7 @@ while($row = mysqli_fetch_assoc($query_news)){
                 <div class='d-flex  justify-content-around align-items-center  news_item_title'  style='height:80px'>
                     <div class='mx-2'><img src='admin/news/uploads/".$row['img1']."' class='img-fluid' style='height:100%;width:100%'></div>
                    
-                    <a href='spacialnews.php?news_id=".$row['id']."' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'>".$row['title']."</a>
+                    <a href='spacialnews.php?news_id=".$row['id']."' target='_blank' color='#6ea4ae' class='created_user_name font-weight-bold h2'>".$row['title']."</a>
                 </div>
                 <span  class='mx-3 font-weight-bold span_data'>".date('d M Y',strtotime($row['published_date']))."</span>
             </div>

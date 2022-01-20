@@ -15,7 +15,6 @@ if(isset($_POST['page'])){
     }
 }
 
-
  $sql = "SELECT *FROM news WHERE status=1 ";
     if(isset($_POST['period'])){
         $period=$_POST['period'];
@@ -88,7 +87,9 @@ if(isset($_POST['page'])){
                                 <div class='d-flex  flex-wrap justify-content-between align-items-center my-2'>
                                     <div class='d-flex  justify-content-around align-items-center  news_item_title'  style='height:80px'>
                                         <div class='mx-1'><img src='admin/news/uploads/".$row['img1']."' class='img-fluid' style='height:100%;width:100%'></div> 
-                                        <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'><button   class='my-2 p-1  item_button  h5'>".$row['title']."</button></a>
+                                        <a href='spacialnews.php?news_id=$row[id]' target='_blank' color='#6ea4ae' class='font-weight-bold h2 news_title'>
+                                          <button   class='my-2 p-1 created_user_name h5'>".$row['title']."</button>
+                                        </a>
                                     </div>
                                     <span  class='mx-3'>".date('d M Y',strtotime($row['published_date']))."</span>
                                 </div>

@@ -27,10 +27,10 @@
                      if($total_pages>10){
                         $disabled_prev= $this->page <= 1 ? 'btn disabled' : '';
                         $disabled_next=$this->page >= $total_pages ? 'btn disabled' : '';
-                        $prev=  "<li class=' prev_item'>
+                        $prev=  "<li class=' prev_item previous'>
                                     <a class='pg-link $disabled_prev' href='' data-value='".($this->page-1)."'>Prev</a>
                                 </li>";
-                        $next="<li class=' next_item'>
+                        $next="<li class=' next_item next'>
                                     <a class='pg-link  $disabled_next' href='' data-value='".($this->page + 1)."'>Next</a>
                                 </li>";
                         if( $i<10 && $this->page<9 ){

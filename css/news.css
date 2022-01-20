@@ -61,12 +61,12 @@
   
 }
 .span_data{
-    color:#6ea4ae !important;
+    color:#133960 !important;
 }
 .news_item_title>div{
     width:70px;
     height:70px;
-    border-radius:10px;
+    border-radius:50%;
     overflow:hidden;
     /* border:1px solid blue */
 }
@@ -81,7 +81,7 @@
     background: #F2F2F2;
     border-radius:5px;
     color:#818181;
-    font-weight:bolder
+    /* font-weight:bolder */
 }
 select{
     border:none
@@ -105,8 +105,27 @@ select{
     .spacialnews{
         height:auto !important;
     }
+    .card{
+        border: none
+    }
     .card-header{
         background-color: unset !important;
+        padding-left: 0 !important;
+    }
+    .card-header button{
+        color: #000;
+        padding-left: 0 !important;
+    }
+    .card-header button:hover{
+        color: #000;
+        text-decoration: none;
+    }
+    .card-header button:focus{
+        color: #000;
+        text-decoration: none;
+    }
+    .card-body{
+        border-top: 1px solid;
     }
    
     .form-select{

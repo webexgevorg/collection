@@ -23,6 +23,7 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         $status = 0;
         $buttons = '<a class="def_active" href="Custom-checklist.php?private">Privite</a><a class="def_passive" href="Custom-checklist.php?public">Public</a>';
     }
+    else{}
 
     $_SESSION["def_custom_name_status"]=$status;
 ?>

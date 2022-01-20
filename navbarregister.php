@@ -223,9 +223,9 @@ $img = $navbarimg['image'];
             Users
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li class='dropdown-item main-a'><a href="/search-users.php">Group1</a></li>
-            <li class='dropdown-item main-a'><a href="/search-users.php">Group2</a></li>
-            <li class='dropdown-item main-a'><a href="/search-users.php">Group3</a></li>
+            <li class='dropdown-item main-a'><a href="./search-users.php">Group1</a></li>
+            <li class='dropdown-item main-a'><a href="./search-users.php">Group2</a></li>
+            <li class='dropdown-item main-a'><a href="./search-users.php">Group3</a></li>
         </ul>
     </li>
 

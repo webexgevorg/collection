@@ -11,9 +11,6 @@ if(isset($_COOKIE['user']) || isset($_SESSION['user'])){
         $user_id=$_SESSION['user'];
     }   
 }
-
-$status = $_SESSION["def_custom_name_status"];
-
 if(isset($_POST['page'])){
     $content='';
     $product=$_SESSION['product'];
@@ -64,20 +61,21 @@ if(isset($_POST['page'])){
             echo $content;
         }
     }
-    else if($_POST["table_name"] == "custom_name_checklist") {
-        echo "status = " . $status;
-        $conditions=array('user_id' => $user_id, "status" => $status, "delete_status" => 1);
+    else if($_POST["table_name"] == "custom_name_checklist") {      
+        $conditions=array('user_id' => $user_id);
         $table=$tables->Table($con, $conditions);
         $count = $tables->start;
         if($table){
+            
             while($row=mysqli_fetch_assoc($table)){
+                
                     $count++;
                     $content .= "<tr data-collId='".$row['id']."' class='tr_checklist'>
                         <td>".$count."</td>
                         <td class='info'>".$row['name_of_checklist']."</td>
                         <td class='icons'>
                             <i class='fa fa-edit'></i>
-                            <i class='fa fa-trash remove'></i>
+                            <i class='fa fa-trash'></i>
                         </td>
                     </tr>";
             }

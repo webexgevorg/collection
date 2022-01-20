@@ -156,12 +156,7 @@ font-weight: bold;
 }
 
 .carusel-card{
-	background: white;
-
-}
-
-.color1{
-	background: #6ea4ae8f;
+	background: #fff;
 
 }
 .carusel-card .collector-cad{
@@ -190,8 +185,8 @@ font-weight: bold;
 .autor-img1{
     margin: 0 auto;
     padding-top: 32px;
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 100px;
     
 }
 .collector-sec-author-name{

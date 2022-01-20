@@ -216,7 +216,7 @@
   width: 100%;
 }
 .t1,.t2,.t3{
-  background: #fad466!important;
+  background: none !important;
 }
 .text-success{
     width: max-content;

@@ -23,7 +23,7 @@ $result_banner = mysqli_query($con, $sql_banner);
 </head>
 <body class="page_fix">
     <?php include "cookie.php";?>
-<section id="banner" style=" height: 333px; background: url('images_banner/<?= $row_banner['image'] ?>')">
+<section id="banner" style="background: url('images_banner/<?= $row_banner['image'] ?>')">
     <div class="container">
         <div class="banner-text">
            <h1><?= $row_banner['tittle'] ?></h1>
